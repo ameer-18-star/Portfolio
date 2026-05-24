@@ -16,379 +16,319 @@
   --a3:      #005f80;
   --a4:      #ff6b35;
   --text:    #dce8f0;
-  --muted:   #5a7890;
+  --muted:   #7a9ab5;
   --border:  rgba(0,212,255,0.12);
   --border2: rgba(0,212,255,0.28);
   --glow:    rgba(0,212,255,0.06);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;}
+html{scroll-behavior:smooth;font-size:17px;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:400;line-height:1.75;overflow-x:hidden;}
 
-/* Scrollbar */
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--a2);border-radius:2px;}
 
-/* Grid bg */
 body::before{
   content:'';position:fixed;inset:0;
   background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;z-index:0;
+  background-size:60px 60px;pointer-events:none;z-index:0;
 }
 
-/* Cursor glow */
-#cg{position:fixed;pointer-events:none;z-index:999;width:400px;height:400px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,212,255,0.04) 0%,transparent 70%);transition:opacity 0.3s;}
+#cg{position:fixed;pointer-events:none;z-index:999;width:400px;height:400px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,212,255,0.04) 0%,transparent 70%);}
 
 /* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 5rem;
-  background:rgba(6,8,16,0.88);
+  padding:1.1rem 5rem;
+  background:rgba(6,8,16,0.9);
   backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
 }
-.nav-logo{
-  font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;
-  color:var(--a1);letter-spacing:3px;text-transform:uppercase;
-  display:flex;align-items:center;gap:0.6rem;
-}
-.nav-logo span{color:var(--a4);font-size:0.65rem;letter-spacing:2px;font-weight:500;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;color:var(--a1);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:0.6rem;}
+.nav-logo span{color:var(--a4);font-size:0.7rem;letter-spacing:2px;font-weight:500;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{
-  color:var(--muted);text-decoration:none;
-  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;
-  transition:color 0.2s;position:relative;
-}
+.nav-links a{color:var(--muted);text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.2s;position:relative;}
 .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--a1);transform:scaleX(0);transition:transform 0.2s;}
 .nav-links a:hover{color:var(--a1);}
 .nav-links a:hover::after{transform:scaleX(1);}
-.nav-hire{
-  padding:0.45rem 1.2rem;border:1px solid var(--a1);color:var(--a1);
-  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;
-  background:transparent;cursor:pointer;transition:all 0.2s;text-decoration:none;border-radius:2px;
-}
+.nav-hire{padding:0.5rem 1.3rem;border:1px solid var(--a1);color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;background:transparent;cursor:pointer;transition:all 0.2s;text-decoration:none;border-radius:2px;}
 .nav-hire:hover{background:var(--a1);color:var(--bg);}
 
 /* HERO */
-#hero{
-  min-height:100vh;display:grid;grid-template-columns:1.2fr 0.8fr;
-  align-items:center;padding:8rem 5rem 5rem;gap:5rem;position:relative;
-}
-.h-scan{
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--a1),transparent);
-  animation:scanline 4s linear infinite;opacity:0.4;
-}
+#hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 0.8fr;align-items:center;padding:8rem 5rem 5rem;gap:5rem;position:relative;}
+.h-scan{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--a1),transparent);animation:scanline 5s linear infinite;opacity:0.3;}
 @keyframes scanline{0%{top:0%}100%{top:100%}}
-.h-tag{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:500;
-  letter-spacing:3px;text-transform:uppercase;color:var(--a4);
-  margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;
-}
-.h-tag::before{content:'▶';font-size:0.5rem;}
-.h-name{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(3.2rem,6vw,5.8rem);font-weight:800;line-height:0.95;
-  margin-bottom:0.3rem;letter-spacing:-2px;
-}
+.h-tag{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--a4);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;}
+.h-tag::before{content:'▶';font-size:0.55rem;}
+.h-name{font-family:'Syne',sans-serif;font-size:clamp(3.4rem,6vw,6rem);font-weight:800;line-height:0.95;margin-bottom:0.4rem;letter-spacing:-2px;}
 .h-name .ln{display:block;color:var(--a1);}
-.h-sub{
-  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:2px;
-  color:var(--muted);text-transform:uppercase;margin-bottom:1.5rem;
-}
-.h-bio{color:var(--muted);font-size:0.95rem;max-width:520px;line-height:1.9;margin-bottom:2rem;}
+.h-sub{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:1.6rem;}
+.h-bio{color:var(--muted);font-size:1.05rem;max-width:530px;line-height:1.9;margin-bottom:2rem;}
 .h-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
-.hb{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;
-  padding:0.3rem 0.9rem;border:1px solid var(--border2);color:var(--a1);
-  border-radius:2px;background:var(--glow);transition:all 0.2s;
-}
+.hb{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;padding:0.35rem 1rem;border:1px solid var(--border2);color:var(--a1);border-radius:2px;background:var(--glow);transition:all 0.2s;}
 .hb:hover{background:rgba(0,212,255,0.12);}
 .h-cta{display:flex;gap:1rem;}
-.btn-p{
-  padding:0.75rem 2rem;background:var(--a1);color:var(--bg);
-  font-family:'Outfit',sans-serif;font-weight:600;font-size:0.85rem;
-  border:none;cursor:pointer;border-radius:2px;transition:all 0.25s;text-decoration:none;display:inline-block;
-}
+.btn-p{padding:0.85rem 2.2rem;background:var(--a1);color:var(--bg);font-family:'Outfit',sans-serif;font-weight:600;font-size:0.92rem;border:none;cursor:pointer;border-radius:2px;transition:all 0.25s;text-decoration:none;display:inline-block;}
 .btn-p:hover{background:var(--a2);transform:translateY(-2px);}
-.btn-s{
-  padding:0.75rem 2rem;background:transparent;color:var(--a1);
-  font-family:'Outfit',sans-serif;font-weight:500;font-size:0.85rem;
-  border:1px solid var(--border2);cursor:pointer;border-radius:2px;
-  transition:all 0.25s;text-decoration:none;display:inline-block;
-}
+.btn-s{padding:0.85rem 2.2rem;background:transparent;color:var(--a1);font-family:'Outfit',sans-serif;font-weight:500;font-size:0.92rem;border:1px solid var(--border2);cursor:pointer;border-radius:2px;transition:all 0.25s;text-decoration:none;display:inline-block;}
 .btn-s:hover{border-color:var(--a1);background:var(--glow);transform:translateY(-2px);}
 
-/* Hero right panel */
-.h-right{display:flex;flex-direction:column;gap:0;position:relative;}
-.h-terminal{
-  background:var(--card);border:1px solid var(--border2);border-radius:6px;
-  overflow:hidden;box-shadow:0 0 60px rgba(0,212,255,0.08);
-}
-.term-bar{
-  background:#0d1525;padding:0.7rem 1rem;
-  display:flex;align-items:center;gap:0.5rem;
-  border-bottom:1px solid var(--border);
-}
+/* HERO RIGHT */
+.h-right{display:flex;flex-direction:column;gap:0;}
+
+/* ── INTERACTIVE TERMINAL ── */
+.h-terminal{background:var(--card);border:1px solid var(--border2);border-radius:6px;overflow:hidden;box-shadow:0 0 60px rgba(0,212,255,0.08);}
+.term-bar{background:#0d1525;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid var(--border);}
 .tdot{width:10px;height:10px;border-radius:50%;}
 .tdot.r{background:#ff5f57;}.tdot.y{background:#febc2e;}.tdot.g{background:#28c840;}
-.term-title{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--muted);margin-left:auto;letter-spacing:1px;}
-.term-body{padding:1.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.73rem;line-height:2;}
+.term-title{font-family:'IBM Plex Mono',monospace;font-size:0.64rem;color:var(--muted);margin-left:auto;letter-spacing:1px;}
+.term-body{padding:1.2rem 1.4rem;font-family:'IBM Plex Mono',monospace;font-size:0.76rem;line-height:1.9;max-height:340px;overflow-y:auto;display:flex;flex-direction:column;}
+.term-body::-webkit-scrollbar{width:2px;}
+.term-body::-webkit-scrollbar-thumb{background:var(--a3);}
+.term-output{flex:1;}
+.term-output div{margin-bottom:0.05rem;}
 .tc{color:var(--muted);}
 .tv{color:var(--a1);}
 .tk{color:var(--a4);}
 .ts{color:#85e89d;}
 .tcm{color:#6a9fb5;}
+.terr{color:#ff6b6b;}
+.twarn{color:#febc2e;}
+.tbold{color:var(--text);font-weight:500;}
+.thl{color:var(--a4);font-weight:500;}
+.term-input-row{display:flex;align-items:center;gap:0.4rem;margin-top:0.6rem;border-top:1px solid var(--border);padding-top:0.6rem;}
+.term-prompt{color:var(--a4);font-family:'IBM Plex Mono',monospace;font-size:0.76rem;white-space:nowrap;}
+#termInput{background:transparent;border:none;outline:none;color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.76rem;flex:1;caret-color:var(--a1);}
 
 .h-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1rem;}
-.stat-box{
-  background:var(--card);border:1px solid var(--border);
-  padding:1.2rem;border-radius:4px;text-align:center;
-  transition:all 0.2s;position:relative;overflow:hidden;
-}
-.stat-box::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--a3),var(--a1));
-  transform:scaleX(0);transition:transform 0.3s;
-}
+.stat-box{background:var(--card);border:1px solid var(--border);padding:1.2rem;border-radius:4px;text-align:center;transition:all 0.2s;position:relative;overflow:hidden;}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--a3),var(--a1));transform:scaleX(0);transition:transform 0.3s;}
 .stat-box:hover{border-color:var(--border2);}
 .stat-box:hover::before{transform:scaleX(1);}
-.sn{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--a1);line-height:1;}
-.sl{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:0.25rem;}
+.sn{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--a1);line-height:1;}
+.sl{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:0.25rem;}
 
-/* SECTION BASE */
+/* SECTIONS */
 section{padding:6rem 5rem;position:relative;}
 .sh{display:flex;align-items:center;gap:1.2rem;margin-bottom:3.5rem;}
-.st{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--a4);white-space:nowrap;}
+.st{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--a4);white-space:nowrap;}
 .sl2{flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent);}
-.stitle{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;margin-bottom:0.4rem;}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(2rem,3vw,2.6rem);font-weight:700;margin-bottom:0.5rem;}
 
 /* EXPERIENCE */
 #experience{background:var(--bg2);}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
-.exp-card{
-  background:var(--card);border:1px solid var(--border);
-  border-left:3px solid var(--a3);padding:1.8rem 2rem;border-radius:4px;
-  transition:all 0.3s;position:relative;overflow:hidden;
-}
-.exp-card::after{
-  content:'';position:absolute;top:0;right:0;bottom:0;width:3px;
-  background:linear-gradient(to bottom,transparent,var(--a1),transparent);
-  opacity:0;transition:opacity 0.3s;
-}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;}
+.exp-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--a3);padding:2rem 2.2rem;border-radius:4px;transition:all 0.3s;position:relative;overflow:hidden;}
+.exp-card::after{content:'';position:absolute;top:0;right:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,var(--a1),transparent);opacity:0;transition:opacity 0.3s;}
 .exp-card:hover{border-left-color:var(--a1);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
 .exp-card:hover::after{opacity:1;}
-.exp-role{font-size:1rem;font-weight:600;margin-bottom:0.25rem;}
-.exp-org{color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-bottom:0.2rem;}
-.exp-date{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.68rem;margin-bottom:0.9rem;}
-.exp-desc{color:var(--muted);font-size:0.86rem;line-height:1.75;}
-.exp-bullets{margin:0.8rem 0 0;padding:0 0 0 1rem;list-style:none;}
-.exp-bullets li{font-size:0.83rem;color:var(--muted);padding:0.25rem 0;position:relative;}
+.exp-role{font-size:1.05rem;font-weight:600;margin-bottom:0.3rem;}
+.exp-org{color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.77rem;margin-bottom:0.2rem;}
+.exp-date{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.7rem;margin-bottom:1rem;}
+.exp-bullets{margin:0;padding:0 0 0 1rem;list-style:none;}
+.exp-bullets li{font-size:0.9rem;color:var(--muted);padding:0.28rem 0;position:relative;}
 .exp-bullets li::before{content:'›';position:absolute;left:-1rem;color:var(--a1);}
 
 /* PROJECTS */
 #projects{background:var(--bg);}
-.proj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;}
-.proj-card{
-  background:var(--card);border:1px solid var(--border);border-radius:4px;
-  padding:2rem;transition:all 0.3s;position:relative;overflow:hidden;
-  display:flex;flex-direction:column;
-}
-.proj-card::before{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--a3),var(--a1),var(--a4));
-  transform:scaleX(0);transition:transform 0.35s;
-}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4rem;}
+.proj-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2.2rem;transition:all 0.3s;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.proj-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--a3),var(--a1),var(--a4));transform:scaleX(0);transition:transform 0.35s;}
 .proj-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,0.5);border-color:var(--border2);}
 .proj-card:hover::before{transform:scaleX(1);}
-.proj-icon{font-size:1.5rem;margin-bottom:1rem;}
-.proj-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.3rem;}
-.proj-sub{font-family:'IBM Plex Mono',monospace;color:var(--a1);font-size:0.67rem;margin-bottom:0.8rem;letter-spacing:0.5px;}
-.proj-desc{color:var(--muted);font-size:0.84rem;line-height:1.75;margin-bottom:1.2rem;flex:1;}
+.proj-icon{font-size:1.6rem;margin-bottom:1rem;}
+.proj-name{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:0.35rem;}
+.proj-sub{font-family:'IBM Plex Mono',monospace;color:var(--a1);font-size:0.69rem;margin-bottom:0.9rem;letter-spacing:0.5px;}
+.proj-desc{color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:1.2rem;flex:1;}
 .tech-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
-.tt{
-  font-family:'IBM Plex Mono',monospace;font-size:0.63rem;
-  padding:0.18rem 0.55rem;background:rgba(0,212,255,0.07);
-  border:1px solid var(--border);color:var(--a2);border-radius:2px;
-}
+.tt{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;padding:0.2rem 0.6rem;background:rgba(0,212,255,0.07);border:1px solid var(--border);color:var(--a2);border-radius:2px;}
 .proj-link{margin-top:1rem;}
-.proj-link a{
-  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:1px;
-  text-transform:uppercase;color:var(--a4);text-decoration:none;
-  border-bottom:1px solid rgba(255,107,53,0.3);transition:all 0.2s;
-}
+.proj-link a{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;color:var(--a4);text-decoration:none;border-bottom:1px solid rgba(255,107,53,0.3);transition:all 0.2s;}
 .proj-link a:hover{color:var(--a1);border-bottom-color:rgba(0,212,255,0.5);}
 
-/* EDUCATION + CERTS */
+/* EDUCATION */
 #education{background:var(--bg2);}
 .edu-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
 .edu-list{display:flex;flex-direction:column;gap:1rem;}
-.edu-card{
-  background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.6rem 1.8rem;transition:all 0.3s;
-}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.8rem 2rem;transition:all 0.3s;}
 .edu-card:hover{border-color:var(--border2);transform:translateX(4px);}
-.edu-deg{font-weight:600;font-size:0.95rem;margin-bottom:0.25rem;}
-.edu-sch{color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.73rem;margin-bottom:0.2rem;}
-.edu-date{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.65rem;margin-bottom:0.7rem;}
-.edu-note{color:var(--muted);font-size:0.84rem;line-height:1.7;}
+.edu-deg{font-weight:600;font-size:1rem;margin-bottom:0.3rem;}
+.edu-sch{color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-bottom:0.2rem;}
+.edu-date{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.68rem;margin-bottom:0.75rem;}
+.edu-note{color:var(--muted);font-size:0.9rem;line-height:1.75;}
 
-/* CISCO BADGES */
+/* CISCO BADGES sidebar */
 .certs-side{display:flex;flex-direction:column;gap:1.2rem;}
-.cert-label{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--a4);
-  margin-bottom:0.4rem;
-}
-.badges-scroll{
-  display:flex;flex-wrap:wrap;gap:0.8rem;
-  max-height:420px;overflow-y:auto;padding-right:0.4rem;
-}
+.cert-label{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--a4);margin-bottom:0.4rem;}
+.badges-scroll{display:flex;flex-wrap:wrap;gap:0.8rem;max-height:430px;overflow-y:auto;padding-right:0.4rem;}
 .badges-scroll::-webkit-scrollbar{width:2px;}
 .badges-scroll::-webkit-scrollbar-thumb{background:var(--a3);}
-.badge-item{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:4px;padding:0.7rem 1rem;
-  display:flex;align-items:center;gap:0.7rem;
-  transition:all 0.2s;cursor:pointer;
-  text-decoration:none;color:inherit;
-  flex:0 0 calc(50% - 0.4rem);
-}
+.badge-item{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:0.75rem 1rem;display:flex;align-items:center;gap:0.7rem;transition:all 0.2s;cursor:pointer;text-decoration:none;color:inherit;flex:0 0 calc(50% - 0.4rem);}
 .badge-item:hover{border-color:var(--a1);background:var(--glow);}
-.badge-icon{font-size:1.1rem;}
-.badge-name{font-size:0.78rem;font-weight:500;color:var(--text);}
-.badge-issuer{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--a2);margin-top:0.1rem;}
-.badge-verified{
-  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:0.55rem;
-  letter-spacing:1px;text-transform:uppercase;color:var(--ts, #85e89d);
-  background:rgba(133,232,157,0.08);border:1px solid rgba(133,232,157,0.2);
-  padding:0.15rem 0.5rem;border-radius:2px;white-space:nowrap;
-}
+.badge-icon{font-size:1.15rem;}
+.badge-name{font-size:0.82rem;font-weight:500;color:var(--text);}
+.badge-issuer{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--a2);margin-top:0.1rem;}
+.badge-verified{margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:0.57rem;letter-spacing:1px;text-transform:uppercase;color:#85e89d;background:rgba(133,232,157,0.08);border:1px solid rgba(133,232,157,0.2);padding:0.15rem 0.5rem;border-radius:2px;white-space:nowrap;}
 
-/* Full badges embed section */
+/* BADGES FULL EMBED */
 #badges{background:var(--bg);}
-.badges-full-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:2rem;justify-items:center;
-}
-.badge-embed-wrap{
-  display:flex;flex-direction:column;align-items:center;gap:0.6rem;text-align:center;
-}
-.badge-embed-title{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:1px;
-  color:var(--muted);text-transform:uppercase;max-width:140px;line-height:1.4;
-}
+.badges-full-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:2.5rem;justify-items:center;}
+.badge-embed-wrap{display:flex;flex-direction:column;align-items:center;gap:0.6rem;text-align:center;}
+.badge-embed-title{font-family:'IBM Plex Mono',monospace;font-size:0.67rem;letter-spacing:0.5px;color:var(--muted);text-transform:uppercase;max-width:150px;line-height:1.5;}
 
 /* SKILLS */
 #skills{background:var(--bg2);}
-.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;}
-.skill-cat{
-  background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.6rem;transition:border-color 0.2s;
-}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.4rem;}
+.skill-cat{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.8rem;transition:border-color 0.2s;}
 .skill-cat:hover{border-color:var(--border2);}
-.sc-head{
-  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;
-  color:var(--a4);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;
-}
+.sc-head{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--a4);margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem;}
 .sc-head::before{content:'';width:20px;height:1px;background:var(--a4);}
-.skill-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
-.sp{
-  font-size:0.75rem;font-weight:500;padding:0.3rem 0.8rem;
-  background:rgba(0,212,255,0.06);border:1px solid var(--border);
-  color:var(--text);border-radius:2px;transition:all 0.2s;
-}
+.skill-pills{display:flex;flex-wrap:wrap;gap:0.45rem;}
+.sp{font-size:0.8rem;font-weight:500;padding:0.35rem 0.9rem;background:rgba(0,212,255,0.06);border:1px solid var(--border);color:var(--text);border-radius:2px;transition:all 0.2s;}
 .sp:hover{background:rgba(0,212,255,0.13);border-color:var(--a2);color:var(--a1);}
-
-/* LANGUAGES */
-.lang-section{margin-top:2rem;}
-.lang-row{display:flex;align-items:center;gap:1.5rem;padding:0.9rem 0;border-bottom:1px solid var(--border);}
-.lang-name{font-weight:500;font-size:0.9rem;min-width:90px;}
+.lang-section{margin-top:0.5rem;}
+.lang-row{display:flex;align-items:center;gap:1.5rem;padding:0.95rem 0;border-bottom:1px solid var(--border);}
+.lang-name{font-weight:500;font-size:0.95rem;min-width:90px;}
 .lang-bar-bg{flex:1;height:3px;background:rgba(0,212,255,0.1);border-radius:3px;overflow:hidden;}
 .lang-bar{height:100%;background:linear-gradient(90deg,var(--a3),var(--a1));border-radius:3px;width:0;transition:width 1.2s ease;}
-.lang-pct{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--a1);min-width:35px;text-align:right;}
+.lang-pct{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--a1);min-width:35px;text-align:right;}
 
 /* ACHIEVEMENTS */
 #achievements{background:var(--bg);}
-.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
-.ach-card{
-  background:var(--card);border:1px solid var(--border);border-radius:4px;
-  padding:2rem 1.5rem;text-align:center;transition:all 0.3s;
-  position:relative;overflow:hidden;
-}
-.ach-card::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at center,rgba(0,212,255,0.04) 0%,transparent 70%);
-  opacity:0;transition:opacity 0.3s;
-}
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;}
+.ach-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:2.2rem 1.8rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden;}
+.ach-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,212,255,0.04) 0%,transparent 70%);opacity:0;transition:opacity 0.3s;}
 .ach-card:hover{transform:translateY(-4px);border-color:var(--border2);}
 .ach-card:hover::before{opacity:1;}
-.ach-num{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--a1);line-height:1;margin-bottom:0.5rem;}
-.ach-title{font-size:0.85rem;font-weight:500;margin-bottom:0.3rem;}
-.ach-org{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);}
+.ach-num{font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;color:var(--a1);line-height:1;margin-bottom:0.5rem;}
+.ach-title{font-size:0.92rem;font-weight:500;margin-bottom:0.35rem;}
+.ach-org{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--muted);}
 
 /* LEARNING */
 #learning{background:var(--bg2);}
 .learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
-.learn-sub{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--a4);margin-bottom:1.2rem;}
-.learn-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
-.lp{
-  font-size:0.8rem;font-weight:500;padding:0.5rem 1.1rem;
-  background:rgba(255,107,53,0.07);border:1px solid rgba(255,107,53,0.2);
-  color:#ff9c6e;border-radius:2px;transition:all 0.2s;
-}
+.learn-sub{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--a4);margin-bottom:1.2rem;}
+.learn-pills{display:flex;flex-wrap:wrap;gap:0.55rem;}
+.lp{font-size:0.84rem;font-weight:500;padding:0.5rem 1.2rem;background:rgba(255,107,53,0.07);border:1px solid rgba(255,107,53,0.2);color:#ff9c6e;border-radius:2px;transition:all 0.2s;}
 .lp:hover{background:rgba(255,107,53,0.15);}
-.hobby-list{display:flex;flex-direction:column;gap:0.6rem;}
-.hobby-item{
-  display:flex;align-items:center;gap:0.8rem;
-  font-size:0.88rem;color:var(--muted);
-}
+.hobby-list{display:flex;flex-direction:column;gap:0.7rem;}
+.hobby-item{display:flex;align-items:center;gap:0.85rem;font-size:0.92rem;color:var(--muted);}
 .hd{width:5px;height:5px;border-radius:50%;background:var(--a1);flex-shrink:0;}
 
-/* CONTACT / FOOTER */
+/* CONTACT */
 #contact{background:var(--bg);padding:6rem 5rem;}
-.contact-inner{max-width:700px;margin:0 auto;text-align:center;}
-.contact-inner .stitle{text-align:center;margin-bottom:0.8rem;}
-.contact-sub{color:var(--muted);font-size:0.95rem;margin-bottom:3rem;}
-.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;}
-.contact-card{
-  background:var(--card);border:1px solid var(--border);border-radius:4px;
-  padding:1.4rem;text-align:center;transition:all 0.2s;text-decoration:none;color:inherit;display:block;
-}
+.contact-inner{max-width:720px;margin:0 auto;text-align:center;}
+.contact-sub{color:var(--muted);font-size:1rem;margin-bottom:3rem;}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1rem;}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.6rem;text-align:center;transition:all 0.2s;text-decoration:none;color:inherit;display:block;}
 .contact-card:hover{border-color:var(--a1);transform:translateY(-2px);}
-.cc-icon{font-size:1.4rem;margin-bottom:0.6rem;}
-.cc-label{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
-.cc-val{font-size:0.82rem;font-weight:500;color:var(--a1);}
+.cc-icon{font-size:1.5rem;margin-bottom:0.6rem;}
+.cc-label{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem;}
+.cc-val{font-size:0.88rem;font-weight:500;color:var(--a1);}
 
-footer{
-  background:var(--bg2);border-top:1px solid var(--border);
-  padding:2rem 5rem;display:flex;align-items:center;justify-content:space-between;
-}
-.footer-logo{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:800;color:var(--a1);letter-spacing:2px;}
-.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--muted);}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2rem 5rem;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;color:var(--a1);letter-spacing:2px;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);}
 .footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--a1);}
 
-/* REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-delay-1{transition-delay:0.12s;}
 .reveal-delay-2{transition-delay:0.24s;}
 .reveal-delay-3{transition-delay:0.36s;}
 
-/* RESPONSIVE */
+/* ── FULL TERMINAL SECTION ── */
+.full-terminal{
+  background:#04070f;
+  border:1px solid var(--border2);
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 0 80px rgba(0,212,255,0.10), 0 40px 100px rgba(0,0,0,0.6);
+}
+.ft-bar{
+  background:#07101e;
+  padding:0.75rem 1.2rem;
+  display:flex;align-items:center;gap:1rem;
+  border-bottom:1px solid var(--border);
+}
+.ft-dots{display:flex;gap:0.45rem;align-items:center;}
+.ft-tabs{display:flex;align-items:center;gap:1.2rem;flex:1;margin-left:0.5rem;}
+.ft-tab{
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.5px;
+  color:var(--text);background:rgba(0,212,255,0.08);
+  border:1px solid var(--border2);border-bottom:none;
+  padding:0.3rem 1rem;border-radius:4px 4px 0 0;
+}
+.ft-tab-hint{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);
+}
+.ft-tab-hint span{color:var(--a1);}
+.ft-uptime{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;
+  color:var(--muted);margin-left:auto;letter-spacing:1px;
+}
+.ft-body{
+  padding:1.4rem 1.8rem 0;
+  font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
+  line-height:1.9;min-height:420px;max-height:520px;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.ft-output{
+  flex:1;overflow-y:auto;margin-bottom:0.5rem;
+  scrollbar-width:thin;scrollbar-color:var(--a3) transparent;
+}
+.ft-output::-webkit-scrollbar{width:3px;}
+.ft-output::-webkit-scrollbar-thumb{background:var(--a3);border-radius:2px;}
+.ft-output div{line-height:1.85;}
+.ft-motd{
+  font-size:0.48rem;line-height:1.5;
+  white-space:pre;overflow-x:auto;
+  margin-bottom:0.4rem;display:block;
+}
+.ft-input-row{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.8rem 0 0.8rem;
+  border-top:1px solid rgba(0,212,255,0.08);
+  position:sticky;bottom:0;background:#04070f;
+}
+.ft-prompt{
+  font-family:'IBM Plex Mono',monospace;font-size:0.78rem;white-space:nowrap;
+  user-select:none;
+}
+#ftInput{
+  background:transparent;border:none;outline:none;
+  color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
+  flex:1;caret-color:var(--a1);min-width:0;
+}
+.ft-cursor{
+  width:8px;height:1rem;background:var(--a1);
+  animation:ftBlink 1s steps(1) infinite;
+  flex-shrink:0;opacity:0.8;
+}
+@keyframes ftBlink{0%,100%{opacity:0.8}50%{opacity:0}}
+.ft-statusbar{
+  background:#050c18;
+  border-top:1px solid var(--border);
+  padding:0.4rem 1.4rem;
+  display:flex;gap:1.8rem;align-items:center;
+  font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--muted);
+}
+.ft-sb-item{display:flex;align-items:center;gap:0.4rem;}
+.ft-sb-right{margin-left:auto;color:var(--a2);}
+
 @media(max-width:1024px){
-  nav{padding:1rem 2rem;}
-  #hero,section{padding:7rem 2rem 4rem;}
-  .exp-grid,.proj-grid,.skills-grid{grid-template-columns:1fr;}
-  .ach-grid{grid-template-columns:1fr 1fr;}
-  .edu-wrapper,.learn-grid{grid-template-columns:1fr;}
-  .contact-grid{grid-template-columns:1fr;}
+  nav{padding:1rem 1.5rem;}
+  #hero,section,footer,#contact{padding:7rem 1.5rem 4rem;}
+  .exp-grid,.proj-grid,.skills-grid,.edu-wrapper,.learn-grid,.ach-grid{grid-template-columns:1fr;}
   #hero{grid-template-columns:1fr;gap:2rem;}
   .h-right{order:3;}
   footer{flex-direction:column;gap:1rem;text-align:center;}
   .nav-links{display:none;}
+  .contact-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -406,8 +346,9 @@ footer{
     <li><a href="#badges">Badges</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#terminal">Terminal</a></li>
   </ul>
-  <a href="mailto:ali.ameer.it.exp@gmail.com" class="nav-hire">Hire Me</a>
+  <a href="https://pk.linkedin.com/in/ali-ameer-811786302" target="_blank" class="nav-hire">Hire Me</a>
 </nav>
 
 <!-- HERO -->
@@ -416,7 +357,7 @@ footer{
   <div>
     <div class="h-tag">IT Professional &amp; Cybersecurity Educator</div>
     <h1 class="h-name">Ali<span class="ln">Ameer</span></h1>
-    <div class="h-sub">BS IT · Faisalabad, Pakistan</div>
+    <div class="h-sub">BS IT · Cybersecurity · IT Training</div>
     <p class="h-bio">BS IT graduate (CGPA 3.5/4.0) with 3+ years spanning IT training, cybersecurity education, SEO, and WordPress development. Grew combined social media presence to 30M+ views and generated 35K+ organic website visits with zero paid advertising.</p>
     <div class="h-badges">
       <span class="hb">Cybersecurity</span>
@@ -428,37 +369,35 @@ footer{
     </div>
     <div class="h-cta">
       <a href="#experience" class="btn-p">View Experience</a>
-      <a href="#contact" class="btn-s">Get In Touch</a>
+      <a href="https://pk.linkedin.com/in/ali-ameer-811786302" target="_blank" class="btn-s">Connect on LinkedIn</a>
     </div>
   </div>
 
   <div class="h-right">
+    <!-- INTERACTIVE TERMINAL -->
     <div class="h-terminal">
       <div class="term-bar">
         <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
-        <span class="term-title">ali_ameer.sh</span>
+        <span class="term-title">ali@portfolio ~ bash</span>
       </div>
-      <div class="term-body">
-        <div><span class="tc">$ </span><span class="tk">whoami</span></div>
-        <div class="tv">ali_ameer</div>
-        <div style="height:0.4rem;"></div>
-        <div><span class="tc">$ </span><span class="tk">cat</span> <span class="ts">profile.json</span></div>
-        <div class="tc">{</div>
-        <div>&nbsp;&nbsp;<span class="tcm">"role"</span>: <span class="tv">"IT Trainer + Cybersec"</span>,</div>
-        <div>&nbsp;&nbsp;<span class="tcm">"cgpa"</span>: <span class="tv">3.5</span>,</div>
-        <div>&nbsp;&nbsp;<span class="tcm">"views"</span>: <span class="tv">"30M+"</span>,</div>
-        <div>&nbsp;&nbsp;<span class="tcm">"certs"</span>: <span class="tv">12</span>,</div>
-        <div>&nbsp;&nbsp;<span class="tcm">"status"</span>: <span class="ts">"open_to_work"</span></div>
-        <div class="tc">}</div>
-        <div style="height:0.4rem;"></div>
-        <div><span class="tc">$ </span><span class="tv">_</span><span class="tc" style="animation:blink 1s infinite">|</span></div>
+      <div class="term-body" id="termBody">
+        <div class="term-output" id="termOutput">
+          <div><span class="ts">Welcome to Ali Ameer's Interactive Terminal</span></div>
+          <div><span class="tc">Type </span><span class="tv">man</span><span class="tc"> to see all available commands.</span></div>
+          <div>&nbsp;</div>
+        </div>
+        <div class="term-input-row">
+          <span class="term-prompt">ali@portfolio:~$</span>
+          <input id="termInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type a command..." />
+        </div>
       </div>
     </div>
+
     <div class="h-stats">
       <div class="stat-box"><div class="sn">30M+</div><div class="sl">Total Views</div></div>
       <div class="stat-box"><div class="sn">3.5</div><div class="sl">CGPA</div></div>
       <div class="stat-box"><div class="sn">35K+</div><div class="sl">Organic Visits</div></div>
-      <div class="stat-box"><div class="sn">3+</div><div class="sl">Years Exp</div></div>
+      <div class="stat-box"><div class="sn">12</div><div class="sl">Cisco Badges</div></div>
     </div>
   </div>
 </section>
@@ -466,13 +405,12 @@ footer{
 <!-- EXPERIENCE -->
 <section id="experience">
   <div class="sh"><span class="st">01 — Experience</span><div class="sl2"></div></div>
-  <div class="stitle reveal">Where I've Worked</div>
-  <br>
+  <div class="stitle reveal">Where I've Worked</div><br>
   <div class="exp-grid">
     <div class="exp-card reveal">
       <div class="exp-role">IT Trainer &amp; Senior Content Creator</div>
       <div class="exp-org">VMSOIT</div>
-      <div class="exp-date">APR 2024 – PRESENT · Remote, Pakistan</div>
+      <div class="exp-date">APR 2024 – PRESENT · Remote</div>
       <ul class="exp-bullets">
         <li>Developing Mastering CompTIA A+ V15 course on YouTube covering Hardware, Networking, OS, Security, and Troubleshooting.</li>
         <li>Scaled combined digital reach to 30M+ total views with zero paid advertising.</li>
@@ -494,7 +432,7 @@ footer{
     <div class="exp-card reveal reveal-delay-2">
       <div class="exp-role">IT &amp; Computer Science Teacher</div>
       <div class="exp-org">Sir Syed Scholars Inn (Girls Campus)</div>
-      <div class="exp-date">2026 – PRESENT · Hafizabad, Pakistan</div>
+      <div class="exp-date">2026 – PRESENT</div>
       <ul class="exp-bullets">
         <li>Teaching CS &amp; IT fundamentals to female students in grades 6–10.</li>
         <li>Designing lesson plans, practical exercises, and assessments aligned with curriculum standards.</li>
@@ -503,7 +441,7 @@ footer{
     <div class="exp-card reveal reveal-delay-3">
       <div class="exp-role">Computer Lab Administrator &amp; Tech Support</div>
       <div class="exp-org">MIEHS</div>
-      <div class="exp-date">FEB 2022 – APR 2023 · Hafizabad, Pakistan</div>
+      <div class="exp-date">FEB 2022 – APR 2023</div>
       <ul class="exp-bullets">
         <li>Managed and maintained a 50-workstation computer lab ensuring maximum uptime.</li>
         <li>Diagnosed and resolved hardware, software, and network issues systematically.</li>
@@ -516,18 +454,14 @@ footer{
 <!-- PROJECTS -->
 <section id="projects">
   <div class="sh"><span class="st">02 — Projects</span><div class="sl2"></div></div>
-  <div class="stitle reveal">What I've Built</div>
-  <br>
+  <div class="stitle reveal">What I've Built</div><br>
   <div class="proj-grid">
     <div class="proj-card reveal">
       <div class="proj-icon">🎠</div>
       <div class="proj-name">CarouselCraft</div>
       <div class="proj-sub">Instagram Carousel Generator — Desktop App</div>
-      <div class="proj-desc">Full-featured Electron + React desktop app for creating professional Instagram carousel posts. Features 1350×2025px canvas, 10 design themes, 11 slide types, RTL Urdu support, custom LayoutEngine with 8pt grid, and multi-format export (PNG, JPG, PDF, ZIP).</div>
-      <div class="tech-tags">
-        <span class="tt">Electron v28</span><span class="tt">React 18</span><span class="tt">Framer Motion</span>
-        <span class="tt">Zustand</span><span class="tt">Dexie.js</span><span class="tt">jsPDF</span>
-      </div>
+      <div class="proj-desc">Full-featured Electron + React desktop app for creating professional Instagram carousel posts. Features 1350×2025px canvas, 10 design themes, 11 slide types, RTL Urdu support, and multi-format export (PNG, JPG, PDF, ZIP).</div>
+      <div class="tech-tags"><span class="tt">Electron v28</span><span class="tt">React 18</span><span class="tt">Framer Motion</span><span class="tt">Zustand</span><span class="tt">Dexie.js</span><span class="tt">jsPDF</span></div>
       <div class="proj-link"><a href="https://github.com/ameer-18-star" target="_blank">View on GitHub →</a></div>
     </div>
     <div class="proj-card reveal reveal-delay-1">
@@ -535,21 +469,15 @@ footer{
       <div class="proj-name">Advanced Habit Tracker</div>
       <div class="proj-sub">Desktop Productivity App — Electron + React</div>
       <div class="proj-desc">Production-grade habit tracking app with multi-profile support, smart OS notifications with streak protection, custom SVG progress rings and heatmaps, drag-and-drop reordering, PIN/session lock, and detailed analytics.</div>
-      <div class="tech-tags">
-        <span class="tt">Electron</span><span class="tt">React 18</span><span class="tt">Recharts</span>
-        <span class="tt">Zustand</span><span class="tt">Dexie.js</span><span class="tt">SVG</span>
-      </div>
+      <div class="tech-tags"><span class="tt">Electron</span><span class="tt">React 18</span><span class="tt">Recharts</span><span class="tt">Zustand</span><span class="tt">Dexie.js</span><span class="tt">SVG</span></div>
       <div class="proj-link"><a href="https://github.com/ameer-18-star" target="_blank">View on GitHub →</a></div>
     </div>
     <div class="proj-card reveal reveal-delay-2">
       <div class="proj-icon">📚</div>
       <div class="proj-name">PHP Learning Management System</div>
       <div class="proj-sub">Final Year Project — Full-Stack Web App</div>
-      <div class="proj-desc">Advanced PHP-based LMS built as GCUF capstone. Led full-stack development, database management, QA testing, curriculum design, and formal thesis. Presented to academic stakeholders at GC University Faisalabad.</div>
-      <div class="tech-tags">
-        <span class="tt">PHP</span><span class="tt">MySQL</span><span class="tt">HTML/CSS</span>
-        <span class="tt">JavaScript</span><span class="tt">Full-Stack</span>
-      </div>
+      <div class="proj-desc">Advanced PHP-based LMS built as GCUF final year capstone. Led full-stack development, database management, QA testing, curriculum design, and formal thesis presentation to academic stakeholders.</div>
+      <div class="tech-tags"><span class="tt">PHP</span><span class="tt">MySQL</span><span class="tt">HTML/CSS</span><span class="tt">JavaScript</span><span class="tt">Full-Stack</span></div>
     </div>
   </div>
 </section>
@@ -557,14 +485,13 @@ footer{
 <!-- EDUCATION -->
 <section id="education">
   <div class="sh"><span class="st">03 — Education &amp; Certifications</span><div class="sl2"></div></div>
-  <div class="stitle reveal">Academic Background</div>
-  <br>
+  <div class="stitle reveal">Academic Background</div><br>
   <div class="edu-wrapper">
     <div class="edu-list">
       <div class="edu-card reveal">
         <div class="edu-deg">BS Information Technology</div>
         <div class="edu-sch">GC University Faisalabad (GCUF)</div>
-        <div class="edu-date">2021 – 2025 · CGPA: 3.5/4.0 · First Division</div>
+        <div class="edu-date">CGPA: 3.5/4.0 · First Division</div>
         <div class="edu-note">Graduated top of batch. Coursework: Network Security, Cybersecurity, Database Management, Operating Systems, Data Communications.</div>
       </div>
       <div class="edu-card reveal reveal-delay-1">
@@ -576,74 +503,26 @@ footer{
       <div class="edu-card reveal reveal-delay-2">
         <div class="edu-deg">Currently Pursuing</div>
         <div class="edu-sch">EC-Council &amp; Cisco</div>
-        <div class="edu-date">2025 – Present</div>
-        <div class="edu-note">CEH v13 (Certified Ethical Hacker) · Cisco Ethical Hacker Career Path · Cisco Junior Cybersecurity Analyst · CompTIA A+, Network+, Security+ (Self-Study)</div>
+        <div class="edu-date">Ongoing</div>
+        <div class="edu-note">CEH v13 (Certified Ethical Hacker) · Cisco Ethical Hacker Career Path · Cisco Junior Cybersecurity Analyst · CompTIA A+, Network+, Security+</div>
       </div>
     </div>
 
     <div class="certs-side reveal reveal-delay-1">
       <div class="cert-label">Cisco Verified Badges</div>
       <div class="badges-scroll">
-        <a class="badge-item" href="https://www.credly.com/badges/89c4ed58-a37b-4c91-8b58-54b67bbf7759/public_url" target="_blank">
-          <div class="badge-icon">🔐</div>
-          <div><div class="badge-name">Intro to Cybersecurity</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/88bde4f0-bfe4-4f5c-86e8-87976f7058bf/public_url" target="_blank">
-          <div class="badge-icon">💻</div>
-          <div><div class="badge-name">Computer Hardware Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/03c8ab46-bb19-4e1f-bfa7-3620a64bb99b/public_url" target="_blank">
-          <div class="badge-icon">🎨</div>
-          <div><div class="badge-name">CSS Essentials</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/868d8764-96ce-4d62-a08d-9bda304a83ca/public_url" target="_blank">
-          <div class="badge-icon">🌐</div>
-          <div><div class="badge-name">HTML Essentials</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/bb59f709-4094-41bf-9fc1-d890f3f7497c/public_url" target="_blank">
-          <div class="badge-icon">🎧</div>
-          <div><div class="badge-name">IT Customer Support Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/8098f891-4e80-49f0-b588-1f85684c5442/public_url" target="_blank">
-          <div class="badge-icon">🔌</div>
-          <div><div class="badge-name">Networking Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/b4d553ed-76df-4846-aa50-4a4eff39f3d7/public_url" target="_blank">
-          <div class="badge-icon">🖥️</div>
-          <div><div class="badge-name">OS Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/f9604a29-27dc-4073-b39e-5f1a6d12377e/public_url" target="_blank">
-          <div class="badge-icon">🐍</div>
-          <div><div class="badge-name">Python Essentials 1</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/c6c4845c-2a39-4c47-9e75-d4d53b4a5d20/public_url" target="_blank">
-          <div class="badge-icon">⚙️</div>
-          <div><div class="badge-name">OS Support</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/1977d543-d6e1-4c74-8a0f-94efe9a96a35/public_url" target="_blank">
-          <div class="badge-icon">🔧</div>
-          <div><div class="badge-name">Hardware &amp; Upgrade Support</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/2a7c0fad-3825-4a58-bdd8-ab796d3c577e/public_url" target="_blank">
-          <div class="badge-icon">🛡️</div>
-          <div><div class="badge-name">Security &amp; Connectivity</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
-        <a class="badge-item" href="https://www.credly.com/badges/294c9f7e-e255-46cc-93dc-5327d7ceaeb8/public_url" target="_blank">
-          <div class="badge-icon">🏆</div>
-          <div><div class="badge-name">IT Support Specialist Career Path</div><div class="badge-issuer">Cisco NetAcad</div></div>
-          <div class="badge-verified">✓ verified</div>
-        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/89c4ed58-a37b-4c91-8b58-54b67bbf7759/public_url" target="_blank"><div class="badge-icon">🔐</div><div><div class="badge-name">Intro to Cybersecurity</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/88bde4f0-bfe4-4f5c-86e8-87976f7058bf/public_url" target="_blank"><div class="badge-icon">💻</div><div><div class="badge-name">Computer Hardware Basics</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/03c8ab46-bb19-4e1f-bfa7-3620a64bb99b/public_url" target="_blank"><div class="badge-icon">🎨</div><div><div class="badge-name">CSS Essentials</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/868d8764-96ce-4d62-a08d-9bda304a83ca/public_url" target="_blank"><div class="badge-icon">🌐</div><div><div class="badge-name">HTML Essentials</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/bb59f709-4094-41bf-9fc1-d890f3f7497c/public_url" target="_blank"><div class="badge-icon">🎧</div><div><div class="badge-name">IT Customer Support</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/8098f891-4e80-49f0-b588-1f85684c5442/public_url" target="_blank"><div class="badge-icon">🔌</div><div><div class="badge-name">Networking Basics</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/b4d553ed-76df-4846-aa50-4a4eff39f3d7/public_url" target="_blank"><div class="badge-icon">🖥️</div><div><div class="badge-name">OS Basics</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/f9604a29-27dc-4073-b39e-5f1a6d12377e/public_url" target="_blank"><div class="badge-icon">🐍</div><div><div class="badge-name">Python Essentials 1</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/c6c4845c-2a39-4c47-9e75-d4d53b4a5d20/public_url" target="_blank"><div class="badge-icon">⚙️</div><div><div class="badge-name">OS Support</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/1977d543-d6e1-4c74-8a0f-94efe9a96a35/public_url" target="_blank"><div class="badge-icon">🔧</div><div><div class="badge-name">Hardware &amp; Upgrade Support</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/2a7c0fad-3825-4a58-bdd8-ab796d3c577e/public_url" target="_blank"><div class="badge-icon">🛡️</div><div><div class="badge-name">Security &amp; Connectivity</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
+        <a class="badge-item" href="https://www.credly.com/badges/294c9f7e-e255-46cc-93dc-5327d7ceaeb8/public_url" target="_blank"><div class="badge-icon">🏆</div><div><div class="badge-name">IT Support Specialist Career</div><div class="badge-issuer">Cisco NetAcad</div></div><div class="badge-verified">✓ verified</div></a>
       </div>
     </div>
   </div>
@@ -653,77 +532,63 @@ footer{
 <section id="badges">
   <div class="sh"><span class="st">04 — Cisco Digital Badges</span><div class="sl2"></div></div>
   <div class="stitle reveal">Verified Credly Badges</div>
-  <p style="color:var(--muted);font-size:0.9rem;margin-bottom:3rem;" class="reveal">All badges are verified by Cisco Networking Academy and hosted on Credly. Click any badge to verify.</p>
+  <p style="color:var(--muted);font-size:1rem;margin-bottom:3rem;" class="reveal">All 12 badges are verified by Cisco Networking Academy and hosted on Credly. Click any badge to verify on Credly.</p>
   <div class="badges-full-grid reveal">
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="89c4ed58-a37b-4c91-8b58-54b67bbf7759" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Introduction to Cybersecurity</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="88bde4f0-bfe4-4f5c-86e8-87976f7058bf" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Computer Hardware Basics</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="03c8ab46-bb19-4e1f-bfa7-3620a64bb99b" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">CSS Essentials</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="868d8764-96ce-4d62-a08d-9bda304a83ca" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">HTML Essentials</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="bb59f709-4094-41bf-9fc1-d890f3f7497c" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">IT Customer Support Basics</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8098f891-4e80-49f0-b588-1f85684c5442" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Networking Basics</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b4d553ed-76df-4846-aa50-4a4eff39f3d7" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Operating System Basics</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="f9604a29-27dc-4073-b39e-5f1a6d12377e" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Python Essentials 1</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="c6c4845c-2a39-4c47-9e75-d4d53b4a5d20" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Operating Systems Support</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1977d543-d6e1-4c74-8a0f-94efe9a96a35" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Hardware &amp; Upgrade Support</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2a7c0fad-3825-4a58-bdd8-ab796d3c577e" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">Security &amp; Connectivity Support</div>
     </div>
-
     <div class="badge-embed-wrap">
       <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="294c9f7e-e255-46cc-93dc-5327d7ceaeb8" data-share-badge-host="https://www.credly.com"></div>
       <div class="badge-embed-title">IT Support Specialist Career Path</div>
     </div>
-
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
   <div class="sh"><span class="st">05 — Skills</span><div class="sl2"></div></div>
-  <div class="stitle reveal">Technical Arsenal</div>
-  <br>
+  <div class="stitle reveal">Technical Arsenal</div><br>
   <div class="skills-grid">
     <div class="skill-cat reveal">
       <div class="sc-head">Cybersecurity &amp; Networking</div>
@@ -749,9 +614,9 @@ footer{
       <div class="sc-head">Design &amp; SEO</div>
       <div class="skill-pills">
         <span class="sp">Adobe Photoshop</span><span class="sp">Canva Pro</span>
-        <span class="sp">Figma</span><span class="sp">On-Page SEO</span>
-        <span class="sp">YouTube SEO</span><span class="sp">Content Strategy</span>
-        <span class="sp">Keyword Research</span><span class="sp">Technical Writing</span>
+        <span class="sp">On-Page SEO</span><span class="sp">YouTube SEO</span>
+        <span class="sp">Content Strategy</span><span class="sp">Keyword Research</span>
+        <span class="sp">Technical Writing</span>
       </div>
     </div>
     <div class="skill-cat reveal">
@@ -767,6 +632,11 @@ footer{
       <div class="sc-head">Languages Spoken</div>
       <div class="lang-section">
         <div class="lang-row">
+          <span class="lang-name">English</span>
+          <div class="lang-bar-bg"><div class="lang-bar" data-width="70"></div></div>
+          <span class="lang-pct">70%</span>
+        </div>
+        <div class="lang-row">
           <span class="lang-name">Urdu</span>
           <div class="lang-bar-bg"><div class="lang-bar" data-width="90"></div></div>
           <span class="lang-pct">90%</span>
@@ -776,11 +646,6 @@ footer{
           <div class="lang-bar-bg"><div class="lang-bar" data-width="88"></div></div>
           <span class="lang-pct">88%</span>
         </div>
-        <div class="lang-row">
-          <span class="lang-name">English</span>
-          <div class="lang-bar-bg"><div class="lang-bar" data-width="65"></div></div>
-          <span class="lang-pct">65%</span>
-        </div>
       </div>
     </div>
   </div>
@@ -789,37 +654,19 @@ footer{
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
   <div class="sh"><span class="st">06 — Achievements</span><div class="sl2"></div></div>
-  <div class="stitle reveal">Numbers That Matter</div>
-  <br>
+  <div class="stitle reveal">Numbers That Matter</div><br>
   <div class="ach-grid">
-    <div class="ach-card reveal">
-      <div class="ach-num">30M+</div>
-      <div class="ach-title">Total Social Media Views</div>
-      <div class="ach-org">VMSOIT · 2024 – Present</div>
-    </div>
-    <div class="ach-card reveal reveal-delay-1">
-      <div class="ach-num">35K+</div>
-      <div class="ach-title">Organic Website Visits</div>
-      <div class="ach-org">Zero Paid Advertising</div>
-    </div>
-    <div class="ach-card reveal reveal-delay-2">
-      <div class="ach-num">3.5</div>
-      <div class="ach-title">CGPA — First Division</div>
-      <div class="ach-org">GCUF BS IT · 2021–2025</div>
-    </div>
-    <div class="ach-card reveal reveal-delay-3">
-      <div class="ach-num">12</div>
-      <div class="ach-title">Cisco Verified Badges</div>
-      <div class="ach-org">Cisco Networking Academy</div>
-    </div>
+    <div class="ach-card reveal"><div class="ach-num">30M+</div><div class="ach-title">Total Social Media Views</div><div class="ach-org">VMSOIT · 2024 – Present</div></div>
+    <div class="ach-card reveal reveal-delay-1"><div class="ach-num">35K+</div><div class="ach-title">Organic Website Visits</div><div class="ach-org">Zero Paid Advertising</div></div>
+    <div class="ach-card reveal reveal-delay-2"><div class="ach-num">3.5</div><div class="ach-title">CGPA — First Division</div><div class="ach-org">BS Information Technology</div></div>
+    <div class="ach-card reveal reveal-delay-3"><div class="ach-num">12</div><div class="ach-title">Cisco Verified Badges</div><div class="ach-org">Cisco Networking Academy</div></div>
   </div>
 </section>
 
 <!-- LEARNING & INTERESTS -->
 <section id="learning">
   <div class="sh"><span class="st">07 — Currently Learning &amp; Interests</span><div class="sl2"></div></div>
-  <div class="stitle reveal">What's Next</div>
-  <br>
+  <div class="stitle reveal">What's Next</div><br>
   <div class="learn-grid">
     <div class="reveal">
       <div class="learn-sub">Currently Pursuing</div>
@@ -838,7 +685,6 @@ footer{
         <div class="hobby-item"><div class="hd"></div>Chess — Strategic Thinking &amp; Problem Solving</div>
         <div class="hobby-item"><div class="hd"></div>Cybersecurity Case Studies &amp; Research</div>
         <div class="hobby-item"><div class="hd"></div>IT Content Creation &amp; Digital Education</div>
-        <div class="hobby-item"><div class="hd"></div>Cricket</div>
         <div class="hobby-item"><div class="hd"></div>Open Source Learning &amp; Continuous Development</div>
         <div class="hobby-item"><div class="hd"></div>Psychology</div>
       </div>
@@ -851,13 +697,8 @@ footer{
   <div class="contact-inner">
     <div class="sh" style="justify-content:center;"><span class="st">08 — Contact</span></div>
     <div class="stitle reveal">Let's Connect</div>
-    <p class="contact-sub reveal">Open to IT Support, Cybersecurity, and IT Training roles. Feel free to reach out.</p>
+    <p class="contact-sub reveal">Open to IT Support, Cybersecurity, and IT Training roles. Reach out via LinkedIn or GitHub.</p>
     <div class="contact-grid reveal">
-      <a class="contact-card" href="mailto:ali.ameer.it.exp@gmail.com">
-        <div class="cc-icon">✉️</div>
-        <div class="cc-label">Email</div>
-        <div class="cc-val">ali.ameer.it.exp@gmail.com</div>
-      </a>
       <a class="contact-card" href="https://pk.linkedin.com/in/ali-ameer-811786302" target="_blank">
         <div class="cc-icon">💼</div>
         <div class="cc-label">LinkedIn</div>
@@ -869,12 +710,62 @@ footer{
         <div class="cc-val">ameer-18-star</div>
       </a>
     </div>
-    <div style="text-align:center;margin-top:0.5rem;" class="reveal">
-      <a class="contact-card" href="tel:+923457245610" style="max-width:260px;margin:0 auto;display:block;">
-        <div class="cc-icon">📱</div>
-        <div class="cc-label">Phone</div>
-        <div class="cc-val">+92-345-7245610</div>
-      </a>
+  </div>
+</section>
+
+<!-- FULL TERMINAL -->
+<section id="terminal" style="background:var(--bg);padding:6rem 5rem;">
+  <div class="sh"><span class="st">09 — Interactive Terminal</span><div class="sl2"></div></div>
+  <div class="stitle reveal">Try It Yourself</div>
+  <p style="color:var(--muted);font-size:1rem;margin-bottom:2.5rem;" class="reveal">Explore this portfolio through the command line. Type <span style="color:var(--a1);font-family:'IBM Plex Mono',monospace;">man</span> to see all available commands, or use <span style="color:var(--a1);font-family:'IBM Plex Mono',monospace;">Tab</span> to autocomplete and <span style="color:var(--a1);font-family:'IBM Plex Mono',monospace;">↑↓</span> for history.</p>
+
+  <div class="reveal" style="max-width:960px;margin:0 auto;">
+    <div class="full-terminal">
+      <!-- Tab bar -->
+      <div class="ft-bar">
+        <div class="ft-dots">
+          <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+        </div>
+        <div class="ft-tabs">
+          <div class="ft-tab active">bash — ali@portfolio</div>
+          <div class="ft-tab-hint">Type <span>man</span> to get started</div>
+        </div>
+        <div class="ft-uptime" id="ftUptime">00:00:00</div>
+      </div>
+
+      <!-- Output area -->
+      <div class="ft-body" id="ftBody">
+        <div class="ft-output" id="ftOutput">
+          <div class="ft-motd">
+<span class="tv">  ░█████╗░██╗░░░░░██╗  ░█████╗░███╗░░░███╗███████╗███████╗██████╗░</span>
+<span class="tv">  ██╔══██╗██║░░░░░██║  ██╔══██╗████╗░████║██╔════╝██╔════╝██╔══██╗</span>
+<span class="tv">  ███████║██║░░░░░██║  ███████║██╔████╔██║█████╗░░█████╗░░██████╔╝</span>
+<span class="tv">  ██╔══██║██║░░░░░██║  ██╔══██║██║╚██╔╝██║██╔══╝░░██╔══╝░░██╔══██╗</span>
+<span class="tv">  ██║░░██║███████╗██║  ██║░░██║██║░╚═╝░██║███████╗███████╗██║░░██║</span>
+<span class="tv">  ╚═╝░░╚═╝╚══════╝╚═╝  ╚═╝░░╚═╝╚═╝░░░░╚═╝╚══════╝╚══════╝╚═╝░░╚═╝</span>
+          </div>
+          <div>&nbsp;</div>
+          <div><span class="ts">Last login: </span><span class="tc" id="ftLoginTime"></span></div>
+          <div><span class="tc">System : </span><span class="tv">Ali Ameer Portfolio OS v2.0</span></div>
+          <div><span class="tc">Kernel : </span><span class="tv">IT Professional · Cybersecurity Educator</span></div>
+          <div>&nbsp;</div>
+          <div><span class="tc">Type </span><span class="tv">man</span><span class="tc"> for all commands. Tab to autocomplete. ↑↓ for history.</span></div>
+          <div>&nbsp;</div>
+        </div>
+        <div class="ft-input-row">
+          <span class="ft-prompt"><span class="ts">ali</span><span class="tc">@</span><span class="tv">portfolio</span><span class="tc">:</span><span class="twarn">~</span><span class="tc">$</span></span>
+          <input id="ftInput" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="enter command..." />
+          <span class="ft-cursor"></span>
+        </div>
+      </div>
+
+      <!-- Status bar -->
+      <div class="ft-statusbar">
+        <span class="ft-sb-item"><span class="ts">●</span> READY</span>
+        <span class="ft-sb-item" id="ftCmdCount">0 commands run</span>
+        <span class="ft-sb-item">bash 5.2.0</span>
+        <span class="ft-sb-item ft-sb-right">Ali Ameer · IT Pro</span>
+      </div>
     </div>
   </div>
 </section>
@@ -882,37 +773,32 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALI AMEER</div>
-  <div class="footer-copy">© 2026 · IT Professional &amp; Cybersecurity Educator · Faisalabad, Pakistan</div>
+  <div class="footer-copy">© 2026 · IT Professional &amp; Cybersecurity Educator</div>
   <div class="footer-links">
     <a href="https://pk.linkedin.com/in/ali-ameer-811786302" target="_blank">LinkedIn</a>
     <a href="https://github.com/ameer-18-star" target="_blank">GitHub</a>
-    <a href="mailto:ali.ameer.it.exp@gmail.com">Email</a>
   </div>
 </footer>
 
-<!-- Credly badge embed script -->
+<!-- Credly embed -->
 <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
 <script>
-// Cursor glow
+// ── Cursor glow ──
 const cg = document.getElementById('cg');
 document.addEventListener('mousemove', e => {
   cg.style.left = e.clientX + 'px';
   cg.style.top  = e.clientY + 'px';
 });
 
-// Scroll reveal
+// ── Scroll reveal ──
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
 
-// Language bars
+// ── Language bars ──
 const langBars = document.querySelectorAll('.lang-bar');
 const langObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -924,24 +810,912 @@ const langObs = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 langBars.forEach(bar => langObs.observe(bar));
 
-// Active nav highlight
+// ── Active nav ──
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let current = '';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 130) current = section.id;
-  });
-  navLinks.forEach(link => {
-    const isActive = link.getAttribute('href') === '#' + current;
-    link.style.color = isActive ? 'var(--a1)' : '';
-  });
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
+  navLinks.forEach(link => { link.style.color = link.getAttribute('href') === '#' + current ? 'var(--a1)' : ''; });
 });
 
-// Terminal cursor blink
-const style = document.createElement('style');
-style.textContent = '@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }';
-document.head.appendChild(style);
+// ════════════════════════════════════════════
+//  INTERACTIVE TERMINAL ENGINE
+// ════════════════════════════════════════════
+const termOutput = document.getElementById('termOutput');
+const termInput  = document.getElementById('termInput');
+const termBody   = document.getElementById('termBody');
+let cmdHistory = [];
+let historyIndex = -1;
+
+// Helper to add a line to terminal
+function addLine(html, cls = '') {
+  const d = document.createElement('div');
+  if (cls) d.className = cls;
+  d.innerHTML = html;
+  termOutput.appendChild(d);
+  termBody.scrollTop = termBody.scrollHeight;
+}
+
+function addBlank() { addLine('&nbsp;'); }
+
+function addPromptLine(cmd) {
+  addLine(`<span class="tc">ali@portfolio:~$ </span><span class="tv">${escHtml(cmd)}</span>`);
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Command Definitions ──
+const COMMANDS = {
+
+  man: () => {
+    addLine(`<span class="ts">╔══════════════════════════════════════════════╗</span>`);
+    addLine(`<span class="ts">║          ALI AMEER — COMMAND MANUAL          ║</span>`);
+    addLine(`<span class="ts">╚══════════════════════════════════════════════╝</span>`);
+    addBlank();
+    addLine(`<span class="twarn">GENERAL COMMANDS</span>`);
+    const cmds = [
+      ['whoami',          'Display the portfolio owner\'s name and role'],
+      ['education',       'Show the highest level of education achieved'],
+      ['certifications',  'List all certificates and verified badges'],
+      ['experience',      'Show all work experience (use -t for timeline)'],
+      ['experience -t',   'Show jobs with exact employment dates/duration'],
+      ['projects',        'Show all projects built or contributed to'],
+      ['achievements',    'Display key achievements and milestones'],
+    ];
+    cmds.forEach(([c, d]) => {
+      addLine(`  <span class="tv">${c.padEnd(20)}</span><span class="tc">${d}</span>`);
+    });
+    addBlank();
+    addLine(`<span class="twarn">SKILL COMMANDS</span>`);
+    const skillCmds = [
+      ['cybersecurity',   'Show cybersecurity & networking skills'],
+      ['development',     'Show programming and web development skills'],
+      ['design',          'Show design & SEO skills'],
+      ['itsupport',       'Show IT support tools and skills'],
+    ];
+    skillCmds.forEach(([c, d]) => {
+      addLine(`  <span class="tv">${c.padEnd(20)}</span><span class="tc">${d}</span>`);
+    });
+    addBlank();
+    addLine(`<span class="twarn">OTHER COMMANDS</span>`);
+    const other = [
+      ['language',        'Show languages the portfolio owner speaks'],
+      ['interests',       'Show personal interests and hobbies'],
+      ['contact',         'Show LinkedIn and contact information'],
+      ['social',          'Show all social media profiles'],
+      ['stats',           'Show key stats (views, visits, CGPA, badges)'],
+      ['clear',           'Clear the terminal output'],
+      ['man',             'Show this help manual'],
+    ];
+    other.forEach(([c, d]) => {
+      addLine(`  <span class="tv">${c.padEnd(20)}</span><span class="tc">${d}</span>`);
+    });
+    addBlank();
+    addLine(`<span class="tc">Tip: type any command name and press Enter.</span>`);
+    addBlank();
+  },
+
+  whoami: () => {
+    addBlank();
+    addLine(`<span class="tbold">Ali Ameer</span>`);
+    addLine(`<span class="tc">Role  : </span><span class="tv">IT Trainer · Cybersecurity Educator · Content Creator</span>`);
+    addLine(`<span class="tc">Degree: </span><span class="tv">BS Information Technology (CGPA 3.5/4.0)</span>`);
+    addLine(`<span class="tc">Status: </span><span class="ts">open_to_work ✓</span>`);
+    addBlank();
+  },
+
+  education: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Highest Education</span>`);
+    addLine(`  <span class="tbold">BS Information Technology</span>`);
+    addLine(`  <span class="tc">Institution : </span><span class="tv">GC University Faisalabad (GCUF)</span>`);
+    addLine(`  <span class="tc">CGPA        : </span><span class="tv">3.5 / 4.0</span>`);
+    addLine(`  <span class="tc">Division    : </span><span class="ts">First Division</span>`);
+    addLine(`  <span class="tc">Coursework  : </span><span class="tc">Network Security, Cybersecurity, Database Mgmt, OS, Data Comms</span>`);
+    addBlank();
+    addLine(`<span class="thl">▸ Additional Training</span>`);
+    addLine(`  <span class="tc">TCM Security: Practical Help Desk, Security Fundamentals, Linux+AI+Programming</span>`);
+    addBlank();
+  },
+
+  certifications: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Cisco Networking Academy — Verified Badges</span>`);
+    const cisco = [
+      'Introduction to Cybersecurity',
+      'Computer Hardware Basics',
+      'CSS Essentials',
+      'HTML Essentials',
+      'IT Customer Support Basics',
+      'Networking Basics',
+      'Operating System Basics',
+      'Python Essentials 1',
+      'Operating Systems Support',
+      'Hardware & Upgrade Support',
+      'Security & Connectivity Support',
+      'IT Support Specialist Career Path',
+    ];
+    cisco.forEach((c, i) => {
+      addLine(`  <span class="tc">${String(i+1).padStart(2,'0')}. </span><span class="tv">${c}</span> <span class="ts">✓ verified</span>`);
+    });
+    addBlank();
+    addLine(`<span class="thl">▸ TCM Security</span>`);
+    ['Practical Help Desk (PHD)','Practical Security Fundamentals','Linux + AI + Programming 100'].forEach(c => {
+      addLine(`  <span class="tc">   </span><span class="tv">${c}</span> <span class="ts">✓ completed</span>`);
+    });
+    addBlank();
+    addLine(`<span class="thl">▸ Currently Pursuing</span>`);
+    ['CEH v13 (EC-Council)','Cisco Ethical Hacker Career Path','Cisco Jr Cybersecurity Analyst','CompTIA A+, Network+, Security+'].forEach(c => {
+      addLine(`  <span class="tc">   </span><span class="twarn">${c}</span> <span class="tc">⟳ in progress</span>`);
+    });
+    addBlank();
+    addLine(`<span class="tc">View all Credly badges: </span><span class="tv">scroll to #badges section</span>`);
+    addBlank();
+  },
+
+  experience: (args) => {
+    const tFlag = args && args.includes('-t');
+    addBlank();
+    addLine(`<span class="thl">▸ Work Experience${tFlag ? ' — Timeline View' : ''}</span>`);
+    addBlank();
+
+    const jobs = [
+      {
+        role: 'IT Trainer & Senior Content Creator',
+        org:  'VMSOIT',
+        period: 'Apr 2024 – Present',
+        duration: '1 yr 1 mo+',
+        points: ['Developing Mastering CompTIA A+ V15 YouTube course','Scaled combined reach to 30M+ views','Designed & manages VMSOIT WordPress website','SEO-optimized articles on Cybersecurity, AI, Networking']
+      },
+      {
+        role: 'SEO Specialist & Graphic Designer',
+        org:  'VMSOIT (Freelance)',
+        period: '2022 – Present',
+        duration: '3+ years',
+        points: ['35K+ organic website visits with zero paid ads','Managed multi-platform content calendars','Scaled Instagram to 13.8M views, YouTube to 10M+']
+      },
+      {
+        role: 'IT & CS Teacher',
+        org:  'Sir Syed Scholars Inn',
+        period: '2026 – Present',
+        duration: 'Ongoing',
+        points: ['Teaching CS & IT to grades 6–10','Designing lesson plans and assessments']
+      },
+      {
+        role: 'Computer Lab Admin & Tech Support',
+        org:  'MIEHS',
+        period: 'Feb 2022 – Apr 2023',
+        duration: '~14 months',
+        points: ['Managed 50-workstation computer lab','Diagnosed hardware, software & network issues','Guided non-technical users on proper computer use']
+      },
+    ];
+
+    jobs.forEach((job, i) => {
+      if (tFlag) {
+        addLine(`  <span class="tc">┌─ </span><span class="tbold">${job.role}</span>`);
+        addLine(`  <span class="tc">│  Org     : </span><span class="tv">${job.org}</span>`);
+        addLine(`  <span class="tc">│  Period  : </span><span class="twarn">${job.period}</span>`);
+        addLine(`  <span class="tc">└─ Duration: </span><span class="ts">${job.duration}</span>`);
+      } else {
+        addLine(`  <span class="tbold">${String(i+1)}. ${job.role}</span> <span class="tc">@ </span><span class="tv">${job.org}</span>`);
+        job.points.forEach(p => addLine(`     <span class="tc">› </span><span class="tc">${p}</span>`));
+      }
+      addBlank();
+    });
+  },
+
+  projects: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Projects</span>`);
+    addBlank();
+    const projects = [
+      {
+        name: 'CarouselCraft',
+        sub:  'Instagram Carousel Generator — Desktop App',
+        stack: 'Electron v28, React 18, Framer Motion, Zustand, Dexie.js, jsPDF',
+        desc: '10 design themes, 11 slide types, RTL Urdu support, multi-format export (PNG/JPG/PDF/ZIP)',
+        link: 'https://github.com/ameer-18-star'
+      },
+      {
+        name: 'Advanced Habit Tracker',
+        sub:  'Desktop Productivity App',
+        stack: 'Electron, React 18, Recharts, Zustand, Dexie.js, SVG',
+        desc: 'Multi-profile, streak protection, SVG progress rings, heatmaps, PIN lock, analytics',
+        link: 'https://github.com/ameer-18-star'
+      },
+      {
+        name: 'PHP Learning Management System',
+        sub:  'Final Year Capstone — Full-Stack',
+        stack: 'PHP, MySQL, HTML/CSS, JavaScript',
+        desc: 'Full LMS with course management, user roles, QA testing, and formal academic thesis',
+        link: null
+      },
+    ];
+    projects.forEach((p, i) => {
+      addLine(`  <span class="tbold">${i+1}. ${p.name}</span>`);
+      addLine(`     <span class="tc">Type  : </span><span class="tv">${p.sub}</span>`);
+      addLine(`     <span class="tc">Stack : </span><span class="twarn">${p.stack}</span>`);
+      addLine(`     <span class="tc">About : </span><span class="tc">${p.desc}</span>`);
+      if (p.link) addLine(`     <span class="tc">GitHub: </span><span class="ts">${p.link}</span>`);
+      addBlank();
+    });
+  },
+
+  achievements: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Key Achievements</span>`);
+    addBlank();
+    const ach = [
+      ['30M+',  'Total social media views for VMSOIT (15M Instagram, 10M YouTube)'],
+      ['35K+',  'Direct website visits via organic SEO — zero paid advertising'],
+      ['3.5',   'CGPA in BS Information Technology — First Division'],
+      ['12',    'Cisco Networking Academy verified badges on Credly'],
+      ['50',    'Workstations managed in computer lab at MIEHS'],
+    ];
+    ach.forEach(([n, d]) => {
+      addLine(`  <span class="tv">[${n.padEnd(6)}]</span> <span class="tc">${d}</span>`);
+    });
+    addBlank();
+  },
+
+  cybersecurity: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Cybersecurity &amp; Networking Skills</span>`);
+    const skills = ['Threat Analysis','Network Security','Ethical Hacking','Linux CLI','TCP/IP','Subnetting','CIA Triad','OSINT','Cisco Packet Tracer','Cryptography','Vulnerability Assessment'];
+    skills.forEach(s => addLine(`  <span class="tc">• </span><span class="tv">${s}</span>`));
+    addBlank();
+  },
+
+  development: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Programming &amp; Development Skills</span>`);
+    const skills = [
+      ['Python',     'Scripting, automation, fundamentals'],
+      ['JavaScript', 'Frontend, Electron, Node.js'],
+      ['React 18',   'Component-based UI, hooks, state management'],
+      ['Electron',   'Cross-platform desktop apps'],
+      ['PHP',        'Server-side web development'],
+      ['MySQL',      'Relational database design & queries'],
+      ['HTML5/CSS3', 'Semantic markup, responsive layouts'],
+      ['WordPress',  'Theme customisation, plugins, security'],
+      ['Git/GitHub', 'Version control, collaboration'],
+    ];
+    skills.forEach(([s, d]) => {
+      addLine(`  <span class="tv">${s.padEnd(14)}</span><span class="tc">${d}</span>`);
+    });
+    addBlank();
+  },
+
+  design: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Design &amp; SEO Skills</span>`);
+    const skills = ['Adobe Photoshop','Canva Pro','On-Page SEO','YouTube SEO','Content Strategy','Keyword Research','Technical Writing','Visual Branding','Thumbnail Design','Instagram Carousels','Pinterest Pins'];
+    skills.forEach(s => addLine(`  <span class="tc">• </span><span class="tv">${s}</span>`));
+    addBlank();
+  },
+
+  itsupport: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ IT Support Tools &amp; Skills</span>`);
+    const skills = ['Help Desk Support','Hardware Troubleshooting','OS Administration (Windows/Linux)','Remote Support','TeamViewer','AnyDesk','Network Diagnostics','Software Installation','Lab Management (50 workstations)','User Training & Documentation'];
+    skills.forEach(s => addLine(`  <span class="tc">• </span><span class="tv">${s}</span>`));
+    addBlank();
+  },
+
+  language: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Languages</span>`);
+    addBlank();
+    const langs = [['English','70%','████████░░ Proficient'],['Urdu','90%','█████████░ Fluent'],['Punjabi','88%','█████████░ Fluent']];
+    langs.forEach(([l, p, bar]) => {
+      addLine(`  <span class="tbold">${l.padEnd(10)}</span><span class="tv">${bar}</span> <span class="tc">(${p})</span>`);
+    });
+    addBlank();
+  },
+
+  interests: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Interests &amp; Hobbies</span>`);
+    addBlank();
+    const interests = [
+      ['Chess',                   'Strategic thinking and problem solving'],
+      ['Cybersecurity Research',  'Case studies, CTF, threat intelligence'],
+      ['IT Content Creation',     'Digital education, YouTube, social media'],
+      ['Open Source Learning',    'Self-study, certifications, continuous dev'],
+      ['Psychology',              'Human behaviour and decision making'],
+    ];
+    interests.forEach(([i, d]) => {
+      addLine(`  <span class="tv">▸ ${i.padEnd(24)}</span><span class="tc">${d}</span>`);
+    });
+    addBlank();
+  },
+
+  contact: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Contact &amp; Profiles</span>`);
+    addBlank();
+    addLine(`  <span class="tc">LinkedIn : </span><span class="ts">https://pk.linkedin.com/in/ali-ameer-811786302</span>`);
+    addLine(`  <span class="tc">GitHub   : </span><span class="ts">https://github.com/ameer-18-star</span>`);
+    addBlank();
+    addLine(`<span class="tc">Best way to reach: </span><span class="tv">LinkedIn DM or connection request</span>`);
+    addBlank();
+  },
+
+  social: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Social Media</span>`);
+    addBlank();
+    addLine(`  <span class="tc">LinkedIn  : </span><span class="ts">pk.linkedin.com/in/ali-ameer-811786302</span>`);
+    addLine(`  <span class="tc">GitHub    : </span><span class="ts">github.com/ameer-18-star</span>`);
+    addLine(`  <span class="tc">YouTube   : </span><span class="ts">VMSOIT Channel — 10M+ views</span>`);
+    addLine(`  <span class="tc">Instagram : </span><span class="ts">VMSOIT — 13.8M+ views</span>`);
+    addBlank();
+  },
+
+  stats: () => {
+    addBlank();
+    addLine(`<span class="thl">▸ Quick Stats</span>`);
+    addBlank();
+    const s = [
+      ['Social Media Views', '30,000,000+'],
+      ['Organic Website Visits', '35,000+'],
+      ['CGPA', '3.5 / 4.0 (First Division)'],
+      ['Cisco Badges (Credly)', '12 Verified'],
+      ['Years of Experience', '3+'],
+      ['Workstations Managed', '50'],
+    ];
+    s.forEach(([k, v]) => {
+      addLine(`  <span class="tc">${k.padEnd(26)}: </span><span class="tv">${v}</span>`);
+    });
+    addBlank();
+  },
+
+  clear: () => {
+    termOutput.innerHTML = '';
+    addLine(`<span class="ts">Terminal cleared. Type </span><span class="tv">man</span><span class="ts"> for commands.</span>`);
+    addBlank();
+  },
+};
+
+// ── Input handler ──
+termInput.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const raw = termInput.value.trim();
+    termInput.value = '';
+    historyIndex = -1;
+
+    if (!raw) return;
+
+    cmdHistory.unshift(raw);
+    if (cmdHistory.length > 50) cmdHistory.pop();
+
+    addPromptLine(raw);
+
+    const parts = raw.toLowerCase().split(/\s+/);
+    const cmd   = parts[0];
+    const args  = parts.slice(1);
+
+    if (COMMANDS[cmd]) {
+      COMMANDS[cmd](args);
+    } else {
+      addLine(`<span class="terr">bash: ${escHtml(cmd)}: command not found</span>`);
+      addLine(`<span class="tc">Type </span><span class="tv">man</span><span class="tc"> to see all available commands.</span>`);
+      addBlank();
+    }
+    termBody.scrollTop = termBody.scrollHeight;
+  }
+
+  // History navigation
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (historyIndex < cmdHistory.length - 1) {
+      historyIndex++;
+      termInput.value = cmdHistory[historyIndex];
+    }
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (historyIndex > 0) {
+      historyIndex--;
+      termInput.value = cmdHistory[historyIndex];
+    } else {
+      historyIndex = -1;
+      termInput.value = '';
+    }
+  }
+
+  // Tab autocomplete
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    const typed = termInput.value.toLowerCase().trim();
+    if (!typed) return;
+    const matches = Object.keys(COMMANDS).filter(k => k.startsWith(typed));
+    if (matches.length === 1) {
+      termInput.value = matches[0];
+    } else if (matches.length > 1) {
+      addPromptLine(termInput.value);
+      addLine(matches.map(m => `<span class="tv">${m}</span>`).join('  '));
+      addBlank();
+    }
+  }
+});
+
+// Click anywhere on terminal focuses input
+document.querySelector('.h-terminal').addEventListener('click', () => termInput.focus());
+termInput.focus();
+
+// ════════════════════════════════════════════
+//  FULL-WIDTH BOTTOM TERMINAL ENGINE
+// ════════════════════════════════════════════
+(function() {
+  const ftOutput   = document.getElementById('ftOutput');
+  const ftInput    = document.getElementById('ftInput');
+  const ftBody     = document.getElementById('ftBody');
+  const ftCmdCount = document.getElementById('ftCmdCount');
+  const ftUptime   = document.getElementById('ftUptime');
+  const ftLogin    = document.getElementById('ftLoginTime');
+
+  let ftHistory = [];
+  let ftHistIdx = -1;
+  let ftCmdRan  = 0;
+  let ftStart   = Date.now();
+
+  // Set login time
+  if (ftLogin) {
+    const now = new Date();
+    ftLogin.textContent = now.toDateString() + ' ' + now.toLocaleTimeString();
+  }
+
+  // Uptime clock
+  setInterval(() => {
+    const s = Math.floor((Date.now() - ftStart) / 1000);
+    const h = String(Math.floor(s / 3600)).padStart(2,'0');
+    const m = String(Math.floor((s % 3600) / 60)).padStart(2,'0');
+    const sec = String(s % 60).padStart(2,'0');
+    if (ftUptime) ftUptime.textContent = `${h}:${m}:${sec}`;
+  }, 1000);
+
+  function ftEsc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function ftLine(html, delay = 0) {
+    setTimeout(() => {
+      const d = document.createElement('div');
+      d.innerHTML = html;
+      ftOutput.appendChild(d);
+      ftBody.scrollTop = ftBody.scrollHeight;
+    }, delay);
+  }
+
+  function ftBlank(delay = 0) { ftLine('&nbsp;', delay); }
+
+  function ftPromptLine(cmd) {
+    ftLine(`<span class="ts">ali</span><span class="tc">@</span><span class="tv">portfolio</span><span class="tc">:~$</span> <span class="tv">${ftEsc(cmd)}</span>`);
+  }
+
+  // Typewriter effect for a single line
+  function ftTypewriter(html, delay = 0) {
+    setTimeout(() => {
+      const d = document.createElement('div');
+      d.innerHTML = '';
+      ftOutput.appendChild(d);
+      // strip html tags for typing, then reveal full html
+      const txt = html.replace(/<[^>]+>/g, '');
+      let i = 0;
+      const iv = setInterval(() => {
+        if (i >= txt.length) {
+          clearInterval(iv);
+          d.innerHTML = html;
+          ftBody.scrollTop = ftBody.scrollHeight;
+          return;
+        }
+        d.textContent = txt.slice(0, ++i);
+        ftBody.scrollTop = ftBody.scrollHeight;
+      }, 18);
+    }, delay);
+  }
+
+  // ── FT Command Definitions ──
+  const FT_CMDS = {
+
+    man: () => {
+      const lines = [
+        [`<span class="ts">╔══════════════════════════════════════════════════════╗</span>`],
+        [`<span class="ts">║         ALI AMEER — PORTFOLIO COMMAND MANUAL         ║</span>`],
+        [`<span class="ts">╚══════════════════════════════════════════════════════╝</span>`],
+        [`&nbsp;`],
+        [`<span class="twarn">  GENERAL</span>`],
+        [`  <span class="tv">whoami          </span><span class="tc">Display the portfolio owner's name and role</span>`],
+        [`  <span class="tv">education       </span><span class="tc">Show the highest level of education achieved</span>`],
+        [`  <span class="tv">certifications  </span><span class="tc">List all certificates and verified badges</span>`],
+        [`  <span class="tv">experience      </span><span class="tc">Show all work experience</span>`],
+        [`  <span class="tv">experience -t   </span><span class="tc">Show jobs with exact dates and duration (timeline)</span>`],
+        [`  <span class="tv">projects        </span><span class="tc">Show all completed or in-progress projects</span>`],
+        [`  <span class="tv">achievements    </span><span class="tc">Display key milestones and numbers</span>`],
+        [`&nbsp;`],
+        [`<span class="twarn">  SKILLS</span>`],
+        [`  <span class="tv">cybersecurity   </span><span class="tc">Cybersecurity & networking skills</span>`],
+        [`  <span class="tv">development     </span><span class="tc">Programming and web development skills</span>`],
+        [`  <span class="tv">design          </span><span class="tc">Design & SEO skills</span>`],
+        [`  <span class="tv">itsupport       </span><span class="tc">IT support tools and skills</span>`],
+        [`&nbsp;`],
+        [`<span class="twarn">  MORE</span>`],
+        [`  <span class="tv">language        </span><span class="tc">Languages the portfolio owner speaks</span>`],
+        [`  <span class="tv">interests       </span><span class="tc">Personal interests and hobbies</span>`],
+        [`  <span class="tv">contact         </span><span class="tc">LinkedIn and contact information</span>`],
+        [`  <span class="tv">social          </span><span class="tc">All social media profiles and stats</span>`],
+        [`  <span class="tv">stats           </span><span class="tc">Key stats dashboard (views, CGPA, badges)</span>`],
+        [`  <span class="tv">hire            </span><span class="tc">Why you should hire Ali Ameer</span>`],
+        [`  <span class="tv">ascii           </span><span class="tc">Display ASCII art banner</span>`],
+        [`  <span class="tv">clear           </span><span class="tc">Clear the terminal output</span>`],
+        [`  <span class="tv">man             </span><span class="tc">Show this manual</span>`],
+        [`&nbsp;`],
+        [`<span class="tc">  Keyboard: </span><span class="tv">Tab</span><span class="tc"> autocomplete · </span><span class="tv">↑↓</span><span class="tc"> command history</span>`],
+        [`&nbsp;`],
+      ];
+      lines.forEach((l, i) => ftLine(l[0], i * 30));
+    },
+
+    whoami: () => {
+      const d = 60;
+      ftBlank();
+      ftTypewriter(`<span class="tbold">  Ali Ameer</span>`, d*0);
+      ftLine(`  <span class="tc">Role   : </span><span class="tv">IT Trainer · Cybersecurity Educator · Content Creator</span>`, d*1);
+      ftLine(`  <span class="tc">Degree : </span><span class="tv">BS Information Technology — CGPA 3.5/4.0</span>`, d*2);
+      ftLine(`  <span class="tc">Exp    : </span><span class="tv">3+ years in IT Training, SEO, Web Dev, Content</span>`, d*3);
+      ftLine(`  <span class="tc">Reach  : </span><span class="tv">30M+ views · 35K+ organic visits</span>`, d*4);
+      ftLine(`  <span class="tc">Status : </span><span class="ts">● open_to_work</span>`, d*5);
+      ftBlank(d*6);
+    },
+
+    education: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Highest Education</span>`);
+      ftBlank();
+      ftLine(`  <span class="tbold">  BS Information Technology</span>`);
+      ftLine(`  <span class="tc">  Institution : </span><span class="tv">GC University Faisalabad (GCUF)</span>`);
+      ftLine(`  <span class="tc">  CGPA        : </span><span class="tv">3.5 / 4.0</span>`);
+      ftLine(`  <span class="tc">  Division    : </span><span class="ts">First Division</span>`);
+      ftLine(`  <span class="tc">  Coursework  : </span><span class="tc">Network Security, Cybersecurity, DB Mgmt, OS, Data Comms</span>`);
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Additional Training</span>`);
+      ftLine(`  <span class="tc">  TCM Security: </span><span class="tv">Practical Help Desk, Security Fundamentals, Linux+AI+Programming</span>`);
+      ftBlank();
+    },
+
+    certifications: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Cisco Networking Academy — Credly Verified Badges</span>`);
+      ftBlank();
+      const cisco = [
+        'Introduction to Cybersecurity','Computer Hardware Basics','CSS Essentials',
+        'HTML Essentials','IT Customer Support Basics','Networking Basics',
+        'Operating System Basics','Python Essentials 1','Operating Systems Support',
+        'Hardware & Upgrade Support','Security & Connectivity Support',
+        'IT Support Specialist Career Path',
+      ];
+      cisco.forEach((c, i) => {
+        ftLine(`  <span class="tc">  ${String(i+1).padStart(2,'0')}. </span><span class="tv">${c}</span>  <span class="ts">✓ verified</span>`, i * 40);
+      });
+      const base = cisco.length * 40 + 60;
+      ftBlank(base);
+      ftLine(`<span class="thl">  ▸ TCM Security</span>`, base + 40);
+      ['Practical Help Desk (PHD)','Practical Security Fundamentals','Linux + AI + Programming 100'].forEach((c,i) => {
+        ftLine(`  <span class="tc">     </span><span class="tv">${c}</span>  <span class="ts">✓ completed</span>`, base + 80 + i*40);
+      });
+      const base2 = base + 220;
+      ftBlank(base2);
+      ftLine(`<span class="thl">  ▸ Currently Pursuing</span>`, base2 + 40);
+      ['CEH v13 (EC-Council)','Cisco Ethical Hacker Career Path','Cisco Jr Cybersecurity Analyst','CompTIA A+, Network+, Security+'].forEach((c,i) => {
+        ftLine(`  <span class="tc">     </span><span class="twarn">${c}</span>  <span class="tc">⟳ in progress</span>`, base2 + 80 + i*40);
+      });
+      ftBlank(base2 + 300);
+    },
+
+    experience: (args) => {
+      const tFlag = args && args.includes('-t');
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Work Experience${tFlag ? ' — Timeline View' : ''}</span>`);
+      ftBlank();
+      const jobs = [
+        { role:'IT Trainer & Senior Content Creator', org:'VMSOIT', period:'Apr 2024 – Present', dur:'1 yr+',
+          pts:['Developing CompTIA A+ V15 YouTube course','Scaled reach to 30M+ views','Built & manages VMSOIT WordPress website','SEO content on Cybersecurity, AI, Networking']},
+        { role:'SEO Specialist & Graphic Designer', org:'VMSOIT (Freelance)', period:'2022 – Present', dur:'3+ years',
+          pts:['35K+ organic visits with zero paid ads','Multi-platform content calendars','Instagram to 13.8M views, YouTube to 10M+']},
+        { role:'IT & CS Teacher', org:'Sir Syed Scholars Inn', period:'2026 – Present', dur:'Ongoing',
+          pts:['Teaching CS & IT to grades 6–10','Designing lesson plans and assessments']},
+        { role:'Computer Lab Admin & Tech Support', org:'MIEHS', period:'Feb 2022 – Apr 2023', dur:'~14 months',
+          pts:['Managed 50-workstation lab','Diagnosed HW/SW/network issues','User training and guidance']},
+      ];
+      let delay = 0;
+      jobs.forEach(job => {
+        if (tFlag) {
+          ftLine(`  <span class="tc">  ┌─ </span><span class="tbold">${job.role}</span>`, delay);
+          ftLine(`  <span class="tc">  │  Org     : </span><span class="tv">${job.org}</span>`, delay + 40);
+          ftLine(`  <span class="tc">  │  Period  : </span><span class="twarn">${job.period}</span>`, delay + 80);
+          ftLine(`  <span class="tc">  └─ Duration: </span><span class="ts">${job.dur}</span>`, delay + 120);
+        } else {
+          ftLine(`  <span class="tbold">  ${job.role}</span><span class="tc"> @ </span><span class="tv">${job.org}</span>`, delay);
+          job.pts.forEach((p,pi) => ftLine(`  <span class="tc">     › ${p}</span>`, delay + 40 + pi*30));
+        }
+        delay += tFlag ? 200 : (job.pts.length * 30 + 120);
+        ftBlank(delay);
+        delay += 40;
+      });
+    },
+
+    projects: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Projects</span>`);
+      ftBlank();
+      const projects = [
+        { name:'CarouselCraft', sub:'Instagram Carousel Generator — Desktop App',
+          stack:'Electron v28, React 18, Framer Motion, Zustand, Dexie.js, jsPDF',
+          desc:'10 themes, 11 slide types, RTL Urdu, multi-format export (PNG/JPG/PDF/ZIP)',
+          link:'github.com/ameer-18-star'},
+        { name:'Advanced Habit Tracker', sub:'Desktop Productivity App',
+          stack:'Electron, React 18, Recharts, Zustand, Dexie.js',
+          desc:'Multi-profile, streak protection, SVG progress rings, heatmaps, PIN lock',
+          link:'github.com/ameer-18-star'},
+        { name:'PHP LMS', sub:'Final Year Capstone — Full-Stack Web',
+          stack:'PHP, MySQL, HTML/CSS, JavaScript',
+          desc:'Full LMS with user roles, QA testing, and formal academic thesis',
+          link:null},
+      ];
+      let d = 0;
+      projects.forEach((p,i) => {
+        ftLine(`  <span class="tbold">  ${i+1}. ${p.name}</span>`, d);
+        ftLine(`  <span class="tc">     Type  : </span><span class="tv">${p.sub}</span>`, d+40);
+        ftLine(`  <span class="tc">     Stack : </span><span class="twarn">${p.stack}</span>`, d+80);
+        ftLine(`  <span class="tc">     About : </span><span class="tc">${p.desc}</span>`, d+120);
+        if (p.link) ftLine(`  <span class="tc">     Link  : </span><span class="ts">${p.link}</span>`, d+160);
+        d += 240;
+        ftBlank(d);
+        d += 40;
+      });
+    },
+
+    achievements: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Achievements</span>`);
+      ftBlank();
+      const a = [
+        ['30M+','Total social media views (15M Instagram + 10M+ YouTube)'],
+        ['35K+','Organic website visits — zero paid advertising'],
+        ['3.5 ','CGPA, BS Information Technology — First Division'],
+        ['12  ','Cisco Networking Academy verified badges on Credly'],
+        ['50  ','Workstations managed in computer lab at MIEHS'],
+        ['3+  ','Years of professional experience'],
+      ];
+      a.forEach(([n, d], i) => {
+        ftLine(`  <span class="tv">  [${n}]  </span><span class="tc">${d}</span>`, i * 60);
+      });
+      ftBlank(a.length * 60 + 40);
+    },
+
+    cybersecurity: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Cybersecurity & Networking Skills</span>`);
+      ftBlank();
+      ['Threat Analysis','Network Security','Ethical Hacking','Linux CLI','TCP/IP',
+       'Subnetting','CIA Triad','OSINT','Cisco Packet Tracer','Cryptography','Vulnerability Assessment'
+      ].forEach((s,i) => ftLine(`  <span class="tc">  • </span><span class="tv">${s}</span>`, i*35));
+      ftBlank(11*35+50);
+    },
+
+    development: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Programming & Development Skills</span>`);
+      ftBlank();
+      [['Python','Scripting, automation, fundamentals'],
+       ['JavaScript','Frontend, Electron, Node.js'],
+       ['React 18','Component-based UI, hooks, state management'],
+       ['Electron','Cross-platform desktop applications'],
+       ['PHP','Server-side web development'],
+       ['MySQL','Relational DB design & queries'],
+       ['HTML5/CSS3','Semantic markup, responsive layouts'],
+       ['WordPress','Themes, plugins, security'],
+       ['Git/GitHub','Version control, collaboration'],
+      ].forEach(([s,d],i) => ftLine(`  <span class="tv">  ${s.padEnd(14)}</span><span class="tc">${d}</span>`, i*45));
+      ftBlank(9*45+50);
+    },
+
+    design: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Design & SEO Skills</span>`);
+      ftBlank();
+      ['Adobe Photoshop','Canva Pro','On-Page SEO','YouTube SEO','Content Strategy',
+       'Keyword Research','Technical Writing','Visual Branding','Thumbnail Design',
+       'Instagram Carousels','Pinterest Pins',
+      ].forEach((s,i) => ftLine(`  <span class="tc">  • </span><span class="tv">${s}</span>`, i*35));
+      ftBlank(11*35+50);
+    },
+
+    itsupport: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ IT Support Tools & Skills</span>`);
+      ftBlank();
+      ['Help Desk Support','Hardware Troubleshooting','OS Administration (Win/Linux)',
+       'Remote Support','TeamViewer','AnyDesk','Network Diagnostics',
+       'Software Installation & Config','Lab Management (50 workstations)',
+       'User Training & Documentation',
+      ].forEach((s,i) => ftLine(`  <span class="tc">  • </span><span class="tv">${s}</span>`, i*35));
+      ftBlank(10*35+50);
+    },
+
+    language: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Languages</span>`);
+      ftBlank();
+      [['English','70%','███████░░░'],['Urdu','90%','█████████░'],['Punjabi','88%','████████░░']
+      ].forEach(([l,p,bar],i) => {
+        ftLine(`  <span class="tbold">  ${l.padEnd(10)}</span><span class="tv">${bar}</span><span class="tc">  ${p}</span>`, i*60);
+      });
+      ftBlank(3*60+50);
+    },
+
+    interests: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Interests & Hobbies</span>`);
+      ftBlank();
+      [['Chess',                  'Strategic thinking & problem solving'],
+       ['Cybersecurity Research', 'Case studies, CTF, threat intelligence'],
+       ['IT Content Creation',    'Digital education, YouTube, social media'],
+       ['Open Source Learning',   'Self-study, certs, continuous development'],
+       ['Psychology',             'Human behaviour & decision making'],
+      ].forEach(([i,d],idx) => {
+        ftLine(`  <span class="tv">  ▸ ${i.padEnd(22)}</span><span class="tc">${d}</span>`, idx*55);
+      });
+      ftBlank(5*55+50);
+    },
+
+    contact: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Contact</span>`);
+      ftBlank();
+      ftLine(`  <span class="tc">  LinkedIn : </span><span class="ts">https://pk.linkedin.com/in/ali-ameer-811786302</span>`);
+      ftLine(`  <span class="tc">  GitHub   : </span><span class="ts">https://github.com/ameer-18-star</span>`);
+      ftBlank();
+      ftLine(`  <span class="tc">  Best way to connect: </span><span class="tv">LinkedIn DM or connection request</span>`);
+      ftBlank();
+    },
+
+    social: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Social Media</span>`);
+      ftBlank();
+      [['LinkedIn ','pk.linkedin.com/in/ali-ameer-811786302'],
+       ['GitHub   ','github.com/ameer-18-star'],
+       ['YouTube  ','VMSOIT Channel — 10M+ views'],
+       ['Instagram','VMSOIT — 13.8M+ views'],
+      ].forEach(([p,v],i) => ftLine(`  <span class="tc">  ${p} : </span><span class="ts">${v}</span>`, i*50));
+      ftBlank(4*50+50);
+    },
+
+    stats: () => {
+      ftBlank();
+      ftLine(`<span class="thl">  ▸ Quick Stats Dashboard</span>`);
+      ftBlank();
+      const s = [
+        ['Social Media Views   ','30,000,000+','ts'],
+        ['Organic Website Visits','35,000+','ts'],
+        ['CGPA                 ','3.5 / 4.0 (First Division)','tv'],
+        ['Cisco Badges (Credly)','12 Verified','tv'],
+        ['Years of Experience  ','3+','twarn'],
+        ['Workstations Managed ','50','twarn'],
+      ];
+      s.forEach(([k,v,cls],i) => {
+        ftLine(`  <span class="tc">  ${k}: </span><span class="${cls}">${v}</span>`, i*55);
+      });
+      ftBlank(s.length*55+50);
+    },
+
+    hire: () => {
+      ftBlank();
+      ftLine(`<span class="ts">  ╔═══════════════════════════════════════════╗</span>`);
+      ftLine(`<span class="ts">  ║       WHY HIRE ALI AMEER?                 ║</span>`);
+      ftLine(`<span class="ts">  ╚═══════════════════════════════════════════╝</span>`);
+      ftBlank();
+      const reasons = [
+        ['✓','BS IT graduate with 3.5 CGPA — academically strong'],
+        ['✓','12 Cisco verified badges — technical knowledge proven'],
+        ['✓','3+ years real-world experience across IT & content'],
+        ['✓','Built tools used by real audiences (30M+ reach)'],
+        ['✓','Self-starter: zero paid ads → 35K+ organic visits'],
+        ['✓','Pursuing CEH v13 & CompTIA certs — always learning'],
+        ['✓','Taught students, managed labs, provided tech support'],
+        ['✓','Full-stack projects with Electron, React, PHP, MySQL'],
+      ];
+      reasons.forEach(([c,r],i) => {
+        ftLine(`  <span class="ts">  ${c} </span><span class="tc">${r}</span>`, i*55);
+      });
+      ftBlank(reasons.length*55+40);
+      ftLine(`  <span class="tc">  Connect: </span><span class="ts">pk.linkedin.com/in/ali-ameer-811786302</span>`, reasons.length*55+80);
+      ftBlank(reasons.length*55+120);
+    },
+
+    ascii: () => {
+      ftBlank();
+      ftLine(`<span class="tv">  ░█████╗░██╗░░░░░██╗  ░█████╗░███╗░░░███╗███████╗███████╗██████╗░</span>`);
+      ftLine(`<span class="tv">  ██╔══██╗██║░░░░░██║  ██╔══██╗████╗░████║██╔════╝██╔════╝██╔══██╗</span>`);
+      ftLine(`<span class="tv">  ███████║██║░░░░░██║  ███████║██╔████╔██║█████╗░░█████╗░░██████╔╝</span>`);
+      ftLine(`<span class="tv">  ██╔══██║██║░░░░░██║  ██╔══██║██║╚██╔╝██║██╔══╝░░██╔══╝░░██╔══██╗</span>`);
+      ftLine(`<span class="tv">  ██║░░██║███████╗██║  ██║░░██║██║░╚═╝░██║███████╗███████╗██║░░██║</span>`);
+      ftLine(`<span class="tv">  ╚═╝░░╚═╝╚══════╝╚═╝  ╚═╝░░╚═╝╚═╝░░░░╚═╝╚══════╝╚══════╝╚═╝░░╚═╝</span>`);
+      ftBlank();
+      ftLine(`  <span class="tc">IT Professional · Cybersecurity Educator · Content Creator</span>`);
+      ftBlank();
+    },
+
+    clear: () => {
+      ftOutput.innerHTML = '';
+      ftLine(`<span class="ts">  Terminal cleared.</span>`);
+      ftLine(`  <span class="tc">Type </span><span class="tv">man</span><span class="tc"> for all commands.</span>`);
+      ftBlank();
+    },
+  };
+
+  function ftRun(raw) {
+    const parts = raw.trim().toLowerCase().split(/\s+/);
+    const cmd   = parts[0];
+    const args  = parts.slice(1);
+
+    ftPromptLine(raw.trim());
+
+    if (!raw.trim()) return;
+
+    if (FT_CMDS[cmd]) {
+      FT_CMDS[cmd](args);
+      ftCmdRan++;
+      if (ftCmdCount) ftCmdCount.textContent = `${ftCmdRan} command${ftCmdRan !== 1 ? 's' : ''} run`;
+    } else {
+      ftLine(`<span class="terr">  bash: ${ftEsc(cmd)}: command not found</span>`);
+      ftLine(`  <span class="tc">Type </span><span class="tv">man</span><span class="tc"> to see all available commands.</span>`);
+      ftBlank();
+    }
+    setTimeout(() => { ftBody.scrollTop = ftBody.scrollHeight; }, 50);
+  }
+
+  ftInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const val = ftInput.value;
+      ftInput.value = '';
+      ftHistIdx = -1;
+      if (!val.trim()) return;
+      ftHistory.unshift(val.trim());
+      if (ftHistory.length > 50) ftHistory.pop();
+      ftRun(val);
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (ftHistIdx < ftHistory.length - 1) ftInput.value = ftHistory[++ftHistIdx];
+    }
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (ftHistIdx > 0) { ftInput.value = ftHistory[--ftHistIdx]; }
+      else { ftHistIdx = -1; ftInput.value = ''; }
+    }
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const typed = ftInput.value.toLowerCase().trim();
+      if (!typed) return;
+      const matches = Object.keys(FT_CMDS).filter(k => k.startsWith(typed));
+      if (matches.length === 1) {
+        ftInput.value = matches[0];
+      } else if (matches.length > 1) {
+        ftPromptLine(ftInput.value);
+        ftLine(matches.map(m => `<span class="tv">${m}</span>`).join('&nbsp;&nbsp;'));
+        ftBlank();
+      }
+    }
+  });
+
+  document.querySelector('.full-terminal').addEventListener('click', () => ftInput.focus());
+})();
 </script>
 
 </body>
