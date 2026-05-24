@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Ameer — IT Professional & Cybersecurity Educator</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #060810;
+  --bg2:     #080c14;
+  --bg3:     #0c1220;
+  --card:    #0a0f1a;
+  --a1:      #00d4ff;
+  --a2:      #0099cc;
+  --a3:      #005f80;
+  --a4:      #ff6b35;
+  --text:    #dce8f0;
+  --muted:   #5a7890;
+  --border:  rgba(0,212,255,0.12);
+  --border2: rgba(0,212,255,0.28);
+  --glow:    rgba(0,212,255,0.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--a2);border-radius:2px;}
+
+/* Grid bg */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;z-index:0;
+}
+
+/* Cursor glow */
+#cg{position:fixed;pointer-events:none;z-index:999;width:400px;height:400px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(0,212,255,0.04) 0%,transparent 70%);transition:opacity 0.3s;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 5rem;
+  background:rgba(6,8,16,0.88);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;
+  color:var(--a1);letter-spacing:3px;text-transform:uppercase;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.nav-logo span{color:var(--a4);font-size:0.65rem;letter-spacing:2px;font-weight:500;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;
+  transition:color 0.2s;position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--a1);transform:scaleX(0);transition:transform 0.2s;}
+.nav-links a:hover{color:var(--a1);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-hire{
+  padding:0.45rem 1.2rem;border:1px solid var(--a1);color:var(--a1);
+  font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;
+  background:transparent;cursor:pointer;transition:all 0.2s;text-decoration:none;border-radius:2px;
+}
+.nav-hire:hover{background:var(--a1);color:var(--bg);}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:grid;grid-template-columns:1.2fr 0.8fr;
+  align-items:center;padding:8rem 5rem 5rem;gap:5rem;position:relative;
+}
+.h-scan{
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--a1),transparent);
+  animation:scanline 4s linear infinite;opacity:0.4;
+}
+@keyframes scanline{0%{top:0%}100%{top:100%}}
+.h-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:500;
+  letter-spacing:3px;text-transform:uppercase;color:var(--a4);
+  margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;
+}
+.h-tag::before{content:'▶';font-size:0.5rem;}
+.h-name{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(3.2rem,6vw,5.8rem);font-weight:800;line-height:0.95;
+  margin-bottom:0.3rem;letter-spacing:-2px;
+}
+.h-name .ln{display:block;color:var(--a1);}
+.h-sub{
+  font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;margin-bottom:1.5rem;
+}
+.h-bio{color:var(--muted);font-size:0.95rem;max-width:520px;line-height:1.9;margin-bottom:2rem;}
+.h-badges{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;}
+.hb{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;
+  padding:0.3rem 0.9rem;border:1px solid var(--border2);color:var(--a1);
+  border-radius:2px;background:var(--glow);transition:all 0.2s;
+}
+.hb:hover{background:rgba(0,212,255,0.12);}
+.h-cta{display:flex;gap:1rem;}
+.btn-p{
+  padding:0.75rem 2rem;background:var(--a1);color:var(--bg);
+  font-family:'Outfit',sans-serif;font-weight:600;font-size:0.85rem;
+  border:none;cursor:pointer;border-radius:2px;transition:all 0.25s;text-decoration:none;display:inline-block;
+}
+.btn-p:hover{background:var(--a2);transform:translateY(-2px);}
+.btn-s{
+  padding:0.75rem 2rem;background:transparent;color:var(--a1);
+  font-family:'Outfit',sans-serif;font-weight:500;font-size:0.85rem;
+  border:1px solid var(--border2);cursor:pointer;border-radius:2px;
+  transition:all 0.25s;text-decoration:none;display:inline-block;
+}
+.btn-s:hover{border-color:var(--a1);background:var(--glow);transform:translateY(-2px);}
+
+/* Hero right panel */
+.h-right{display:flex;flex-direction:column;gap:0;position:relative;}
+.h-terminal{
+  background:var(--card);border:1px solid var(--border2);border-radius:6px;
+  overflow:hidden;box-shadow:0 0 60px rgba(0,212,255,0.08);
+}
+.term-bar{
+  background:#0d1525;padding:0.7rem 1rem;
+  display:flex;align-items:center;gap:0.5rem;
+  border-bottom:1px solid var(--border);
+}
+.tdot{width:10px;height:10px;border-radius:50%;}
+.tdot.r{background:#ff5f57;}.tdot.y{background:#febc2e;}.tdot.g{background:#28c840;}
+.term-title{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--muted);margin-left:auto;letter-spacing:1px;}
+.term-body{padding:1.5rem;font-family:'IBM Plex Mono',monospace;font-size:0.73rem;line-height:2;}
+.tc{color:var(--muted);}
+.tv{color:var(--a1);}
+.tk{color:var(--a4);}
+.ts{color:#85e89d;}
+.tcm{color:#6a9fb5;}
+
+.h-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1rem;}
+.stat-box{
+  background:var(--card);border:1px solid var(--border);
+  padding:1.2rem;border-radius:4px;text-align:center;
+  transition:all 0.2s;position:relative;overflow:hidden;
+}
+.stat-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--a3),var(--a1));
+  transform:scaleX(0);transition:transform 0.3s;
+}
+.stat-box:hover{border-color:var(--border2);}
+.stat-box:hover::before{transform:scaleX(1);}
+.sn{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;color:var(--a1);line-height:1;}
+.sl{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:0.25rem;}
+
+/* SECTION BASE */
+section{padding:6rem 5rem;position:relative;}
+.sh{display:flex;align-items:center;gap:1.2rem;margin-bottom:3.5rem;}
+.st{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--a4);white-space:nowrap;}
+.sl2{flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent);}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;margin-bottom:0.4rem;}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.exp-card{
+  background:var(--card);border:1px solid var(--border);
+  border-left:3px solid var(--a3);padding:1.8rem 2rem;border-radius:4px;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.exp-card::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,transparent,var(--a1),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.exp-card:hover{border-left-color:var(--a1);transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.exp-card:hover::after{opacity:1;}
+.exp-role{font-size:1rem;font-weight:600;margin-bottom:0.25rem;}
+.exp-org{color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.75rem;margin-bottom:0.2rem;}
+.exp-date{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.68rem;margin-bottom:0.9rem;}
+.exp-desc{color:var(--muted);font-size:0.86rem;line-height:1.75;}
+.exp-bullets{margin:0.8rem 0 0;padding:0 0 0 1rem;list-style:none;}
+.exp-bullets li{font-size:0.83rem;color:var(--muted);padding:0.25rem 0;position:relative;}
+.exp-bullets li::before{content:'›';position:absolute;left:-1rem;color:var(--a1);}
+
+/* PROJECTS */
+#projects{background:var(--bg);}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
+  padding:2rem;transition:all 0.3s;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.proj-card::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--a3),var(--a1),var(--a4));
+  transform:scaleX(0);transition:transform 0.35s;
+}
+.proj-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,0.5);border-color:var(--border2);}
+.proj-card:hover::before{transform:scaleX(1);}
+.proj-icon{font-size:1.5rem;margin-bottom:1rem;}
+.proj-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:0.3rem;}
+.proj-sub{font-family:'IBM Plex Mono',monospace;color:var(--a1);font-size:0.67rem;margin-bottom:0.8rem;letter-spacing:0.5px;}
+.proj-desc{color:var(--muted);font-size:0.84rem;line-height:1.75;margin-bottom:1.2rem;flex:1;}
+.tech-tags{display:flex;flex-wrap:wrap;gap:0.35rem;}
+.tt{
+  font-family:'IBM Plex Mono',monospace;font-size:0.63rem;
+  padding:0.18rem 0.55rem;background:rgba(0,212,255,0.07);
+  border:1px solid var(--border);color:var(--a2);border-radius:2px;
+}
+.proj-link{margin-top:1rem;}
+.proj-link a{
+  font-family:'IBM Plex Mono',monospace;font-size:0.68rem;letter-spacing:1px;
+  text-transform:uppercase;color:var(--a4);text-decoration:none;
+  border-bottom:1px solid rgba(255,107,53,0.3);transition:all 0.2s;
+}
+.proj-link a:hover{color:var(--a1);border-bottom-color:rgba(0,212,255,0.5);}
+
+/* EDUCATION + CERTS */
+#education{background:var(--bg2);}
+.edu-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.edu-list{display:flex;flex-direction:column;gap:1rem;}
+.edu-card{
+  background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.6rem 1.8rem;transition:all 0.3s;
+}
+.edu-card:hover{border-color:var(--border2);transform:translateX(4px);}
+.edu-deg{font-weight:600;font-size:0.95rem;margin-bottom:0.25rem;}
+.edu-sch{color:var(--a1);font-family:'IBM Plex Mono',monospace;font-size:0.73rem;margin-bottom:0.2rem;}
+.edu-date{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:0.65rem;margin-bottom:0.7rem;}
+.edu-note{color:var(--muted);font-size:0.84rem;line-height:1.7;}
+
+/* CISCO BADGES */
+.certs-side{display:flex;flex-direction:column;gap:1.2rem;}
+.cert-label{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--a4);
+  margin-bottom:0.4rem;
+}
+.badges-scroll{
+  display:flex;flex-wrap:wrap;gap:0.8rem;
+  max-height:420px;overflow-y:auto;padding-right:0.4rem;
+}
+.badges-scroll::-webkit-scrollbar{width:2px;}
+.badges-scroll::-webkit-scrollbar-thumb{background:var(--a3);}
+.badge-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:4px;padding:0.7rem 1rem;
+  display:flex;align-items:center;gap:0.7rem;
+  transition:all 0.2s;cursor:pointer;
+  text-decoration:none;color:inherit;
+  flex:0 0 calc(50% - 0.4rem);
+}
+.badge-item:hover{border-color:var(--a1);background:var(--glow);}
+.badge-icon{font-size:1.1rem;}
+.badge-name{font-size:0.78rem;font-weight:500;color:var(--text);}
+.badge-issuer{font-family:'IBM Plex Mono',monospace;font-size:0.6rem;color:var(--a2);margin-top:0.1rem;}
+.badge-verified{
+  margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:0.55rem;
+  letter-spacing:1px;text-transform:uppercase;color:var(--ts, #85e89d);
+  background:rgba(133,232,157,0.08);border:1px solid rgba(133,232,157,0.2);
+  padding:0.15rem 0.5rem;border-radius:2px;white-space:nowrap;
+}
+
+/* Full badges embed section */
+#badges{background:var(--bg);}
+.badges-full-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:2rem;justify-items:center;
+}
+.badge-embed-wrap{
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;text-align:center;
+}
+.badge-embed-title{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:1px;
+  color:var(--muted);text-transform:uppercase;max-width:140px;line-height:1.4;
+}
+
+/* SKILLS */
+#skills{background:var(--bg2);}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;}
+.skill-cat{
+  background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1.6rem;transition:border-color 0.2s;
+}
+.skill-cat:hover{border-color:var(--border2);}
+.sc-head{
+  font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--a4);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;
+}
+.sc-head::before{content:'';width:20px;height:1px;background:var(--a4);}
+.skill-pills{display:flex;flex-wrap:wrap;gap:0.4rem;}
+.sp{
+  font-size:0.75rem;font-weight:500;padding:0.3rem 0.8rem;
+  background:rgba(0,212,255,0.06);border:1px solid var(--border);
+  color:var(--text);border-radius:2px;transition:all 0.2s;
+}
+.sp:hover{background:rgba(0,212,255,0.13);border-color:var(--a2);color:var(--a1);}
+
+/* LANGUAGES */
+.lang-section{margin-top:2rem;}
+.lang-row{display:flex;align-items:center;gap:1.5rem;padding:0.9rem 0;border-bottom:1px solid var(--border);}
+.lang-name{font-weight:500;font-size:0.9rem;min-width:90px;}
+.lang-bar-bg{flex:1;height:3px;background:rgba(0,212,255,0.1);border-radius:3px;overflow:hidden;}
+.lang-bar{height:100%;background:linear-gradient(90deg,var(--a3),var(--a1));border-radius:3px;width:0;transition:width 1.2s ease;}
+.lang-pct{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--a1);min-width:35px;text-align:right;}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--bg);}
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
+.ach-card{
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
+  padding:2rem 1.5rem;text-align:center;transition:all 0.3s;
+  position:relative;overflow:hidden;
+}
+.ach-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at center,rgba(0,212,255,0.04) 0%,transparent 70%);
+  opacity:0;transition:opacity 0.3s;
+}
+.ach-card:hover{transform:translateY(-4px);border-color:var(--border2);}
+.ach-card:hover::before{opacity:1;}
+.ach-num{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:var(--a1);line-height:1;margin-bottom:0.5rem;}
+.ach-title{font-size:0.85rem;font-weight:500;margin-bottom:0.3rem;}
+.ach-org{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);}
+
+/* LEARNING */
+#learning{background:var(--bg2);}
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.learn-sub{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--a4);margin-bottom:1.2rem;}
+.learn-pills{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.lp{
+  font-size:0.8rem;font-weight:500;padding:0.5rem 1.1rem;
+  background:rgba(255,107,53,0.07);border:1px solid rgba(255,107,53,0.2);
+  color:#ff9c6e;border-radius:2px;transition:all 0.2s;
+}
+.lp:hover{background:rgba(255,107,53,0.15);}
+.hobby-list{display:flex;flex-direction:column;gap:0.6rem;}
+.hobby-item{
+  display:flex;align-items:center;gap:0.8rem;
+  font-size:0.88rem;color:var(--muted);
+}
+.hd{width:5px;height:5px;border-radius:50%;background:var(--a1);flex-shrink:0;}
+
+/* CONTACT / FOOTER */
+#contact{background:var(--bg);padding:6rem 5rem;}
+.contact-inner{max-width:700px;margin:0 auto;text-align:center;}
+.contact-inner .stitle{text-align:center;margin-bottom:0.8rem;}
+.contact-sub{color:var(--muted);font-size:0.95rem;margin-bottom:3rem;}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;}
+.contact-card{
+  background:var(--card);border:1px solid var(--border);border-radius:4px;
+  padding:1.4rem;text-align:center;transition:all 0.2s;text-decoration:none;color:inherit;display:block;
+}
+.contact-card:hover{border-color:var(--a1);transform:translateY(-2px);}
+.cc-icon{font-size:1.4rem;margin-bottom:0.6rem;}
+.cc-label{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
+.cc-val{font-size:0.82rem;font-weight:500;color:var(--a1);}
+
+footer{
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:2rem 5rem;display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:800;color:var(--a1);letter-spacing:2px;}
+.footer-copy{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--muted);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--a1);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.12s;}
+.reveal-delay-2{transition-delay:0.24s;}
+.reveal-delay-3{transition-delay:0.36s;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  nav{padding:1rem 2rem;}
+  #hero,section{padding:7rem 2rem 4rem;}
+  .exp-grid,.proj-grid,.skills-grid{grid-template-columns:1fr;}
+  .ach-grid{grid-template-columns:1fr 1fr;}
+  .edu-wrapper,.learn-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  #hero{grid-template-columns:1fr;gap:2rem;}
+  .h-right{order:3;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div id="cg"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ali Ameer<span>IT Pro</span></div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#badges">Badges</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ali.ameer.it.exp@gmail.com" class="nav-hire">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-scan"></div>
+  <div>
+    <div class="h-tag">IT Professional &amp; Cybersecurity Educator</div>
+    <h1 class="h-name">Ali<span class="ln">Ameer</span></h1>
+    <div class="h-sub">BS IT · Faisalabad, Pakistan</div>
+    <p class="h-bio">BS IT graduate (CGPA 3.5/4.0) with 3+ years spanning IT training, cybersecurity education, SEO, and WordPress development. Grew combined social media presence to 30M+ views and generated 35K+ organic website visits with zero paid advertising.</p>
+    <div class="h-badges">
+      <span class="hb">Cybersecurity</span>
+      <span class="hb">IT Support</span>
+      <span class="hb">Ethical Hacking</span>
+      <span class="hb">SEO &amp; Content</span>
+      <span class="hb">IT Training</span>
+      <span class="hb">Graphic Design</span>
+    </div>
+    <div class="h-cta">
+      <a href="#experience" class="btn-p">View Experience</a>
+      <a href="#contact" class="btn-s">Get In Touch</a>
+    </div>
+  </div>
+
+  <div class="h-right">
+    <div class="h-terminal">
+      <div class="term-bar">
+        <div class="tdot r"></div><div class="tdot y"></div><div class="tdot g"></div>
+        <span class="term-title">ali_ameer.sh</span>
+      </div>
+      <div class="term-body">
+        <div><span class="tc">$ </span><span class="tk">whoami</span></div>
+        <div class="tv">ali_ameer</div>
+        <div style="height:0.4rem;"></div>
+        <div><span class="tc">$ </span><span class="tk">cat</span> <span class="ts">profile.json</span></div>
+        <div class="tc">{</div>
+        <div>&nbsp;&nbsp;<span class="tcm">"role"</span>: <span class="tv">"IT Trainer + Cybersec"</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tcm">"cgpa"</span>: <span class="tv">3.5</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tcm">"views"</span>: <span class="tv">"30M+"</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tcm">"certs"</span>: <span class="tv">12</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tcm">"status"</span>: <span class="ts">"open_to_work"</span></div>
+        <div class="tc">}</div>
+        <div style="height:0.4rem;"></div>
+        <div><span class="tc">$ </span><span class="tv">_</span><span class="tc" style="animation:blink 1s infinite">|</span></div>
+      </div>
+    </div>
+    <div class="h-stats">
+      <div class="stat-box"><div class="sn">30M+</div><div class="sl">Total Views</div></div>
+      <div class="stat-box"><div class="sn">3.5</div><div class="sl">CGPA</div></div>
+      <div class="stat-box"><div class="sn">35K+</div><div class="sl">Organic Visits</div></div>
+      <div class="stat-box"><div class="sn">3+</div><div class="sl">Years Exp</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sh"><span class="st">01 — Experience</span><div class="sl2"></div></div>
+  <div class="stitle reveal">Where I've Worked</div>
+  <br>
+  <div class="exp-grid">
+    <div class="exp-card reveal">
+      <div class="exp-role">IT Trainer &amp; Senior Content Creator</div>
+      <div class="exp-org">VMSOIT</div>
+      <div class="exp-date">APR 2024 – PRESENT · Remote, Pakistan</div>
+      <ul class="exp-bullets">
+        <li>Developing Mastering CompTIA A+ V15 course on YouTube covering Hardware, Networking, OS, Security, and Troubleshooting.</li>
+        <li>Scaled combined digital reach to 30M+ total views with zero paid advertising.</li>
+        <li>Designed VMSOIT's responsive WordPress website managing plugins, SSL, and security protocols.</li>
+        <li>Wrote SEO-optimized articles and course materials on Cybersecurity, Networking, AI, and IT Support.</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal reveal-delay-1">
+      <div class="exp-role">SEO Specialist &amp; Graphic Designer</div>
+      <div class="exp-org">VMSOIT (Freelance)</div>
+      <div class="exp-date">2022 – PRESENT</div>
+      <ul class="exp-bullets">
+        <li>Executed data-driven SEO strategies achieving 35K+ organic website visits with no paid ads.</li>
+        <li>Managed multi-platform content calendars across YouTube, Instagram, Facebook, and Pinterest.</li>
+        <li>Designed YouTube thumbnails, Instagram carousels, Pinterest pins, and full brand identity materials.</li>
+        <li>Scaled VMSOIT Instagram to 13.8M views, YouTube to 10M+ views.</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal reveal-delay-2">
+      <div class="exp-role">IT &amp; Computer Science Teacher</div>
+      <div class="exp-org">Sir Syed Scholars Inn (Girls Campus)</div>
+      <div class="exp-date">2026 – PRESENT · Hafizabad, Pakistan</div>
+      <ul class="exp-bullets">
+        <li>Teaching CS &amp; IT fundamentals to female students in grades 6–10.</li>
+        <li>Designing lesson plans, practical exercises, and assessments aligned with curriculum standards.</li>
+      </ul>
+    </div>
+    <div class="exp-card reveal reveal-delay-3">
+      <div class="exp-role">Computer Lab Administrator &amp; Tech Support</div>
+      <div class="exp-org">MIEHS</div>
+      <div class="exp-date">FEB 2022 – APR 2023 · Hafizabad, Pakistan</div>
+      <ul class="exp-bullets">
+        <li>Managed and maintained a 50-workstation computer lab ensuring maximum uptime.</li>
+        <li>Diagnosed and resolved hardware, software, and network issues systematically.</li>
+        <li>Guided non-technical users on proper computer usage and lab protocols.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sh"><span class="st">02 — Projects</span><div class="sl2"></div></div>
+  <div class="stitle reveal">What I've Built</div>
+  <br>
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <div class="proj-icon">🎠</div>
+      <div class="proj-name">CarouselCraft</div>
+      <div class="proj-sub">Instagram Carousel Generator — Desktop App</div>
+      <div class="proj-desc">Full-featured Electron + React desktop app for creating professional Instagram carousel posts. Features 1350×2025px canvas, 10 design themes, 11 slide types, RTL Urdu support, custom LayoutEngine with 8pt grid, and multi-format export (PNG, JPG, PDF, ZIP).</div>
+      <div class="tech-tags">
+        <span class="tt">Electron v28</span><span class="tt">React 18</span><span class="tt">Framer Motion</span>
+        <span class="tt">Zustand</span><span class="tt">Dexie.js</span><span class="tt">jsPDF</span>
+      </div>
+      <div class="proj-link"><a href="https://github.com/ameer-18-star" target="_blank">View on GitHub →</a></div>
+    </div>
+    <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-icon">✅</div>
+      <div class="proj-name">Advanced Habit Tracker</div>
+      <div class="proj-sub">Desktop Productivity App — Electron + React</div>
+      <div class="proj-desc">Production-grade habit tracking app with multi-profile support, smart OS notifications with streak protection, custom SVG progress rings and heatmaps, drag-and-drop reordering, PIN/session lock, and detailed analytics.</div>
+      <div class="tech-tags">
+        <span class="tt">Electron</span><span class="tt">React 18</span><span class="tt">Recharts</span>
+        <span class="tt">Zustand</span><span class="tt">Dexie.js</span><span class="tt">SVG</span>
+      </div>
+      <div class="proj-link"><a href="https://github.com/ameer-18-star" target="_blank">View on GitHub →</a></div>
+    </div>
+    <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-icon">📚</div>
+      <div class="proj-name">PHP Learning Management System</div>
+      <div class="proj-sub">Final Year Project — Full-Stack Web App</div>
+      <div class="proj-desc">Advanced PHP-based LMS built as GCUF capstone. Led full-stack development, database management, QA testing, curriculum design, and formal thesis. Presented to academic stakeholders at GC University Faisalabad.</div>
+      <div class="tech-tags">
+        <span class="tt">PHP</span><span class="tt">MySQL</span><span class="tt">HTML/CSS</span>
+        <span class="tt">JavaScript</span><span class="tt">Full-Stack</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sh"><span class="st">03 — Education &amp; Certifications</span><div class="sl2"></div></div>
+  <div class="stitle reveal">Academic Background</div>
+  <br>
+  <div class="edu-wrapper">
+    <div class="edu-list">
+      <div class="edu-card reveal">
+        <div class="edu-deg">BS Information Technology</div>
+        <div class="edu-sch">GC University Faisalabad (GCUF)</div>
+        <div class="edu-date">2021 – 2025 · CGPA: 3.5/4.0 · First Division</div>
+        <div class="edu-note">Graduated top of batch. Coursework: Network Security, Cybersecurity, Database Management, Operating Systems, Data Communications.</div>
+      </div>
+      <div class="edu-card reveal reveal-delay-1">
+        <div class="edu-deg">TCM Security Certifications</div>
+        <div class="edu-sch">TCM Security — Online</div>
+        <div class="edu-date">Completed</div>
+        <div class="edu-note">Practical Help Desk (PHD) · Practical Security Fundamentals · Linux + AI + Programming 100 Fundamentals</div>
+      </div>
+      <div class="edu-card reveal reveal-delay-2">
+        <div class="edu-deg">Currently Pursuing</div>
+        <div class="edu-sch">EC-Council &amp; Cisco</div>
+        <div class="edu-date">2025 – Present</div>
+        <div class="edu-note">CEH v13 (Certified Ethical Hacker) · Cisco Ethical Hacker Career Path · Cisco Junior Cybersecurity Analyst · CompTIA A+, Network+, Security+ (Self-Study)</div>
+      </div>
+    </div>
+
+    <div class="certs-side reveal reveal-delay-1">
+      <div class="cert-label">Cisco Verified Badges</div>
+      <div class="badges-scroll">
+        <a class="badge-item" href="https://www.credly.com/badges/89c4ed58-a37b-4c91-8b58-54b67bbf7759/public_url" target="_blank">
+          <div class="badge-icon">🔐</div>
+          <div><div class="badge-name">Intro to Cybersecurity</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/88bde4f0-bfe4-4f5c-86e8-87976f7058bf/public_url" target="_blank">
+          <div class="badge-icon">💻</div>
+          <div><div class="badge-name">Computer Hardware Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/03c8ab46-bb19-4e1f-bfa7-3620a64bb99b/public_url" target="_blank">
+          <div class="badge-icon">🎨</div>
+          <div><div class="badge-name">CSS Essentials</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/868d8764-96ce-4d62-a08d-9bda304a83ca/public_url" target="_blank">
+          <div class="badge-icon">🌐</div>
+          <div><div class="badge-name">HTML Essentials</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/bb59f709-4094-41bf-9fc1-d890f3f7497c/public_url" target="_blank">
+          <div class="badge-icon">🎧</div>
+          <div><div class="badge-name">IT Customer Support Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/8098f891-4e80-49f0-b588-1f85684c5442/public_url" target="_blank">
+          <div class="badge-icon">🔌</div>
+          <div><div class="badge-name">Networking Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/b4d553ed-76df-4846-aa50-4a4eff39f3d7/public_url" target="_blank">
+          <div class="badge-icon">🖥️</div>
+          <div><div class="badge-name">OS Basics</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/f9604a29-27dc-4073-b39e-5f1a6d12377e/public_url" target="_blank">
+          <div class="badge-icon">🐍</div>
+          <div><div class="badge-name">Python Essentials 1</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/c6c4845c-2a39-4c47-9e75-d4d53b4a5d20/public_url" target="_blank">
+          <div class="badge-icon">⚙️</div>
+          <div><div class="badge-name">OS Support</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/1977d543-d6e1-4c74-8a0f-94efe9a96a35/public_url" target="_blank">
+          <div class="badge-icon">🔧</div>
+          <div><div class="badge-name">Hardware &amp; Upgrade Support</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/2a7c0fad-3825-4a58-bdd8-ab796d3c577e/public_url" target="_blank">
+          <div class="badge-icon">🛡️</div>
+          <div><div class="badge-name">Security &amp; Connectivity</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+        <a class="badge-item" href="https://www.credly.com/badges/294c9f7e-e255-46cc-93dc-5327d7ceaeb8/public_url" target="_blank">
+          <div class="badge-icon">🏆</div>
+          <div><div class="badge-name">IT Support Specialist Career Path</div><div class="badge-issuer">Cisco NetAcad</div></div>
+          <div class="badge-verified">✓ verified</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CISCO BADGES FULL EMBED -->
+<section id="badges">
+  <div class="sh"><span class="st">04 — Cisco Digital Badges</span><div class="sl2"></div></div>
+  <div class="stitle reveal">Verified Credly Badges</div>
+  <p style="color:var(--muted);font-size:0.9rem;margin-bottom:3rem;" class="reveal">All badges are verified by Cisco Networking Academy and hosted on Credly. Click any badge to verify.</p>
+  <div class="badges-full-grid reveal">
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="89c4ed58-a37b-4c91-8b58-54b67bbf7759" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Introduction to Cybersecurity</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="88bde4f0-bfe4-4f5c-86e8-87976f7058bf" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Computer Hardware Basics</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="03c8ab46-bb19-4e1f-bfa7-3620a64bb99b" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">CSS Essentials</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="868d8764-96ce-4d62-a08d-9bda304a83ca" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">HTML Essentials</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="bb59f709-4094-41bf-9fc1-d890f3f7497c" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">IT Customer Support Basics</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8098f891-4e80-49f0-b588-1f85684c5442" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Networking Basics</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="b4d553ed-76df-4846-aa50-4a4eff39f3d7" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Operating System Basics</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="f9604a29-27dc-4073-b39e-5f1a6d12377e" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Python Essentials 1</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="c6c4845c-2a39-4c47-9e75-d4d53b4a5d20" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Operating Systems Support</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="1977d543-d6e1-4c74-8a0f-94efe9a96a35" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Hardware &amp; Upgrade Support</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="2a7c0fad-3825-4a58-bdd8-ab796d3c577e" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">Security &amp; Connectivity Support</div>
+    </div>
+
+    <div class="badge-embed-wrap">
+      <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="294c9f7e-e255-46cc-93dc-5327d7ceaeb8" data-share-badge-host="https://www.credly.com"></div>
+      <div class="badge-embed-title">IT Support Specialist Career Path</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sh"><span class="st">05 — Skills</span><div class="sl2"></div></div>
+  <div class="stitle reveal">Technical Arsenal</div>
+  <br>
+  <div class="skills-grid">
+    <div class="skill-cat reveal">
+      <div class="sc-head">Cybersecurity &amp; Networking</div>
+      <div class="skill-pills">
+        <span class="sp">Threat Analysis</span><span class="sp">Network Security</span>
+        <span class="sp">Ethical Hacking</span><span class="sp">Linux CLI</span>
+        <span class="sp">TCP/IP</span><span class="sp">Subnetting</span>
+        <span class="sp">CIA Triad</span><span class="sp">OSINT</span>
+        <span class="sp">Cisco Packet Tracer</span><span class="sp">Cryptography</span>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-1">
+      <div class="sc-head">Development</div>
+      <div class="skill-pills">
+        <span class="sp">Python</span><span class="sp">JavaScript</span>
+        <span class="sp">React 18</span><span class="sp">Electron</span>
+        <span class="sp">PHP</span><span class="sp">MySQL</span>
+        <span class="sp">HTML5</span><span class="sp">CSS3</span>
+        <span class="sp">WordPress</span><span class="sp">Git/GitHub</span>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-2">
+      <div class="sc-head">Design &amp; SEO</div>
+      <div class="skill-pills">
+        <span class="sp">Adobe Photoshop</span><span class="sp">Canva Pro</span>
+        <span class="sp">Figma</span><span class="sp">On-Page SEO</span>
+        <span class="sp">YouTube SEO</span><span class="sp">Content Strategy</span>
+        <span class="sp">Keyword Research</span><span class="sp">Technical Writing</span>
+      </div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="sc-head">IT Support Tools</div>
+      <div class="skill-pills">
+        <span class="sp">Help Desk</span><span class="sp">Hardware Troubleshooting</span>
+        <span class="sp">OS Administration</span><span class="sp">Remote Support</span>
+        <span class="sp">TeamViewer</span><span class="sp">AnyDesk</span>
+        <span class="sp">Windows/Linux Admin</span>
+      </div>
+    </div>
+    <div class="skill-cat reveal reveal-delay-1" style="grid-column:span 2;">
+      <div class="sc-head">Languages Spoken</div>
+      <div class="lang-section">
+        <div class="lang-row">
+          <span class="lang-name">Urdu</span>
+          <div class="lang-bar-bg"><div class="lang-bar" data-width="90"></div></div>
+          <span class="lang-pct">90%</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Punjabi</span>
+          <div class="lang-bar-bg"><div class="lang-bar" data-width="88"></div></div>
+          <span class="lang-pct">88%</span>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">English</span>
+          <div class="lang-bar-bg"><div class="lang-bar" data-width="65"></div></div>
+          <span class="lang-pct">65%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="sh"><span class="st">06 — Achievements</span><div class="sl2"></div></div>
+  <div class="stitle reveal">Numbers That Matter</div>
+  <br>
+  <div class="ach-grid">
+    <div class="ach-card reveal">
+      <div class="ach-num">30M+</div>
+      <div class="ach-title">Total Social Media Views</div>
+      <div class="ach-org">VMSOIT · 2024 – Present</div>
+    </div>
+    <div class="ach-card reveal reveal-delay-1">
+      <div class="ach-num">35K+</div>
+      <div class="ach-title">Organic Website Visits</div>
+      <div class="ach-org">Zero Paid Advertising</div>
+    </div>
+    <div class="ach-card reveal reveal-delay-2">
+      <div class="ach-num">3.5</div>
+      <div class="ach-title">CGPA — First Division</div>
+      <div class="ach-org">GCUF BS IT · 2021–2025</div>
+    </div>
+    <div class="ach-card reveal reveal-delay-3">
+      <div class="ach-num">12</div>
+      <div class="ach-title">Cisco Verified Badges</div>
+      <div class="ach-org">Cisco Networking Academy</div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING & INTERESTS -->
+<section id="learning">
+  <div class="sh"><span class="st">07 — Currently Learning &amp; Interests</span><div class="sl2"></div></div>
+  <div class="stitle reveal">What's Next</div>
+  <br>
+  <div class="learn-grid">
+    <div class="reveal">
+      <div class="learn-sub">Currently Pursuing</div>
+      <div class="learn-pills">
+        <span class="lp">CEH v13 — Certified Ethical Hacker</span>
+        <span class="lp">Cisco Ethical Hacker Career Path</span>
+        <span class="lp">Cisco Jr Cybersecurity Analyst</span>
+        <span class="lp">CompTIA A+, Network+, Security+</span>
+        <span class="lp">Cisco Cyber Defender Pathway</span>
+        <span class="lp">Digital Forensics</span>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="learn-sub">Hobbies &amp; Interests</div>
+      <div class="hobby-list">
+        <div class="hobby-item"><div class="hd"></div>Chess — Strategic Thinking &amp; Problem Solving</div>
+        <div class="hobby-item"><div class="hd"></div>Cybersecurity Case Studies &amp; Research</div>
+        <div class="hobby-item"><div class="hd"></div>IT Content Creation &amp; Digital Education</div>
+        <div class="hobby-item"><div class="hd"></div>Cricket</div>
+        <div class="hobby-item"><div class="hd"></div>Open Source Learning &amp; Continuous Development</div>
+        <div class="hobby-item"><div class="hd"></div>Psychology</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="sh" style="justify-content:center;"><span class="st">08 — Contact</span></div>
+    <div class="stitle reveal">Let's Connect</div>
+    <p class="contact-sub reveal">Open to IT Support, Cybersecurity, and IT Training roles. Feel free to reach out.</p>
+    <div class="contact-grid reveal">
+      <a class="contact-card" href="mailto:ali.ameer.it.exp@gmail.com">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">Email</div>
+        <div class="cc-val">ali.ameer.it.exp@gmail.com</div>
+      </a>
+      <a class="contact-card" href="https://pk.linkedin.com/in/ali-ameer-811786302" target="_blank">
+        <div class="cc-icon">💼</div>
+        <div class="cc-label">LinkedIn</div>
+        <div class="cc-val">ali-ameer-811786302</div>
+      </a>
+      <a class="contact-card" href="https://github.com/ameer-18-star" target="_blank">
+        <div class="cc-icon">🐙</div>
+        <div class="cc-label">GitHub</div>
+        <div class="cc-val">ameer-18-star</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:0.5rem;" class="reveal">
+      <a class="contact-card" href="tel:+923457245610" style="max-width:260px;margin:0 auto;display:block;">
+        <div class="cc-icon">📱</div>
+        <div class="cc-label">Phone</div>
+        <div class="cc-val">+92-345-7245610</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ALI AMEER</div>
+  <div class="footer-copy">© 2026 · IT Professional &amp; Cybersecurity Educator · Faisalabad, Pakistan</div>
+  <div class="footer-links">
+    <a href="https://pk.linkedin.com/in/ali-ameer-811786302" target="_blank">LinkedIn</a>
+    <a href="https://github.com/ameer-18-star" target="_blank">GitHub</a>
+    <a href="mailto:ali.ameer.it.exp@gmail.com">Email</a>
+  </div>
+</footer>
+
+<!-- Credly badge embed script -->
+<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
+
+<script>
+// Cursor glow
+const cg = document.getElementById('cg');
+document.addEventListener('mousemove', e => {
+  cg.style.left = e.clientX + 'px';
+  cg.style.top  = e.clientY + 'px';
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// Language bars
+const langBars = document.querySelectorAll('.lang-bar');
+const langObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bar = entry.target;
+      setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 300);
+    }
+  });
+}, { threshold: 0.5 });
+langBars.forEach(bar => langObs.observe(bar));
+
+// Active nav highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    if (window.scrollY >= section.offsetTop - 130) current = section.id;
+  });
+  navLinks.forEach(link => {
+    const isActive = link.getAttribute('href') === '#' + current;
+    link.style.color = isActive ? 'var(--a1)' : '';
+  });
+});
+
+// Terminal cursor blink
+const style = document.createElement('style');
+style.textContent = '@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }';
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
