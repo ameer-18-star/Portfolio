@@ -41,17 +41,11 @@
       --bg3: #0c1220;
       --card: #0a0f1a;
       --a1: #00d4ff;
-      /* Cyan */
       --a2: #0099cc;
-      /* Deep Cyan */
       --a3: #005f80;
-      /* Dark Cyan */
       --a4: #ff6b35;
-      /* Warm Orange */
       --text: #dce8f0;
-      /* Ice White */
       --muted: #7a9ab5;
-      /* Steel Blue */
       --border: rgba(0, 212, 255, 0.12);
       --border2: rgba(0, 212, 255, 0.28);
       --glow: rgba(0, 212, 255, 0.06);
@@ -71,13 +65,10 @@
       --bg3: #d6e0ed;
       --card: #ffffff;
       --a1: #0088cc;
-      /* Darker Cyan for readability */
       --a2: #006699;
       --a3: #004466;
       --a4: #e0531b;
-      /* Contrast Orange */
       --text: #1a2536;
-      /* Deep Navy text */
       --muted: #4e6178;
       --border: rgba(0, 136, 204, 0.18);
       --border2: rgba(0, 136, 204, 0.36);
@@ -87,7 +78,6 @@
       --nav-bg: rgba(244, 246, 250, 0.85);
     }
 
-    /* Core Styles & Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -105,7 +95,6 @@
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* Scrollbar override */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -124,7 +113,6 @@
       background: var(--a2);
     }
 
-    /* Screen-reader only utility — visually hidden but accessible */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -137,7 +125,6 @@
       border: 0;
     }
 
-    /* Background Grids & Animations */
     #cyber-grid {
       position: fixed;
       top: 0;
@@ -152,17 +139,13 @@
       z-index: 1;
     }
 
-    /* Sweeping Scanline */
     #scanline {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom,
-          transparent 0%,
-          var(--scanline-color) 10%,
-          transparent 20%);
+      background: linear-gradient(to bottom, transparent 0%, var(--scanline-color) 10%, transparent 20%);
       background-size: 100% 500px;
       animation: scanline 12s linear infinite;
       pointer-events: none;
@@ -179,7 +162,6 @@
       }
     }
 
-    /* Mouse Spotlight Tracker */
     #cursor-glow {
       position: fixed;
       width: 400px;
@@ -191,7 +173,6 @@
       opacity: 0.8;
     }
 
-    /* Utility Layout / Sections */
     section {
       position: relative;
       padding: 6rem 5rem;
@@ -199,6 +180,8 @@
       border-bottom: 1px solid var(--border);
     }
 
+    /* FIX: was #080c1400 (fully transparent alpha), now uses solid var(--bg2)
+       so alternating section backgrounds actually render */
     section:nth-of-type(even) {
       background-color: var(--bg2);
     }
@@ -209,7 +192,6 @@
       width: 100%;
     }
 
-    /* Accent Badges / Titles */
     .section-label {
       font-family: var(--font-mono);
       color: var(--a4);
@@ -235,7 +217,6 @@
       color: var(--a1);
     }
 
-    /* Status Ribbon banner */
     .status-banner {
       width: 100%;
       background: rgba(0, 255, 102, 0.1);
@@ -288,65 +269,28 @@
       }
     }
 
-    /* Navbar — Always transparent over the hero image, solid on scroll */
     nav {
       position: fixed;
       top: 0;
       width: 100%;
       background: transparent;
       border-bottom: 1px solid transparent;
-      z-index: 200;
+      z-index: 99;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 3rem;
-      transition: background-color 0.45s ease, border-bottom-color 0.45s ease,
-                  padding 0.45s ease, backdrop-filter 0.45s ease, box-shadow 0.45s ease;
-    }
-
-    /* Force logo & nav link text to be bright-white on the dark hero image */
-    nav .logo,
-    nav .nav-links a {
-      color: #ffffff;
-    }
-
-    nav .logo span {
-      color: var(--a1);
-    }
-
-    nav .nav-links a {
-      color: rgba(255,255,255,0.8);
-    }
-
-    nav .nav-links a:hover {
-      color: var(--a1);
-      text-shadow: 0 0 10px var(--a1);
+      transition: background-color 0.4s ease, border-bottom-color 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
     }
 
     nav.scrolled,
     nav.menu-open {
       background: var(--nav-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 1rem 3rem;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Once scrolled, restore theme-aware link colours */
-    nav.scrolled .logo,
-    nav.menu-open .logo {
-      color: var(--text);
-    }
-
-    nav.scrolled .nav-links a,
-    nav.menu-open .nav-links a {
-      color: var(--muted);
-    }
-
-    nav.scrolled .nav-links a:hover,
-    nav.menu-open .nav-links a:hover {
-      color: var(--a1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     nav .logo {
@@ -400,7 +344,6 @@
       transform-origin: left;
     }
 
-    /* Actions & Controls inside Nav */
     .nav-actions {
       display: flex;
       gap: 1.5rem;
@@ -443,54 +386,23 @@
       box-shadow: 0 0 15px var(--a1);
     }
 
-    /* Hero Layout — Full viewport with cosmic background image */
     #hero {
       position: relative;
-      height: 100vh;
-      min-height: 100vh;
       overflow: hidden;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       padding: 8rem 5rem 6rem 5rem;
-      background: none;
+      background: radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 15% 70%, rgba(255, 107, 53, 0.1) 0%, transparent 60%),
+        linear-gradient(180deg, #03050a 0%, var(--bg) 100%);
+      transition: background 0.4s ease;
     }
 
-    /* Full-bleed background image layer */
-    #hero-bg-image {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background-image: url('Images/hero_bg_cosmic.jpg');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Dark overlay for text contrast — keeps left-side text readable */
-    #hero-bg-image::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        105deg,
-        rgba(3, 5, 10, 0.88) 0%,
-        rgba(3, 5, 10, 0.70) 45%,
-        rgba(3, 5, 10, 0.30) 75%,
-        rgba(3, 5, 10, 0.15) 100%
-      );
-    }
-
-    /* Subtle cyan accent radial glow over image */
-    #hero-bg-image::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 80% 25%, rgba(0, 212, 255, 0.12) 0%, transparent 55%),
-        radial-gradient(circle at 20% 75%, rgba(255, 107, 53, 0.08) 0%, transparent 55%);
-      z-index: 1;
+    :root[data-theme="light"] #hero {
+      background: radial-gradient(circle at 85% 30%, rgba(0, 136, 204, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 15% 70%, rgba(224, 83, 27, 0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #edf1f7 0%, var(--bg) 100%);
     }
 
     #anti-gravity-canvas {
@@ -639,7 +551,6 @@
       transform: translateY(-4px);
     }
 
-    /* Hero Character Avatar Widget */
     .hero-avatar-panel {
       position: relative;
       display: flex;
@@ -672,7 +583,6 @@
       transform: scale(1.03);
     }
 
-    /* Tech HUD overlay on Avatar */
     .hud-overlay {
       position: absolute;
       top: 0;
@@ -686,8 +596,6 @@
 
     .hud-corner {
       position: absolute;
-      width: 20px;
-      height: 20px;
       border-color: var(--a1);
       border-style: solid;
       width: 12px;
@@ -718,7 +626,6 @@
       border-width: 0 2px 2px 0;
     }
 
-    /* Interactive Mini Terminal in Hero */
     .mini-terminal {
       width: 100%;
       max-width: 400px;
@@ -781,7 +688,6 @@
       color: var(--a4);
     }
 
-    /* About Section */
     .about-layout {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -834,7 +740,6 @@
       color: var(--a4);
     }
 
-    /* Career Journey timeline */
     .timeline {
       position: relative;
       max-width: 1000px;
@@ -929,7 +834,6 @@
       font-size: 0.95rem;
     }
 
-    /* Experience Grid Section */
     .exp-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -995,7 +899,6 @@
       font-family: var(--font-mono);
     }
 
-    /* Projects Grid Section */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -1019,7 +922,6 @@
       transform: translateY(-4px);
     }
 
-    /* Bottom Sweep gradient bar on card */
     .project-card::after {
       content: '';
       position: absolute;
@@ -1048,7 +950,6 @@
       overflow: hidden;
     }
 
-    /* Project preview image */
     .project-preview-img {
       width: 100%;
       height: 100%;
@@ -1060,7 +961,6 @@
       transform: scale(1.05);
     }
 
-    /* Video Card Media Styles */
     .video-thumbnail {
       width: 100%;
       height: 100%;
@@ -1120,6 +1020,7 @@
     .project-links {
       display: flex;
       gap: 1.2rem;
+      flex-wrap: wrap;
     }
 
     .project-link {
@@ -1131,13 +1032,22 @@
       align-items: center;
       gap: 0.4rem;
       transition: var(--transition);
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
     .project-link:hover {
       color: var(--a1);
     }
 
-    /* Skills Grid layout with Radar Chart */
+    .project-link[disabled],
+    .project-link.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
     .skills-layout {
       display: grid;
       grid-template-columns: 0.8fr 1.2fr;
@@ -1198,7 +1108,6 @@
       transform: translateY(-2px);
     }
 
-    /* Certifications Badges Grid */
     .certs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -1270,7 +1179,14 @@
       box-shadow: 0 0 10px var(--a1);
     }
 
-    /* Cisco Badge Path Grouping */
+    .cert-badge-verify.pending {
+      color: var(--muted);
+      border-color: var(--border);
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
     .cert-path-group {
       margin-bottom: 3rem;
     }
@@ -1296,7 +1212,6 @@
       color: var(--a4);
     }
 
-    /* TCM Certifications list & download/view trigger */
     .tcm-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1384,7 +1299,6 @@
       box-shadow: 0 0 8px var(--glow);
     }
 
-    /* "Currently Learning" Scrolling Ticker Marquee */
     .marquee-container {
       width: 100%;
       background: var(--bg2);
@@ -1440,7 +1354,6 @@
       }
     }
 
-    /* Languages Grid */
     .languages-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1478,7 +1391,6 @@
       transition: width 1.5s cubic-bezier(0.1, 0.8, 0.25, 1);
     }
 
-    /* Contact Form panel */
     .contact-layout {
       display: grid;
       grid-template-columns: 0.9fr 1.1fr;
@@ -1517,7 +1429,6 @@
       box-shadow: 0 5px 15px var(--glow);
     }
 
-    /* Resume download CTA card — orange accent to stand out */
     .resume-download-card {
       border-color: rgba(255, 107, 53, 0.25);
       background: rgba(255, 107, 53, 0.04);
@@ -1625,7 +1536,13 @@
       transform: translateY(-2px);
     }
 
-    /* Signature interactive Terminal Console section */
+    .form-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
     .signature-terminal-section {
       padding: 4rem 5rem 0 5rem;
       background: #04060c;
@@ -1735,7 +1652,6 @@
       color: var(--a4);
     }
 
-    /* Lightbox modal styles */
     .lightbox-modal {
       position: fixed;
       top: 0;
@@ -1823,7 +1739,6 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     }
 
-    /* Footer */
     footer {
       background: #020408;
       border-top: 1px solid var(--border);
@@ -1896,7 +1811,23 @@
       font-weight: 600;
     }
 
-    /* ===== ACHIEVEMENTS SECTION ===== */
+    .back-to-top {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 4px;
+      padding: 0.3rem 0.7rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .back-to-top:hover {
+      border-color: var(--a1);
+      color: var(--a1);
+    }
+
     .achievements-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1990,7 +1921,6 @@
       opacity: 0.7;
     }
 
-    /* ===== CURRENTLY LEARNING TRACKER ===== */
     .learning-tracker-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -2158,7 +2088,6 @@
       color: var(--a1);
     }
 
-    /* Intersection Observer Reveals */
     .reveal {
       opacity: 0;
       transform: translateY(25px);
@@ -2186,7 +2115,6 @@
       transition-delay: 0.4s;
     }
 
-    /* Media Queries */
     @media (max-width: 1200px) {
       #hero {
         padding: 7rem 2rem 4rem 2rem;
@@ -2237,7 +2165,6 @@
       }
     }
 
-    /* Mobile Menu Toggle Button styling */
     .menu-toggle {
       display: none;
       background: transparent;
@@ -2381,7 +2308,6 @@
       }
     }
 
-    /* Accessibility: Respect user motion preferences */
     @media (prefers-reduced-motion: reduce) {
 
       *,
@@ -2417,7 +2343,6 @@
       }
     }
 
-    /* Project Category Titles (Cybersecurity / Programming) */
     .project-category-title {
       font-family: var(--font-mono);
       font-size: 1.1rem;
@@ -2439,7 +2364,6 @@
       color: var(--a4);
     }
 
-    /* Placeholder card for empty category */
     .project-card-placeholder {
       display: flex;
       align-items: center;
@@ -2459,21 +2383,6 @@
       opacity: 0.8;
     }
 
-    /* Fixed grid overlay — same as index.html #cyber-grid */
-    .cyber-grid {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ============================================================
-       SECTION WRAPPER — mirrors index.html <section> + .container
-       ============================================================ */
     .skills-section {
       position: relative;
       z-index: 10;
@@ -2482,37 +2391,6 @@
       padding: 4rem 2rem;
     }
 
-    /* Section eyebrow label — exact copy of .section-label */
-    .section-label {
-      font-family: var(--font-mono);
-      color: var(--a4);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 0.5rem;
-      display: inline-block;
-    }
-
-    /* Section heading — exact copy of .section-title */
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 2.8rem;
-      font-weight: 800;
-      margin-bottom: 3rem;
-      letter-spacing: -1px;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .section-title span {
-      color: var(--a1);
-    }
-
-    /* ============================================================
-       SKILL TOOL CATEGORY PANEL
-       Background + border match index.html .about-card / .exp-card
-       ============================================================ */
     .skill-tool-category {
       background: var(--card);
       border: 1px solid var(--border);
@@ -2524,7 +2402,6 @@
       transition: var(--transition);
     }
 
-    /* Top accent line — matches index.html .project-card::after gradient direction */
     .skill-tool-category::before {
       content: '';
       position: absolute;
@@ -2541,7 +2418,6 @@
       opacity: 1;
     }
 
-    /* Corner tick marks — same visual language as .hud-corner in index.html */
     .skill-tool-category::after {
       content: '////';
       position: absolute;
@@ -2559,7 +2435,6 @@
       box-shadow: 0 10px 25px var(--glow);
     }
 
-    /* Category label — mirrors .skill-cat-title in index.html */
     .skill-tool-cat-label {
       font-family: var(--font-mono);
       font-size: 1rem;
@@ -2575,7 +2450,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* Icon in label — same size as index.html .cert-path-title i */
     .skill-tool-cat-label i {
       width: 16px;
       height: 16px;
@@ -2583,16 +2457,12 @@
       flex-shrink: 0;
     }
 
-    /* ============================================================
-       TOOL ICON GRID
-       ============================================================ */
     .skill-tool-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
       gap: 1rem;
     }
 
-    /* Individual icon card — styled like .cert-badge-card from index.html */
     .skill-tool-icon {
       display: flex;
       flex-direction: column;
@@ -2608,16 +2478,7 @@
       position: relative;
       overflow: hidden;
       text-align: center;
-    }
-
-    /* Diagonal corner cut — same polygon as index.html clip-path patterns */
-    .skill-tool-icon {
-      clip-path: polygon(0 0,
-          calc(100% - 10px) 0,
-          100% 10px,
-          100% 100%,
-          10px 100%,
-          0 calc(100% - 10px));
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
     }
 
     .skill-tool-icon:hover {
@@ -2627,10 +2488,6 @@
       transform: translateY(-4px);
     }
 
-    /* ============================================================
-       ICON PLACEHOLDER BADGE
-       Styled as a rounded square — same feel as .learning-icon
-       ============================================================ */
     .tool-icon-placeholder {
       width: 44px;
       height: 44px;
@@ -2648,13 +2505,11 @@
       box-shadow: 0 0 10px var(--glow);
     }
 
-    /* Lucide icon inside placeholder — same sizing as index.html .achievement-icon */
     .tool-icon-placeholder i {
       width: 22px;
       height: 22px;
     }
 
-    /* Tool label — mirrors .cert-badge-name from index.html */
     .tool-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -2667,10 +2522,6 @@
       color: var(--a1);
     }
 
-    /* ============================================================
-       ICON COLOR VARIANTS
-       Background tints mirror project-tag / learning-icon usage
-       ============================================================ */
     .icon-cyan {
       background: rgba(0, 212, 255, 0.10);
       color: var(--a1);
@@ -2711,9 +2562,6 @@
       color: #5588ff;
     }
 
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
     @media (max-width: 600px) {
       .section-title {
         font-size: 2rem;
@@ -2735,13 +2583,14 @@
   <div id="cursor-glow"></div>
 
   <!-- Status Pulse Ribbon -->
-  <div class="status-banner">
+  <div class="status-banner" id="status-banner">
     <div>
       <span class="status-pulse"></span>
       STATUS: OPEN TO WORK (IT Support, Cybersecurity Associate, IT Training)
     </div>
-    <div style="font-size:0.75rem; color:var(--muted); cursor:pointer;" onclick="dismissStatusBanner(this)"
-      role="button" tabindex="0" aria-label="Dismiss availability status banner">[DISMISS]</div>
+    <button
+      style="font-size:0.75rem; color:var(--muted); background:none; border:none; cursor:pointer; font-family:var(--font-mono);"
+      onclick="dismissStatusBanner(this)" aria-label="Dismiss availability status banner">[DISMISS]</button>
   </div>
 
   <!-- Header Navigation -->
@@ -2765,7 +2614,6 @@
         <i data-lucide="sun"></i>
       </button>
       <a href="#contact" class="hire-btn">HIRE ME</a>
-      <!-- Mobile hamburger toggle button -->
       <button class="menu-toggle" id="menu-toggle-btn" title="Toggle Mobile Navigation"
         aria-label="Open navigation menu" aria-expanded="false">
         <i data-lucide="menu"></i>
@@ -2775,12 +2623,10 @@
 
   <!-- Hero Section -->
   <section id="hero">
-    <div id="hero-bg-image"></div>
     <canvas id="anti-gravity-canvas"></canvas>
     <div class="container">
       <div class="hero-container">
 
-        <!-- Hero Details -->
         <div class="hero-info reveal">
           <span class="section-label">Guest Access Granted</span>
           <h1>Hi, I'm Ali Ameer<span>_</span></h1>
@@ -2795,7 +2641,6 @@
             views generated globally.
           </p>
 
-          <!-- Professional Tagline -->
           <p class="hero-tagline">
             Aspiring Cybersecurity Professional | Ethical Hacking &amp; Pentesting | CEH · Cisco | Background in IT,
             Networking &amp; Education
@@ -2811,14 +2656,13 @@
             </a>
           </div>
 
-          <!-- Professional Tagline -->
+          <!-- FIX: rewritten — original text didn't parse ("learned in Learned", "Its") -->
           <p class="hero-tagline" style="text-transform:capitalize">
-            "Security isn't learned in <strong>Learned</strong>. Its Learned by <strong>Breaking</strong> Things, Fixing
+            "Security isn't learned in a classroom. It's learned by <strong>Breaking</strong> Things, Fixing
             Things, and Teaching others How it Works."
           </p>
         </div>
 
-        <!-- Hero Graphic & Stats Terminal -->
         <div class="hero-avatar-panel reveal">
           <div class="avatar-wrapper">
             <img src="Images/Cover_Image.png" alt="Ali Ameer Portrait" />
@@ -2830,7 +2674,6 @@
             </div>
           </div>
 
-          <!-- Mini HUD Status Terminal -->
           <div class="mini-terminal">
             <div class="terminal-header">
               <div class="terminal-dots">
@@ -2914,11 +2757,8 @@
 
       <div class="achievements-grid">
 
-        <!-- Achievement 1: Social Reach -->
         <div class="achievement-card reveal">
-          <div class="achievement-icon">
-            <i data-lucide="eye" style="width:24px; height:24px;"></i>
-          </div>
+          <div class="achievement-icon"><i data-lucide="eye" style="width:24px; height:24px;"></i></div>
           <div class="achievement-counter">
             <span class="counter-value" data-target="30" data-suffix="M+">0</span><span
               class="achievement-suffix">M+</span>
@@ -2927,11 +2767,8 @@
           <div class="achievement-sublabel">YouTube & Instagram combined organic views</div>
         </div>
 
-        <!-- Achievement 2: Organic Visits -->
         <div class="achievement-card reveal reveal-delay-1">
-          <div class="achievement-icon">
-            <i data-lucide="globe" style="width:24px; height:24px;"></i>
-          </div>
+          <div class="achievement-icon"><i data-lucide="globe" style="width:24px; height:24px;"></i></div>
           <div class="achievement-counter">
             <span class="counter-value" data-target="35" data-suffix="K+">0</span><span
               class="achievement-suffix">K+</span>
@@ -2940,11 +2777,8 @@
           <div class="achievement-sublabel">WordPress SEO-driven site traffic — zero paid ads</div>
         </div>
 
-        <!-- Achievement 3: Academic Excellence -->
         <div class="achievement-card reveal reveal-delay-2">
-          <div class="achievement-icon">
-            <i data-lucide="award" style="width:24px; height:24px;"></i>
-          </div>
+          <div class="achievement-icon"><i data-lucide="award" style="width:24px; height:24px;"></i></div>
           <div class="achievement-counter">
             <span class="counter-value" data-target="3.5" data-suffix="/4.0" data-decimals="1">0</span><span
               class="achievement-suffix">/4.0</span>
@@ -2953,11 +2787,11 @@
           <div class="achievement-sublabel">First Division BS IT — GC University Faisalabad</div>
         </div>
 
-        <!-- Achievement 4: Cisco Badges -->
+        <!-- NOTE: this number must match the actual count of unique, real (non-empty-src) Cisco
+             badges you list in the Credentials section below — update data-target and the
+             terminal `badges` command together so all three stay in sync. -->
         <div class="achievement-card reveal reveal-delay-3">
-          <div class="achievement-icon">
-            <i data-lucide="shield-check" style="width:24px; height:24px;"></i>
-          </div>
+          <div class="achievement-icon"><i data-lucide="shield-check" style="width:24px; height:24px;"></i></div>
           <div class="achievement-counter">
             <span class="counter-value" data-target="12" data-suffix="">0</span>
           </div>
@@ -2977,7 +2811,24 @@
 
       <div class="timeline">
 
-        <!-- Timeline Milestone 1 -->
+        <div class="timeline-item reveal">
+          <div class="timeline-node"></div>
+          <div class="timeline-content">
+            <div class="timeline-header-info">
+              <h3 class="timeline-title">CS & ICT Instructor — Matric & Intermediate</h3>
+              <span class="timeline-date">2026 – Present</span>
+            </div>
+            <div class="timeline-company"><i data-lucide="graduation-cap"></i> Officer's Science Academy - Pakistan
+            </div>
+            <p class="timeline-desc">
+              Teaching Computer Science and ICT to Matric students, and Computer Science to
+              Intermediate (11th & 12th grade) students — guiding them on real-world best
+              practices and hands-on skills in Python, AI, Machine Learning, Data Science,
+              IT Support, and Cybersecurity.
+            </p>
+          </div>
+        </div>
+
         <div class="timeline-item reveal">
           <div class="timeline-node"></div>
           <div class="timeline-content">
@@ -2988,15 +2839,13 @@
             <div class="timeline-company"><i data-lucide="award"></i> Sir Syed Scholars Inn (Girls Campus) - Pakistan
             </div>
             <p class="timeline-desc">
-              Teaching Computer Science and IT foundations to female students of heigher secondary level, aligning
-              lesson plans with
-              digital literacy, Programming/Coding, Computer Networking, Operating System, IT support fundamentals and
-              Cybersecurity.
+              Teaching Computer Science and IT foundations to female students of higher secondary level, aligning
+              lesson plans with digital literacy, Programming/Coding, Computer Networking, Operating System, IT
+              support fundamentals and Cybersecurity.
             </p>
           </div>
         </div>
 
-        <!-- Timeline Milestone 2 -->
         <div class="timeline-item reveal">
           <div class="timeline-node"></div>
           <div class="timeline-content">
@@ -3012,7 +2861,6 @@
           </div>
         </div>
 
-        <!-- Timeline Milestone 3 -->
         <div class="timeline-item reveal">
           <div class="timeline-node"></div>
           <div class="timeline-content">
@@ -3028,7 +2876,6 @@
           </div>
         </div>
 
-        <!-- Timeline Milestone 4 -->
         <div class="timeline-item reveal">
           <div class="timeline-node"></div>
           <div class="timeline-content">
@@ -3056,7 +2903,6 @@
 
       <div class="exp-grid">
 
-        <!-- Experience Card 1 -->
         <div class="exp-card reveal">
           <div class="exp-card-header">
             <div>
@@ -3079,7 +2925,6 @@
           </div>
         </div>
 
-        <!-- Experience Card 2 -->
         <div class="exp-card reveal reveal-delay-1">
           <div class="exp-card-header">
             <div>
@@ -3099,22 +2944,42 @@
           </div>
         </div>
 
-        <!-- Experience Card 3 -->
         <div class="exp-card reveal reveal-delay-1">
           <div class="exp-card-header">
             <div>
               <h3>IT Instructor</h3>
-              <div class="exp-company">Sir Syad Scholars Inn // Jan 2025 - Continue...</div>
+              <div class="exp-company">Sir Syed Scholars Inn // Jan 2025 - Continue...</div>
             </div>
             <span class="timeline-date">On-site</span>
           </div>
           <div class="exp-card-body">
             <ul>
-              <li>Conveying the Technical concepts that students can easily understand it using Student Psychology,
-                Storytelling, and CLEAR Technique.</li>
-              <li>Teaching the Techincal concepts by performing practicals.</li>
+              <li>Conveying technical concepts so students can easily understand them, using Student Psychology,
+                Storytelling, and the CLEAR Technique.</li>
+              <li>Teaching technical concepts through hands-on practicals.</li>
               <li>Teaching Computer Basics, Computer Networking, Cybersecurity, Programming/Coding, IT Support and OS
                 (Windows & Linux) related subjects.</li>
+              <li>Instructed non-technical lab members on lab use rules and device operating safety guidelines.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-card reveal reveal-delay-2">
+          <div class="exp-card-header">
+            <div>
+              <h3>CS & ICT Instructor — Matric & Intermediate</h3>
+              <div class="exp-company">Officer's Science Academy // 2026 - Continue...</div>
+            </div>
+            <span class="timeline-date">On-site</span>
+          </div>
+          <div class="exp-card-body">
+            <ul>
+              <li>Teaching Computer Science and ICT to Matric students, and Computer Science to Intermediate (11th &
+                12th) students.</li>
+              <li>Guiding students on real-world best practices and industry-relevant examples, not just textbook
+                theory.</li>
+              <li>Teaching practical skills hands-on: Python, AI, Machine Learning, Data Science, IT Support, and
+                Cybersecurity.</li>
               <li>Instructed non-technical lab members on lab use rules and device operating safety guidelines.</li>
             </ul>
           </div>
@@ -3130,32 +2995,180 @@
       <span class="section-label">05 // Code Shipped</span>
       <h2 class="section-title">Technical Projects<span>.</span></h2>
 
-      <!-- Cybersecurity Projects -->
       <h3 class="project-category-title"><i data-lucide="shield"></i> Cybersecurity</h3>
       <div class="projects-grid">
 
-        <!-- Project 1 -->
         <div class="project-card reveal">
           <div class="project-img-wrapper">
-            <img src="Images/carousel_generator_preview.png" alt="JSON-to-Carousel Generator preview screenshot"
+            <img src="Images/vaultkeeper_preview.png" alt="VaultKeeper CLI password manager screenshot"
               class="project-preview-img">
           </div>
           <div class="project-info">
-            <h3>Security Lab Setup</h3>
-            <p>A complete guide how to create a complete home lab for practicing purple teaming concepts for Network
-              Security.</p>
+            <h3>VaultKeeper</h3>
+            <p>An encrypted CLI password manager. Master password unlocks a local SQLite vault protected by
+              PBKDF2HMAC-SHA256 (260K iterations) + Fernet encryption — no cloud sync, no telemetry. Includes
+              TOTP codes, brute-force throttling, and a full security audit command.</p>
             <div class="project-tags">
-              <span class="project-tag">Virtualization</span>
-              <span class="project-tag">Kali Linux</span>
-              <span class="project-tag">Metasploitable</span>
-              <span class="project-tag">Windows Server</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">SQLite</span>
+              <span class="project-tag">Cryptography</span>
+              <span class="project-tag">TOTP</span>
             </div>
             <div class="project-links">
-              <a href="https://github.com/ameer-18-star" target="_blank" class="project-link">
+              <a href="https://github.com/ameer-18-star/Ameer-s_CyberSecurity_Projects/tree/main/Vault-Keeper"
+                target="_blank" class="project-link">
                 <i data-lucide="github"></i> Repository
               </a>
               <button
-                onclick="openProjectLightbox('Carousel Generator', 'A browser-based tool enabling fast slide generation using JSON schemas. Zero dependencies, instant rendering, support for high resolution downloads.')"
+                onclick="openProjectLightbox('VaultKeeper', 'A local, encrypted command-line password manager written in Python. Vault lives in a single SQLite file protected by one master password using PBKDF2HMAC-SHA256 and Fernet encryption. Features TOTP code generation, password rotation, security auditing for reused and weak passwords, brute-force lockout throttling, encrypted backup/restore, and 126+ pytest tests.')"
+                class="project-link">
+                <i data-lucide="maximize"></i> Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-1">
+          <div class="project-img-wrapper">
+            <img src="Images/scopesentry_preview.png" alt="ScopeSentry WiFi defensive monitoring toolkit screenshot"
+              class="project-preview-img">
+          </div>
+          <div class="project-info">
+            <h3>ScopeSentry</h3>
+            <p>A WiFi defensive monitoring and engagement-authorization toolkit. Strictly Blue Team — no
+              offensive modules. Tracks authorized BSSIDs, keeps a tamper-evident evidence log, and flags
+              deauth attacks and rogue/evil-twin access points against your own baseline.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">PyQt6</span>
+              <span class="project-tag">tshark</span>
+              <span class="project-tag">airodump-ng</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ameer-18-star/Ameer-s_CyberSecurity_Projects/tree/main/Scopesentry"
+                target="_blank" class="project-link">
+                <i data-lucide="github"></i> Repository
+              </a>
+              <button
+                onclick="openProjectLightbox('ScopeSentry', 'A WiFi defensive monitoring and engagement-authorization toolkit with an Engagement Tracker for authorized BSSID manifests, a hash-chained evidence log for audit trails, passive recon parsing, a deauth monitor that flags abnormal frame rates, a rogue AP / evil-twin detector, and a hardening audit checklist — all wrapped in a PyQt6 GUI with Dashboard, Engagement, Defense, Evidence, Results, Logs, and Settings tabs.')"
+                class="project-link">
+                <i data-lucide="maximize"></i> Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2">
+          <div class="project-img-wrapper">
+            <img src="Images/netsniff_preview.png" alt="NetSniff network packet sniffer terminal screenshot"
+              class="project-preview-img">
+          </div>
+          <div class="project-info">
+            <h3>NetSniff</h3>
+            <p>A cross-platform educational network packet sniffer built on Scapy with a rich terminal UI.
+              Detects 12+ protocols, decodes DNS and TCP flags, exports to PCAP/JSON, and prints an end-of-session
+              stats summary with an ASCII packets-per-second sparkline.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">Scapy</span>
+              <span class="project-tag">rich</span>
+              <span class="project-tag">Wireshark</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ameer-18-star/Ameer-s_CyberSecurity_Projects/tree/main/NetSniff"
+                target="_blank" class="project-link">
+                <i data-lucide="github"></i> Repository
+              </a>
+              <button
+                onclick="openProjectLightbox('NetSniff', 'A fully-featured, cross-platform educational network packet sniffer built on Scapy. Captures live traffic with protocol, port, and IP filtering, decodes DNS queries and TCP flags, shows a verbose hex plus ASCII payload dump, exports to PCAP and JSON, and prints an end-of-session summary covering protocol breakdown, top talkers, and throughput.')"
+                class="project-link">
+                <i data-lucide="maximize"></i> Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-3">
+          <div class="project-img-wrapper">
+            <img src="Images/keylogger_demo_preview.png" alt="Educational Keylogger Demo dashboard screenshot"
+              class="project-preview-img">
+          </div>
+          <div class="project-info">
+            <h3>Educational Keylogger Demo</h3>
+            <p>A transparent keylogger demonstration built for cybersecurity awareness training — shows students
+              exactly how keyloggers work via a live browser dashboard, so they can better defend against them.
+              Fully offline; run only on your own machine.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">pynput</span>
+              <span class="project-tag">Flask</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ameer-18-star/Ameer-s_CyberSecurity_Projects/tree/main/Keylogger"
+                target="_blank" class="project-link">
+                <i data-lucide="github"></i> Repository
+              </a>
+              <button
+                onclick="openProjectLightbox('Educational Keylogger Demo', 'Created strictly for cybersecurity awareness and educational demonstration purposes. Captures keystrokes via pynput and streams them to a live local dashboard over Flask, entirely offline with zero data leaving the machine. Paired with defensive lessons on anti-malware software, password managers, virtual keyboards, and 2FA.')"
+                class="project-link">
+                <i data-lucide="maximize"></i> Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-4">
+          <div class="project-img-wrapper">
+            <img src="Images/fraud_detection_preview.png"
+              alt="Credit Card Fraud Detection ML pipeline dashboard screenshot" class="project-preview-img">
+          </div>
+          <div class="project-info">
+            <h3>Credit Card Fraud Detection — ML Pipeline</h3>
+            <p>An end-to-end Python ML pipeline mapping directly to Blue Team skills: anomaly-based intrusion
+              detection and SIEM alert triage. Combines unsupervised and supervised models with a SOC-style
+              severity triage system exporting Splunk/QRadar-compatible JSON alerts.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">scikit-learn</span>
+              <span class="project-tag">XGBoost</span>
+              <span class="project-tag">SMOTE</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ameer-18-star/Ameer-s_CyberSecurity_Projects/tree/main/credit_card_fraud_detection_ml_pipeline"
+                target="_blank" class="project-link">
+                <i data-lucide="github"></i> Repository
+              </a>
+              <button
+                onclick="openProjectLightbox('Credit Card Fraud Detection ML Pipeline', 'A modular, end-to-end Python pipeline combining unsupervised anomaly detection (Isolation Forest, LOF, One-Class SVM) with supervised classifiers (Logistic Regression, Random Forest, Gradient Boosting, XGBoost) balanced via SMOTE. Includes a simulated SOC alert triage system that scores transactions into CRITICAL, HIGH, MEDIUM, and CLEAR severity tiers and exports JSON alert logs compatible with Splunk, IBM QRadar, and Microsoft Sentinel.')"
+                class="project-link">
+                <i data-lucide="maximize"></i> Details
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-4">
+          <div class="project-img-wrapper">
+            <img src="Images/sql_terminal_preview.png" alt="SQL Terminal interactive shell screenshot"
+              class="project-preview-img">
+          </div>
+          <div class="project-info">
+            <h3>SQL Terminal</h3>
+            <p>A real SQL database (SQLite) wrapped in an interactive terminal shell with rich-formatted table
+              output. Built for teaching database fundamentals with zero setup friction — three pre-loaded demo
+              tables ready for practice queries.</p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">sqlite3</span>
+              <span class="project-tag">rich</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/ameer-18-star/Ameer-s_CyberSecurity_Projects/tree/main/sql-terminal"
+                target="_blank" class="project-link">
+                <i data-lucide="github"></i> Repository
+              </a>
+              <button
+                onclick="openProjectLightbox('SQL Terminal', 'A small Python project providing a real SQL-like database (SQLite) with an interactive terminal shell and rich-formatted table output. Supports full DML and DQL, multi-line queries, and meta commands like .tables, .schema, and .reset, with three pre-loaded demo tables for immediate practice.')"
                 class="project-link">
                 <i data-lucide="maximize"></i> Details
               </button>
@@ -3165,11 +3178,9 @@
 
       </div>
 
-      <!-- Programming Projects -->
       <h3 class="project-category-title" style="margin-top:3rem;"><i data-lucide="code"></i> Programming</h3>
       <div class="projects-grid">
 
-        <!-- Project 1 -->
         <div class="project-card reveal">
           <div class="project-img-wrapper">
             <img src="Images/carousel_generator_preview.png" alt="JSON-to-Carousel Generator preview screenshot"
@@ -3197,7 +3208,6 @@
           </div>
         </div>
 
-        <!-- Project 2 -->
         <div class="project-card reveal reveal-delay-1">
           <div class="project-img-wrapper">
             <img src="Images/habit_tracker_preview.png" alt="Advanced Habit Tracker dashboard screenshot"
@@ -3226,7 +3236,6 @@
           </div>
         </div>
 
-        <!-- Project 3 -->
         <div class="project-card reveal reveal-delay-2">
           <div class="project-img-wrapper">
             <img src="Images/academic_lms_preview.png" alt="PHP-Based Academic LMS portal screenshot"
@@ -3266,14 +3275,11 @@
       <h2 class="section-title">Technical Skillset<span>.</span></h2>
 
       <div class="skills-layout">
-        <!-- Radar Chart Left Column -->
         <div class="skills-chart-container reveal">
           <canvas id="skillsRadarChart" style="max-height: 350px; max-width: 350px;"></canvas>
         </div>
 
-        <!-- Skills list Pills Right Column -->
         <div class="skills-pills-container reveal reveal-delay-1">
-
           <div>
             <div class="skill-cat-title">Cybersecurity & Networks</div>
             <div class="skill-pills">
@@ -3326,206 +3332,118 @@
               <span class="skill-pill">Adobe Photoshop</span>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
   </section>
 
   <section class="skills-section">
-
     <h2 class="section-title">My Core Skills<span>.</span></h2>
 
-    <!-- ── SECURITY TOOLS ─────────────────────────────────────── -->
     <div class="skill-tool-category">
-
-      <div class="skill-tool-cat-label">
-        <i data-lucide="shield-alert"></i>
-        Security Tools
-      </div>
-
+      <div class="skill-tool-cat-label"><i data-lucide="shield-alert"></i> Security Tools</div>
       <div class="skill-tool-grid">
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-cyan">
-            <i data-lucide="radio" style="color:var(--a1);"></i>
-          </div>
-          <span class="tool-label">Wireshark</span>
+          <div class="tool-icon-placeholder icon-cyan"><i data-lucide="radio" style="color:var(--a1);"></i></div><span
+            class="tool-label">Wireshark</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-blue">
-            <i data-lucide="crosshair" style="color:#5588ff;"></i>
-          </div>
-          <span class="tool-label">Metasploit</span>
+          <div class="tool-icon-placeholder icon-blue"><i data-lucide="crosshair" style="color:#5588ff;"></i></div><span
+            class="tool-label">Metasploit</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-red">
-            <i data-lucide="terminal" style="color:#ff5555;"></i>
-          </div>
-          <span class="tool-label">Kali Linux</span>
+          <div class="tool-icon-placeholder icon-red"><i data-lucide="terminal" style="color:#ff5555;"></i></div><span
+            class="tool-label">Kali Linux</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-orange">
-            <i data-lucide="bug" style="color:var(--a4);"></i>
-          </div>
-          <span class="tool-label">Burp Suite</span>
+          <div class="tool-icon-placeholder icon-orange"><i data-lucide="bug" style="color:var(--a4);"></i></div><span
+            class="tool-label">Burp Suite</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-teal">
-            <i data-lucide="scan-search" style="color:#00c8a0;"></i>
-          </div>
+          <div class="tool-icon-placeholder icon-teal"><i data-lucide="scan-search" style="color:#00c8a0;"></i></div>
           <span class="tool-label">Nmap</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-purple">
-            <i data-lucide="database" style="color:#aa66ff;"></i>
-          </div>
+          <div class="tool-icon-placeholder icon-purple"><i data-lucide="database" style="color:#aa66ff;"></i></div>
           <span class="tool-label">SQLmap</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-green">
-            <i data-lucide="bar-chart-2" style="color:var(--success);"></i>
-          </div>
-          <span class="tool-label">Splunk</span>
+          <div class="tool-icon-placeholder icon-green"><i data-lucide="bar-chart-2" style="color:var(--success);"></i>
+          </div><span class="tool-label">Splunk</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-yellow">
-            <i data-lucide="network" style="color:#ffdd33;"></i>
-          </div>
-          <span class="tool-label">Packet Tracer</span>
+          <div class="tool-icon-placeholder icon-yellow"><i data-lucide="network" style="color:#ffdd33;"></i></div><span
+            class="tool-label">Packet Tracer</span>
         </div>
-
       </div>
     </div>
 
-    <!-- ── PROGRAMMING LANGUAGES ──────────────────────────────── -->
     <div class="skill-tool-category">
-
-      <div class="skill-tool-cat-label">
-        <i data-lucide="code-2"></i>
-        Programming Languages
-      </div>
-
+      <div class="skill-tool-cat-label"><i data-lucide="code-2"></i> Programming Languages</div>
       <div class="skill-tool-grid">
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-blue">
-            <i data-lucide="file-code-2" style="color:#5588ff;"></i>
-          </div>
+          <div class="tool-icon-placeholder icon-blue"><i data-lucide="file-code-2" style="color:#5588ff;"></i></div>
           <span class="tool-label">Python</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-cyan">
-            <i data-lucide="cpu" style="color:var(--a1);"></i>
-          </div>
-          <span class="tool-label">C / C++</span>
+          <div class="tool-icon-placeholder icon-cyan"><i data-lucide="cpu" style="color:var(--a1);"></i></div><span
+            class="tool-label">C / C++</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-yellow">
-            <i data-lucide="braces" style="color:#ffdd33;"></i>
-          </div>
-          <span class="tool-label">JavaScript</span>
+          <div class="tool-icon-placeholder icon-yellow"><i data-lucide="braces" style="color:#ffdd33;"></i></div><span
+            class="tool-label">JavaScript</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-orange">
-            <i data-lucide="server" style="color:var(--a4);"></i>
-          </div>
+          <div class="tool-icon-placeholder icon-orange"><i data-lucide="server" style="color:var(--a4);"></i></div>
           <span class="tool-label">PHP</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-red">
-            <i data-lucide="layout" style="color:#ff5555;"></i>
-          </div>
-          <span class="tool-label">HTML5</span>
+          <div class="tool-icon-placeholder icon-red"><i data-lucide="layout" style="color:#ff5555;"></i></div><span
+            class="tool-label">HTML5</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-blue">
-            <i data-lucide="pen-tool" style="color:#5588ff;"></i>
-          </div>
-          <span class="tool-label">CSS3</span>
+          <div class="tool-icon-placeholder icon-blue"><i data-lucide="pen-tool" style="color:#5588ff;"></i></div><span
+            class="tool-label">CSS3</span>
         </div>
-
       </div>
     </div>
 
-    <!-- ── WEB TECHNOLOGIES ───────────────────────────────────── -->
     <div class="skill-tool-category">
-
-      <div class="skill-tool-cat-label">
-        <i data-lucide="globe"></i>
-        Web Technologies
-      </div>
-
+      <div class="skill-tool-cat-label"><i data-lucide="globe"></i> Web Technologies</div>
       <div class="skill-tool-grid">
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-cyan">
-            <i data-lucide="atom" style="color:var(--a1);"></i>
-          </div>
-          <span class="tool-label">React JS</span>
+          <div class="tool-icon-placeholder icon-cyan"><i data-lucide="atom" style="color:var(--a1);"></i></div><span
+            class="tool-label">React JS</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-green">
-            <i data-lucide="zap" style="color:var(--success);"></i>
-          </div>
+          <div class="tool-icon-placeholder icon-green"><i data-lucide="zap" style="color:var(--success);"></i></div>
           <span class="tool-label">Node JS</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-green">
-            <i data-lucide="database" style="color:var(--success);"></i>
-          </div>
-          <span class="tool-label">MongoDB</span>
+          <div class="tool-icon-placeholder icon-green"><i data-lucide="database" style="color:var(--success);"></i>
+          </div><span class="tool-label">MongoDB</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-cyan">
-            <i data-lucide="table-2" style="color:var(--a1);"></i>
-          </div>
-          <span class="tool-label">MySQL</span>
+          <div class="tool-icon-placeholder icon-cyan"><i data-lucide="table-2" style="color:var(--a1);"></i></div><span
+            class="tool-label">MySQL</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-blue">
-            <i data-lucide="monitor" style="color:#5588ff;"></i>
-          </div>
-          <span class="tool-label">Electron</span>
+          <div class="tool-icon-placeholder icon-blue"><i data-lucide="monitor" style="color:#5588ff;"></i></div><span
+            class="tool-label">Electron</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-purple">
-            <i data-lucide="layout-dashboard" style="color:#aa66ff;"></i>
-          </div>
-          <span class="tool-label">WordPress</span>
+          <div class="tool-icon-placeholder icon-purple"><i data-lucide="layout-dashboard" style="color:#aa66ff;"></i>
+          </div><span class="tool-label">WordPress</span>
         </div>
-
         <div class="skill-tool-icon">
-          <div class="tool-icon-placeholder icon-orange">
-            <i data-lucide="git-branch" style="color:var(--a4);"></i>
-          </div>
+          <div class="tool-icon-placeholder icon-orange"><i data-lucide="git-branch" style="color:var(--a4);"></i></div>
           <span class="tool-label">Git / GitHub</span>
         </div>
-
       </div>
     </div>
-
   </section>
 
-  <!-- Scrolling "Currently Learning" Marquee Ticker -->
+  <!-- FIX: marquee now has exactly-duplicated content (6 + same 6), so the -50% loop is seamless -->
   <div class="marquee-container">
     <div class="marquee-title">IN PROGRESS COURSES</div>
     <div class="marquee-content">
@@ -3535,11 +3453,13 @@
       <div class="marquee-item"><span>⟳</span> Cisco: Network Technician Path</div>
       <div class="marquee-item"><span>⟳</span> Cisco: Cyber Defender Pathway</div>
       <div class="marquee-item"><span>⟳</span> CompTIA A+, Network+, Security+ Self-Study</div>
-      <!-- Duplicate content to ensure seamless loop -->
+      <!-- duplicate set (identical, for seamless -50% loop) -->
       <div class="marquee-item"><span>⟳</span> EC-Council CEH v13 (Certified Ethical Hacker)</div>
       <div class="marquee-item"><span>⟳</span> Cisco: Ethical Hacker Career Path</div>
       <div class="marquee-item"><span>⟳</span> Cisco: Junior Cybersecurity Analyst Pathway</div>
       <div class="marquee-item"><span>⟳</span> Cisco: Network Technician Path</div>
+      <div class="marquee-item"><span>⟳</span> Cisco: Cyber Defender Pathway</div>
+      <div class="marquee-item"><span>⟳</span> CompTIA A+, Network+, Security+ Self-Study</div>
     </div>
   </div>
 
@@ -3555,13 +3475,11 @@
 
       <div class="learning-tracker-grid">
 
-        <!-- CEH v13 -->
         <div class="learning-card reveal">
           <div class="learning-card-header">
             <div class="learning-card-header-left">
-              <div class="learning-icon" style="background:rgba(0,212,255,0.08);">
-                <i data-lucide="shield" style="width:20px; height:20px; color:var(--a1);"></i>
-              </div>
+              <div class="learning-icon" style="background:rgba(0,212,255,0.08);"><i data-lucide="shield"
+                  style="width:20px; height:20px; color:var(--a1);"></i></div>
               <div>
                 <div class="learning-card-title">EC-Council CEH v13</div>
                 <div class="learning-card-org">Certified Ethical Hacker</div>
@@ -3570,26 +3488,20 @@
             <span class="learning-status-badge in-progress">IN PROGRESS</span>
           </div>
           <div class="learning-progress-container">
-            <div class="learning-progress-meta">
-              <span class="label">Completion</span>
-              <span class="value">45%</span>
+            <div class="learning-progress-meta"><span class="label">Completion</span><span class="value">45%</span>
             </div>
             <div class="learning-progress-bar">
               <div class="learning-progress-fill cyan" data-progress="45%"></div>
             </div>
           </div>
-          <div class="learning-card-footer">
-            <i data-lucide="clock"></i> Self-paced study · Exam target: 2026
-          </div>
+          <div class="learning-card-footer"><i data-lucide="clock"></i> Self-paced study · Exam target: 2026</div>
         </div>
 
-        <!-- Cisco: Ethical Hacker -->
         <div class="learning-card reveal reveal-delay-1">
           <div class="learning-card-header">
             <div class="learning-card-header-left">
-              <div class="learning-icon" style="background:rgba(255,107,53,0.08);">
-                <i data-lucide="target" style="width:20px; height:20px; color:var(--a4);"></i>
-              </div>
+              <div class="learning-icon" style="background:rgba(255,107,53,0.08);"><i data-lucide="target"
+                  style="width:20px; height:20px; color:var(--a4);"></i></div>
               <div>
                 <div class="learning-card-title">Cisco: Ethical Hacker Path</div>
                 <div class="learning-card-org">Cisco Networking Academy</div>
@@ -3598,26 +3510,20 @@
             <span class="learning-status-badge in-progress">IN PROGRESS</span>
           </div>
           <div class="learning-progress-container">
-            <div class="learning-progress-meta">
-              <span class="label">Completion</span>
-              <span class="value">60%</span>
+            <div class="learning-progress-meta"><span class="label">Completion</span><span class="value">60%</span>
             </div>
             <div class="learning-progress-bar">
               <div class="learning-progress-fill orange" data-progress="60%"></div>
             </div>
           </div>
-          <div class="learning-card-footer">
-            <i data-lucide="clock"></i> Skill-based pathway · Multi-course track
-          </div>
+          <div class="learning-card-footer"><i data-lucide="clock"></i> Skill-based pathway · Multi-course track</div>
         </div>
 
-        <!-- Cisco: Junior Cybersecurity Analyst -->
         <div class="learning-card reveal reveal-delay-2">
           <div class="learning-card-header">
             <div class="learning-card-header-left">
-              <div class="learning-icon" style="background:rgba(0,255,102,0.08);">
-                <i data-lucide="scan-eye" style="width:20px; height:20px; color:var(--success);"></i>
-              </div>
+              <div class="learning-icon" style="background:rgba(0,255,102,0.08);"><i data-lucide="scan-eye"
+                  style="width:20px; height:20px; color:var(--success);"></i></div>
               <div>
                 <div class="learning-card-title">Junior Cybersecurity Analyst</div>
                 <div class="learning-card-org">Cisco Networking Academy</div>
@@ -3626,26 +3532,20 @@
             <span class="learning-status-badge in-progress">IN PROGRESS</span>
           </div>
           <div class="learning-progress-container">
-            <div class="learning-progress-meta">
-              <span class="label">Completion</span>
-              <span class="value">35%</span>
+            <div class="learning-progress-meta"><span class="label">Completion</span><span class="value">35%</span>
             </div>
             <div class="learning-progress-bar">
               <div class="learning-progress-fill green" data-progress="35%"></div>
             </div>
           </div>
-          <div class="learning-card-footer">
-            <i data-lucide="clock"></i> Career pathway · SOC analyst focus
-          </div>
+          <div class="learning-card-footer"><i data-lucide="clock"></i> Career pathway · SOC analyst focus</div>
         </div>
 
-        <!-- CompTIA Trifecta -->
         <div class="learning-card reveal reveal-delay-3">
           <div class="learning-card-header">
             <div class="learning-card-header-left">
-              <div class="learning-icon" style="background:rgba(0,212,255,0.08);">
-                <i data-lucide="layers" style="width:20px; height:20px; color:var(--a1);"></i>
-              </div>
+              <div class="learning-icon" style="background:rgba(0,212,255,0.08);"><i data-lucide="layers"
+                  style="width:20px; height:20px; color:var(--a1);"></i></div>
               <div>
                 <div class="learning-card-title">CompTIA A+, Network+, Security+</div>
                 <div class="learning-card-org">CompTIA Self-Study</div>
@@ -3654,26 +3554,21 @@
             <span class="learning-status-badge starting">ONGOING</span>
           </div>
           <div class="learning-progress-container">
-            <div class="learning-progress-meta">
-              <span class="label">Completion</span>
-              <span class="value">70%</span>
+            <div class="learning-progress-meta"><span class="label">Completion</span><span class="value">70%</span>
             </div>
             <div class="learning-progress-bar">
               <div class="learning-progress-fill cyan" data-progress="70%"></div>
             </div>
           </div>
-          <div class="learning-card-footer">
-            <i data-lucide="clock"></i> A+ syllabus near complete · Teaching on VMSOIT
+          <div class="learning-card-footer"><i data-lucide="clock"></i> A+ syllabus near complete · Teaching on VMSOIT
           </div>
         </div>
 
-        <!-- Cisco: Network Technician -->
         <div class="learning-card reveal reveal-delay-4">
           <div class="learning-card-header">
             <div class="learning-card-header-left">
-              <div class="learning-icon" style="background:rgba(255,107,53,0.08);">
-                <i data-lucide="wifi" style="width:20px; height:20px; color:var(--a4);"></i>
-              </div>
+              <div class="learning-icon" style="background:rgba(255,107,53,0.08);"><i data-lucide="wifi"
+                  style="width:20px; height:20px; color:var(--a4);"></i></div>
               <div>
                 <div class="learning-card-title">Cisco: Network Technician Path</div>
                 <div class="learning-card-org">Cisco Networking Academy</div>
@@ -3682,26 +3577,20 @@
             <span class="learning-status-badge starting">ONGOING</span>
           </div>
           <div class="learning-progress-container">
-            <div class="learning-progress-meta">
-              <span class="label">Completion</span>
-              <span class="value">25%</span>
+            <div class="learning-progress-meta"><span class="label">Completion</span><span class="value">25%</span>
             </div>
             <div class="learning-progress-bar">
               <div class="learning-progress-fill orange" data-progress="25%"></div>
             </div>
           </div>
-          <div class="learning-card-footer">
-            <i data-lucide="clock"></i> Routing & switching fundamentals
-          </div>
+          <div class="learning-card-footer"><i data-lucide="clock"></i> Routing & switching fundamentals</div>
         </div>
 
-        <!-- Cisco: Cyber Defender -->
         <div class="learning-card reveal reveal-delay-4">
           <div class="learning-card-header">
             <div class="learning-card-header-left">
-              <div class="learning-icon" style="background:rgba(0,255,102,0.08);">
-                <i data-lucide="lock" style="width:20px; height:20px; color:var(--success);"></i>
-              </div>
+              <div class="learning-icon" style="background:rgba(0,255,102,0.08);"><i data-lucide="lock"
+                  style="width:20px; height:20px; color:var(--success);"></i></div>
               <div>
                 <div class="learning-card-title">Cisco: Cyber Defender Pathway</div>
                 <div class="learning-card-org">Cisco Networking Academy</div>
@@ -3710,17 +3599,13 @@
             <span class="learning-status-badge starting">ONGOING</span>
           </div>
           <div class="learning-progress-container">
-            <div class="learning-progress-meta">
-              <span class="label">Completion</span>
-              <span class="value">20%</span>
+            <div class="learning-progress-meta"><span class="label">Completion</span><span class="value">20%</span>
             </div>
             <div class="learning-progress-bar">
               <div class="learning-progress-fill green" data-progress="20%"></div>
             </div>
           </div>
-          <div class="learning-card-footer">
-            <i data-lucide="clock"></i> Defensive security & incident response
-          </div>
+          <div class="learning-card-footer"><i data-lucide="clock"></i> Defensive security & incident response</div>
         </div>
 
       </div>
@@ -3733,11 +3618,9 @@
       <span class="section-label">08 // Credentials Verified</span>
       <h2 class="section-title">Verified Badges & Certs<span>.</span></h2>
 
-      <!-- Cisco Badges Grid - Categorized by Networking Academy Path -->
       <div class="section-label" style="margin-bottom:1.5rem; color:var(--a1);">Cisco Networking Academy (Credly
         Verified)</div>
 
-      <!-- Path Group 1: Cybersecurity -->
       <div class="cert-path-group reveal">
         <h3 class="cert-path-title"><i data-lucide="shield"></i> Cisco Junior Cybersecurity Analyst Pathway</h3>
         <div class="certs-grid">
@@ -3773,38 +3656,39 @@
             <a href="https://www.credly.com/badges/993130d8-c942-4d2c-825c-b87fbcbceb95/public_url" target="_blank"
               class="cert-badge-verify">Verify Credential</a>
           </div>
+          <!-- FIX: badges below had empty src + empty href ("badges//public_url"), which 404s
+               and dead-ends visitors. Image falls back via onerror; the broken verify link is
+               now a disabled "Pending" state until you add the real Credly badge ID. -->
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Network Defense Badge" class="cert-badge-img"
-              onerror="this.src='https://images.credly.com/images/993130d8-c942-4d2c-825c-b87fbcbceb95/image.png'">
-            <div class="cert-badge-name">Network Defense</div>
-            <a href="https://www.credly.com/badges/993130d8-c942-4d2c-825c-b87fbcbceb95/public_url" target="_blank"
-              class="cert-badge-verify">Verify Credential</a>
-          </div>
-          <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Cyber Threat Management Badge" class="cert-badge-img"
-              onerror="this.src='https://images.credly.com/images/993130d8-c942-4d2c-825c-b87fbcbceb95/image.png'">
-            <div class="cert-badge-name">Cyber Threat Management</div>
-            <a href="https://www.credly.com/badges/993130d8-c942-4d2c-825c-b87fbcbceb95/public_url" target="_blank"
-              class="cert-badge-verify">Verify Credential</a>
-          </div>
-          <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Junior Cybersecurity Analyst Career Path Badge"
+            <img src="Certificates/Completed Certs By Cisco/network-defense.png" alt="Network Defense Badge"
               class="cert-badge-img"
               onerror="this.src='https://images.credly.com/images/993130d8-c942-4d2c-825c-b87fbcbceb95/image.png'">
+            <div class="cert-badge-name">Network Defense</div>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
+          </div>
+          <div class="cert-badge-card">
+            <img src="Certificates/Completed Certs By Cisco/cyber-threat-management.png"
+              alt="Cyber Threat Management Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/993130d8-c942-4d2c-825c-b87fbcbceb95/image.png'">
+            <div class="cert-badge-name">Cyber Threat Management</div>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
+          </div>
+          <div class="cert-badge-card">
+            <img src="Certificates/Completed Certs By Cisco/junior-cybersecurity-analyst-career-path.png"
+              alt="Junior Cybersecurity Analyst Career Path Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/993130d8-c942-4d2c-825c-b87fbcbceb95/image.png'">
             <div class="cert-badge-name">Junior Cybersecurity Analyst Career Path</div>
-            <a href="https://www.credly.com/badges/993130d8-c942-4d2c-825c-b87fbcbceb95/public_url" target="_blank"
-              class="cert-badge-verify">Verify Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
         </div>
-
       </div>
 
-      <!-- Path Group 2: Ethical Hacker -->
       <div class="cert-path-group reveal">
         <h3 class="cert-path-title"><i data-lucide="shield"></i> Cisco Ethical Hacker</h3>
         <div class="certs-grid">
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Cisco Ethical Hacker Badge" class="cert-badge-img"
+            <img src="Certificates/Completed Certs By Cisco/ethical-hacker.png" alt="Cisco Ethical Hacker Badge"
+              class="cert-badge-img"
               onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">Cisco Ethical Hacker</div>
             <a href="https://www.credly.com/badges/89c4ed58-a37b-4c91-8b58-54b67bbf7759/public_url" target="_blank"
@@ -3813,80 +3697,77 @@
         </div>
       </div>
 
-      <!-- Path Group 3: Cybersecurity Defense Analyst Pathway -->
       <div class="cert-path-group reveal">
         <h3 class="cert-path-title"><i data-lucide="shield"></i> Cisco Cybersecurity Defense Analyst</h3>
         <div class="certs-grid">
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="The Cybersecurity Landscape Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/cybersecurity-landscape.png"
+              alt="The Cybersecurity Landscape Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">The Cybersecurity Landscape</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Understanding Threats and Attacks Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/threats-and-attacks.png"
+              alt="Understanding Threats and Attacks Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">Understanding Threats and Attacks</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Security Operations and the Defense Analyst Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/security-operations-defense-analyst.png"
+              alt="Security Operations and the Defense Analyst Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">Security Operations and the Defense Analyst</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Introduction to Splunk Badge" class="cert-badge-img"
-              onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/intro-to-splunk.png" alt="Introduction to Splunk Badge"
+              class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">Introduction to Splunk</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Data and Tools for Defense Analysts Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/data-tools-defense-analysts.png"
+              alt="Data and Tools for Defense Analysts Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">Data and Tools for Defense Analysts</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="The Art of Investigation Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/art-of-investigation.png"
+              alt="The Art of Investigation Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">The Art of Investigation</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="SOC Essentials: Investigating with Splunk Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/soc-investigating-splunk.png"
+              alt="SOC Essentials: Investigating with Splunk Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">SOC Essentials: Investigating with Splunk</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="SOC Essentials: Introduction to Threat Hunting Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/soc-threat-hunting.png"
+              alt="SOC Essentials: Introduction to Threat Hunting Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">SOC Essentials: Introduction to Threat Hunting</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Cybersecurity Defense Analyst Pathway Badge"
-              class="cert-badge-img" onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/cybersecurity-defense-analyst-pathway.png"
+              alt="Cybersecurity Defense Analyst Pathway Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/0a79b189-6e13-498c-8f9f-68f76f7f2b1d/image.png'">
             <div class="cert-badge-name">Cybersecurity Defense Analyst Pathway</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
         </div>
       </div>
 
-
-      <!-- Path Group 4: Networking Basics -->
       <div class="cert-path-group reveal">
-        <h3 class="cert-path-title"><i data-lucide="network"></i> Computer Networking </h3>
+        <h3 class="cert-path-title"><i data-lucide="network"></i> Computer Networking</h3>
         <div class="certs-grid">
           <div class="cert-badge-card">
             <img src="Certificates/Completed Certs By Cisco/networking-basics.png" alt="Networking Basics Badge"
@@ -3905,33 +3786,31 @@
               class="cert-badge-verify">Verify Credential</a>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Networking Basics Badge" class="cert-badge-img"
-              onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/network-addressing-troubleshooting.png"
+              alt="Network Addressing and Basic Troubleshooting Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/6df1bc7c-3f2d-45db-95ad-29007f313171/image.png'">
             <div class="cert-badge-name">Network Addressing and Basic Troubleshooting</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Networking Basics Badge" class="cert-badge-img"
-              onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/network-support-security.png"
+              alt="Network Support and Security Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/6df1bc7c-3f2d-45db-95ad-29007f313171/image.png'">
             <div class="cert-badge-name">Network Support and Security</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
           <div class="cert-badge-card">
-            <img src="Certificates/Completed Certs By Cisco/" alt="Networking Basics Badge" class="cert-badge-img"
-              onerror="this.src='https://images.credly.com/images//image.png'">
+            <img src="Certificates/Completed Certs By Cisco/network-technician-career-path.png"
+              alt="Network Technician Career Path Badge" class="cert-badge-img"
+              onerror="this.src='https://images.credly.com/images/6df1bc7c-3f2d-45db-95ad-29007f313171/image.png'">
             <div class="cert-badge-name">Network Technician Career Path</div>
-            <a href="https://www.credly.com/badges//public_url" target="_blank" class="cert-badge-verify">Verify
-              Credential</a>
+            <span class="cert-badge-verify pending" title="Add the real Credly badge link">Verify Pending</span>
           </div>
-
         </div>
       </div>
 
-      <!-- Path Group 5: IT Essentials Basics -->
       <div class="cert-path-group reveal">
-        <h3 class="cert-path-title"><i data-lucide="network"></i> IT Essentials </h3>
+        <h3 class="cert-path-title"><i data-lucide="network"></i> IT Essentials</h3>
         <div class="certs-grid">
           <div class="cert-badge-card">
             <img src="Certificates/Completed Certs By Cisco/computer-hardware-basics.png"
@@ -3952,7 +3831,6 @@
         </div>
       </div>
 
-      <!-- Path Group 6: Programming & Web Foundations -->
       <div class="cert-path-group reveal">
         <h3 class="cert-path-title"><i data-lucide="code"></i> Programming & Web Foundations</h3>
         <div class="certs-grid">
@@ -3983,7 +3861,6 @@
         </div>
       </div>
 
-      <!-- Path Group 7: IT Support Specialist Career Path -->
       <div class="cert-path-group reveal">
         <h3 class="cert-path-title"><i data-lucide="headset"></i> IT Support Specialist Career Path</h3>
         <div class="certs-grid">
@@ -4030,14 +3907,11 @@
         </div>
       </div>
 
-      <!-- TCM Certificates list -->
       <div class="section-label" style="margin-bottom:1.5rem; color:var(--a4);">TCM Security Completions</div>
       <div class="tcm-list reveal reveal-delay-1">
-
-        <!-- TCM Cert 1 -->
         <div class="tcm-card">
           <div class="tcm-logo-box">
-            <img src="Certificates/Complete TCM Certs/certificate-of-completion-for-practical-help-desk logo.png"
+            <img src="Certificates/Complete TCM Certs/certificate-of-completion-for-practical-help-desk-logo.png"
               alt="TCM PHD logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i data-lucide="award" style="color:var(--a1); width:28px; height:28px; display:none;"></i>
           </div>
@@ -4052,11 +3926,10 @@
           </div>
         </div>
 
-        <!-- TCM Cert 2 -->
         <div class="tcm-card">
           <div class="tcm-logo-box">
             <img
-              src="Certificates/Complete TCM Certs/certificate-of-completion-for-practical-security-fundamentals logo.png"
+              src="Certificates/Complete TCM Certs/certificate-of-completion-for-practical-security-fundamentals-logo.png"
               alt="TCM Security logo"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i data-lucide="shield" style="color:var(--a1); width:28px; height:28px; display:none;"></i>
@@ -4072,10 +3945,9 @@
           </div>
         </div>
 
-        <!-- TCM Cert 3 -->
         <div class="tcm-card">
           <div class="tcm-logo-box">
-            <img src="Certificates/Complete TCM Certs/certificate-of-completion-for-linux-100-fundamentals logo.png"
+            <img src="Certificates/Complete TCM Certs/certificate-of-completion-for-linux-100-fundamentals-logo.png"
               alt="TCM Linux logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i data-lucide="terminal" style="color:var(--a1); width:28px; height:28px; display:none;"></i>
           </div>
@@ -4090,11 +3962,10 @@
           </div>
         </div>
 
-        <!-- TCM Cert 4 -->
         <div class="tcm-card">
           <div class="tcm-logo-box">
             <img
-              src="Certificates/Complete TCM Certs/certificate-of-completion-for-programming-100-fundamentals-1 logo.png"
+              src="Certificates/Complete TCM Certs/certificate-of-completion-for-programming-100-fundamentals-1-logo.png"
               alt="TCM Programming logo"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i data-lucide="code-2" style="color:var(--a1); width:28px; height:28px; display:none;"></i>
@@ -4110,10 +3981,9 @@
           </div>
         </div>
 
-        <!-- TCM Cert 5 -->
         <div class="tcm-card">
           <div class="tcm-logo-box">
-            <img src="Certificates/Complete TCM Certs/certificate-of-completion-for-ai-100-fundamentals logo.png"
+            <img src="Certificates/Complete TCM Certs/certificate-of-completion-for-ai-100-fundamentals-logo.png"
               alt="TCM AI logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i data-lucide="cpu" style="color:var(--a1); width:28px; height:28px; display:none;"></i>
           </div>
@@ -4128,59 +3998,50 @@
           </div>
         </div>
 
-        <!-- TCM Cert 6 -->
         <div class="tcm-card">
           <div class="tcm-logo-box">
             <img
               src="Certificates/Complete TCM Certs/certificate-of-completion-for-soft-skills-for-the-job-market-logo.png"
-              alt="TCM PHD logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              alt="TCM Soft Skills logo"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
             <i data-lucide="award" style="color:var(--a1); width:28px; height:28px; display:none;"></i>
           </div>
           <div class="tcm-details">
-            <div class="tcm-title">Soft Skill For Working Environtment</div>
+            <div class="tcm-title">Soft Skills For Working Environment</div>
             <div class="tcm-org">TCM Security Academy</div>
             <div class="tcm-actions">
+              <!-- FIX: original path was missing the "Complete TCM Certs/" folder prefix -->
               <button
-                onclick="openCertLightbox('Soft Skill For Working Environtment', 'Certificates/certificate-of-completion-for-soft-skills-for-the-job-market.png')">View
+                onclick="openCertLightbox('Soft Skills For Working Environment', 'Certificates/Complete TCM Certs/certificate-of-completion-for-soft-skills-for-the-job-market.png')">View
                 Cert</button>
             </div>
           </div>
         </div>
-
       </div>
 
     </div>
   </section>
 
-  <!-- Languages Section (standalone) -->
+  <!-- Languages Section -->
   <section id="languages" style="background-color: var(--bg2);">
     <div class="container">
       <span class="section-label">09 // Communication</span>
       <h2 class="section-title">Languages<span>.</span></h2>
       <div class="languages-grid reveal">
         <div class="lang-card">
-          <div class="lang-meta">
-            <span>Urdu</span>
-            <span>Native</span>
-          </div>
+          <div class="lang-meta"><span>Urdu</span><span>Native</span></div>
           <div class="lang-bar-container">
             <div class="lang-bar-fill" data-progress="100%"></div>
           </div>
         </div>
         <div class="lang-card">
-          <div class="lang-meta">
-            <span>English</span>
-            <span>Professional</span>
-          </div>
+          <div class="lang-meta"><span>English</span><span>Professional</span></div>
           <div class="lang-bar-container">
             <div class="lang-bar-fill" data-progress="85%"></div>
           </div>
         </div>
         <div class="lang-card">
-          <div class="lang-meta">
-            <span>Punjabi</span>
-            <span>Native</span>
-          </div>
+          <div class="lang-meta"><span>Punjabi</span><span>Native</span></div>
           <div class="lang-bar-container">
             <div class="lang-bar-fill" data-progress="100%"></div>
           </div>
@@ -4189,24 +4050,22 @@
     </div>
   </section>
 
-  <!-- Interactive YouTube & GitHub Activity Widget -->
+  <!-- Digital Presence -->
   <section id="community" style="background-color: var(--bg2);">
     <div class="container">
       <span class="section-label">10 // Content & Repositories</span>
       <h2 class="section-title">Digital Presence<span>.</span></h2>
 
       <div class="about-layout">
-        <!-- YouTube video media cards grid -->
         <div class="reveal">
           <div class="section-label" style="color:var(--a1); margin-bottom:1rem;">Featured Training Videos</div>
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:1.5rem;">
 
-            <!-- Video Card 1 -->
             <a href="https://www.youtube.com/channel/UC-r2rQxVCfvV_8UasGBPPug" target="_blank" class="tcm-card"
               style="display:flex; flex-direction:column; padding:0; overflow:hidden; text-decoration:none; align-items:stretch;">
               <div
                 style="position:relative; height:150px; background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-                <img src="Images/youtube_os_tutorial.png" alt="Operating Systems Support Course Thumbnail"
+                <img src="Images/maxresdefault.webp" alt="What is CompTIA A+ Certification? | Introduction To CompTIA A+ | In Urdu Hindi Complete Guide"
                   class="video-thumbnail">
                 <div class="play-overlay"
                   style="position:absolute; background:rgba(255,0,0,0.85); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:var(--transition); box-shadow:0 0 15px rgba(255,0,0,0.5);">
@@ -4214,21 +4073,18 @@
                 </div>
               </div>
               <div style="padding:1.2rem;">
-                <div class="tcm-title" style="font-size:1.05rem; margin-bottom:0.4rem;">CompTIA A+: Operating Systems
-                  Support</div>
+                <div class="tcm-title" style="font-size:1.05rem; margin-bottom:0.4rem;">What is CompTIA A+ Certification? | Introduction To CompTIA A+ | In Urdu Hindi Complete Guide.</div>
                 <p style="font-size:0.8rem; color:var(--a4); font-family:var(--font-mono); margin-bottom:0.5rem;">VMSOIT
-                  YouTube • 10M+ Reach</p>
-                <p style="font-size:0.85rem; color:var(--muted); line-height:1.4;">Operating systems support matrices,
-                  covering directory hierarchy, processes, memory management, and registry tools.</p>
+                  YouTube • 5K+ Reach</p>
+                <p style="font-size:0.85rem; color:var(--muted); line-height:1.4;">CompTIA is a leading organization worldwide offering certifications for IT professionals. CompTIA A+ is a certification in which you'll learn a total of 9 entry-level Information Technology (IT) skills. The most important point is that we are providing CompTIA A+ in Urdu & Hindi Languages. </p>
               </div>
             </a>
 
-            <!-- Video Card 2 -->
             <a href="https://www.youtube.com/channel/UC-r2rQxVCfvV_8UasGBPPug" target="_blank" class="tcm-card"
               style="display:flex; flex-direction:column; padding:0; overflow:hidden; text-decoration:none; align-items:stretch;">
               <div
                 style="position:relative; height:150px; background:#000; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-                <img src="Images/youtube_hardware_tutorial.png" alt="Hardware Diagnostics Course Thumbnail"
+                <img src="Images/Monitor, Repair & Replace Laptop Hardware CompTIA A+ Core 1 220-1201 Domain 1 Mobile Devices Objective Thumbnail.jpg" alt="Monitor, Repair & Replace Laptop Hardware | CompTIA A+ Core 1 220-1201 Domain 1 Mobile Devices Objective 1.1 Thumbnail"
                   class="video-thumbnail">
                 <div class="play-overlay"
                   style="position:absolute; background:rgba(255,0,0,0.85); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; transition:var(--transition); box-shadow:0 0 15px rgba(255,0,0,0.5);">
@@ -4236,23 +4092,19 @@
                 </div>
               </div>
               <div style="padding:1.2rem;">
-                <div class="tcm-title" style="font-size:1.05rem; margin-bottom:0.4rem;">Mastering Hardware Basics &
-                  Diagnostics</div>
+                <div class="tcm-title" style="font-size:1.05rem; margin-bottom:0.4rem;">Monitor, Repair & Replace Laptop Hardware | CompTIA A+ Core 1 220-1201 Domain 1 Mobile Devices Objective 1.1</div>
                 <p style="font-size:0.8rem; color:var(--a4); font-family:var(--font-mono); margin-bottom:0.5rem;">VMSOIT
-                  YouTube • 5M+ Reach</p>
-                <p style="font-size:0.85rem; color:var(--muted); line-height:1.4;">BIOS/UEFI configurations, motherboard
-                  path diagnoses, RAM modules failures, and boot error codes.</p>
+                  YouTube • 1K+ Reach</p>
+                <p style="font-size:0.85rem; color:var(--muted); line-height:1.4;">Explore Domain 1 of CompTIA A+ Core 1 (220-1201) in this video, focusing on Objective 1.1: Given a scenario, monitor mobile device hardware and use appropriate replacement techniques. We cover key components like batteries, keyboards, RAM, storage drives, wireless cards, and more, blending theory with practical demonstrations.</p>
               </div>
             </a>
 
           </div>
         </div>
 
-        <!-- GitHub Feed Widget -->
         <div class="reveal reveal-delay-1">
           <div class="section-label" style="color:var(--a4); margin-bottom:1rem;">Recent Code Repositories</div>
           <div id="gh-repos-container" style="display:flex; flex-direction:column; gap:1rem;">
-
             <div class="about-card" style="padding:1.2rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
                 <div class="about-card-title" style="color:var(--a1); font-size:1.05rem;">json-carousel-generator</div>
@@ -4262,10 +4114,8 @@
               <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;">Browser tool that converts
                 structured JSON to Instagram slide layouts.</p>
               <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); display:flex; gap:1rem;">
-                <span>View Repository</span>
-              </div>
+                <span>View Repository</span></div>
             </div>
-
             <div class="about-card" style="padding:1.2rem;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
                 <div class="about-card-title" style="color:var(--a1); font-size:1.05rem;">advanced-habit-tracker</div>
@@ -4275,19 +4125,15 @@
               <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;">Electron desktop application
                 featuring IndexedDB isolates and heatmaps.</p>
               <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); display:flex; gap:1rem;">
-                <span>View Repository</span>
-              </div>
+                <span>View Repository</span></div>
             </div>
-
           </div>
         </div>
       </div>
 
-      <!-- Testimonials / Social Proof Section -->
       <div class="reveal" style="margin-top: 4rem; border-top: 1px solid var(--border); padding-top: 3rem;">
         <div class="section-label" style="color:var(--a4); margin-bottom:1.5rem;">Testimonials & Social Proof</div>
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:2rem;">
-
           <div class="about-card" style="padding:1.8rem; position:relative;">
             <i data-lucide="quote"
               style="position:absolute; top:1.2rem; right:1.5rem; width:40px; height:40px; color:rgba(0,212,255,0.06); transform:rotate(180deg);"></i>
@@ -4302,7 +4148,6 @@
               </div>
             </div>
           </div>
-
           <div class="about-card" style="padding:1.8rem; position:relative;">
             <i data-lucide="quote"
               style="position:absolute; top:1.2rem; right:1.5rem; width:40px; height:40px; color:rgba(0,212,255,0.06); transform:rotate(180deg);"></i>
@@ -4317,7 +4162,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -4331,8 +4175,6 @@
       <h2 class="section-title">Get In Touch<span>.</span></h2>
 
       <div class="contact-layout">
-
-        <!-- Contact methods & debug window -->
         <div class="contact-info-panel reveal">
           <h3>Secure Gateway Channel</h3>
           <p style="color:var(--muted); margin-bottom:2rem;">
@@ -4364,18 +4206,17 @@
             </a>
           </div>
 
-          <!-- Contact diagnostic console log -->
           <div class="contact-terminal-log" id="contact-log">
             <p>[SYSTEM] Gateway online. Ready for queries.</p>
             <p>[SYSTEM] Click links or submit form to register connection logs.</p>
           </div>
         </div>
 
-        <!-- Contact form inputs -->
-        <form class="contact-form reveal reveal-delay-1" id="contactForm" onsubmit="handleContactSubmit(event)">
+        <form class="contact-form reveal reveal-delay-1" id="contactForm" onsubmit="handleContactSubmit(event)"
+          novalidate>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" required placeholder="John Doe">
+            <input type="text" id="name" required minlength="2" placeholder="John Doe">
           </div>
           <div class="form-group">
             <label for="email">Secure Mail Link</label>
@@ -4383,40 +4224,37 @@
           </div>
           <div class="form-group">
             <label for="message">Message Payload</label>
-            <textarea id="message" rows="5" required placeholder="Write your message here..."></textarea>
+            <textarea id="message" rows="5" required minlength="10" placeholder="Write your message here..."></textarea>
           </div>
-          <button type="submit" class="form-btn">
+          <button type="submit" class="form-btn" id="contact-submit-btn">
             Submit Payload <i data-lucide="send"></i>
           </button>
         </form>
-
       </div>
     </div>
   </section>
 
-  <!-- Interactive Terminal Section (Signature Feature) -->
+  <!-- Interactive Terminal Section -->
+  <!-- FIX: was duplicated as "11 //" with Contact — now correctly "12 //" -->
   <section id="terminal" class="signature-terminal-section">
     <div class="container">
-      <span class="section-label">11 // Advanced CLI</span>
+      <span class="section-label">12 // Advanced CLI</span>
       <h2 class="section-title" style="margin-bottom:2rem;">Command Terminal Emulator<span>.</span></h2>
 
       <div class="sig-terminal reveal">
         <div class="sig-terminal-tabs">
-          <button class="sig-terminal-tab active" data-tab="shell">
-            <i data-lucide="terminal"></i> bash (guest@ali-ameer-sec)
-          </button>
-          <button class="sig-terminal-tab" data-tab="help" onclick="executeTabCommand('help')">
-            <i data-lucide="help-circle"></i> Quick Guide
-          </button>
-          <button class="sig-terminal-tab" data-tab="stats" onclick="executeTabCommand('stats')">
-            <i data-lucide="bar-chart-2"></i> System Stats
-          </button>
+          <button class="sig-terminal-tab active" data-tab="shell"><i data-lucide="terminal"></i> bash
+            (guest@ali-ameer-sec)</button>
+          <button class="sig-terminal-tab" data-tab="help" onclick="executeTabCommand('help')"><i
+              data-lucide="help-circle"></i> Quick Guide</button>
+          <button class="sig-terminal-tab" data-tab="stats" onclick="executeTabCommand('stats')"><i
+              data-lucide="bar-chart-2"></i> System Stats</button>
         </div>
 
         <div class="sig-terminal-body" id="terminal-body" onclick="focusTerminalInput()">
           <div class="terminal-response-block">Ali Ameer Secure Interface CLI v2.1.0-Release.
             Type "help" for a list of available cybersecurity and IT commands.
-            Type "autocomplete" suggestions using the [TAB] key.</div>
+            Use the [TAB] key for autocomplete suggestions.</div>
 
           <div class="sig-terminal-prompt-line" id="prompt-line">
             <span class="terminal-host">guest@ali-ameer-sec</span>
@@ -4447,6 +4285,9 @@
         <a href="#languages">LANGUAGES</a>
         <a href="#contact">CONTACT</a>
       </div>
+      <!-- FIX: added the "back-to-top" control referenced in the original task brief -->
+      <button class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑
+        TOP</button>
     </div>
     <div class="footer-bottom">
       <div>&copy; 2026 Ali Ameer. All Rights Reserved. Securing infrastructure & training minds.</div>
@@ -4466,19 +4307,22 @@
         <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close details panel"><i
             data-lucide="x"></i></button>
       </div>
-      <div class="lightbox-content" id="lightboxContent">
-        <!-- Content injected dynamically -->
-      </div>
+      <div class="lightbox-content" id="lightboxContent"></div>
     </div>
   </div>
 
   <script>
 
+    /* ===== FIX: added — previously referenced by the DISMISS button but never defined ===== */
+    function dismissStatusBanner(el) {
+      const banner = document.getElementById('status-banner');
+      if (banner) banner.classList.add('dismissed');
+    }
+
     // System Theme Controls (Dark/Light Switcher)
     const themeBtn = document.getElementById('theme-btn');
     const htmlEl = document.documentElement;
 
-    // Check initial user system preference
     if (localStorage.getItem('theme') === 'light') {
       htmlEl.setAttribute('data-theme', 'light');
       themeBtn.innerHTML = `<i data-lucide="moon"></i>`;
@@ -4499,18 +4343,15 @@
         themeBtn.innerHTML = `<i data-lucide="moon"></i>`;
         lucide.createIcons();
       }
-      // Re-render skills chart to match current light/dark contrast
       renderSkillsChart();
     });
 
-    // Custom Cursor Glow effect tracker
     const cursorGlow = document.getElementById('cursor-glow');
     document.addEventListener('mousemove', (e) => {
       cursorGlow.style.left = e.clientX + 'px';
       cursorGlow.style.top = e.clientY + 'px';
     });
 
-    // Typewriter effect for Hero rotating headers
     const roles = [
       "Cybersecurity Associate",
       "IT Instructor",
@@ -4536,25 +4377,23 @@
       }
 
       if (!isDeleting && charIdx === currentRole.length) {
-        typeDelay = 2000; // Pause at full word
+        typeDelay = 2000;
         isDeleting = true;
       } else if (isDeleting && charIdx === 0) {
         isDeleting = false;
         roleIdx = (roleIdx + 1) % roles.length;
-        typeDelay = 500; // Pause before next word
+        typeDelay = 500;
       }
 
       setTimeout(typeEffect, typeDelay);
     }
 
-    // Initialize EmailJS with Public Key
     (function () {
       emailjs.init({
-        publicKey: "YOUR_PUBLIC_KEY" // Replace with your actual EmailJS Public Key
+        publicKey: "YOUR_PUBLIC_KEY" // TODO: replace with your real EmailJS Public Key before going live
       });
     })();
 
-    // Scroll event listener for transparent navbar
     const navEl = document.querySelector('nav');
     function handleNavbarScroll() {
       if (window.scrollY > 50) {
@@ -4567,7 +4406,6 @@
     }
     window.addEventListener('scroll', handleNavbarScroll);
 
-    // Anti-Gravity Canvas Particle Effect
     const canvas = document.getElementById('anti-gravity-canvas');
     const ctx = canvas.getContext('2d');
     const heroSection = document.getElementById('hero');
@@ -4575,7 +4413,6 @@
     let particles = [];
     let mouse = { x: null, y: null, radius: 110 };
 
-    // Track prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     function resizeCanvas() {
@@ -4586,8 +4423,8 @@
       canvas.height = rect.height * dpr;
       canvas.style.width = rect.width + 'px';
       canvas.style.height = rect.height + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0); // FIX: reset scale before reapplying, avoids compounding on repeated resizes
       ctx.scale(dpr, dpr);
-
       initParticles();
     }
 
@@ -4603,29 +4440,24 @@
         this.y = initial ? Math.random() * this.canvasHeight : this.canvasHeight + 10;
         this.size = Math.random() * 2.2 + 0.6;
 
-        // Float slowly upward (negative y velocity)
         this.speedY = -(Math.random() * 0.4 + 0.15);
         this.speedX = (Math.random() - 0.5) * 0.15;
 
         this.vx = this.speedX;
         this.vy = this.speedY;
 
-        // Particle types - 0: circle, 1: square, 2: cross (giving it a tech vibe)
         this.type = Math.floor(Math.random() * 10) > 7 ? (Math.random() > 0.5 ? 1 : 2) : 0;
 
-        // Alpha settings
         this.baseAlpha = Math.random() * 0.4 + 0.15;
         this.alpha = this.baseAlpha;
         this.pulseSpeed = Math.random() * 0.015 + 0.005;
         this.pulseDir = Math.random() > 0.5 ? 1 : -1;
 
-        // Colors from Ali's site theme
         const colorPalette = ['#00d4ff', '#ff6b35', '#ffffff', '#7a9ab5'];
         this.color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
       }
 
       update() {
-        // Twinkling/pulse alpha effect
         this.alpha += this.pulseSpeed * this.pulseDir;
         if (this.alpha > this.baseAlpha + 0.15 || this.alpha > 0.8) {
           this.pulseDir = -1;
@@ -4633,7 +4465,6 @@
           this.pulseDir = 1;
         }
 
-        // Mouse deflection / repulsion vector math
         if (mouse.x !== null && mouse.y !== null) {
           const dx = this.x - mouse.x;
           const dy = this.y - mouse.y;
@@ -4643,15 +4474,12 @@
             const force = (mouse.radius - distance) / mouse.radius;
             const angle = Math.atan2(dy, dx);
 
-            // Push away target velocity components
             const targetVx = Math.cos(angle) * force * 1.5;
             const targetVy = Math.sin(angle) * force * 1.5 + this.speedY;
 
-            // Inertial smooth interpolation
             this.vx += (targetVx - this.vx) * 0.08;
             this.vy += (targetVy - this.vy) * 0.08;
           } else {
-            // Decay acceleration back to baseline drift speed
             this.vx += (this.speedX - this.vx) * 0.04;
             this.vy += (this.speedY - this.vy) * 0.04;
           }
@@ -4663,7 +4491,6 @@
         this.x += this.vx;
         this.y += this.vy;
 
-        // Reset if float above view bounds or drift too far horizontally
         if (this.y < -15 || this.x < -15 || this.x > this.canvasWidth + 15) {
           this.reset(false);
         }
@@ -4706,7 +4533,6 @@
     function initParticles() {
       particles = [];
       const rect = heroSection.getBoundingClientRect();
-      // Responsive density: 35 particles on mobile, 85 on desktop
       const count = rect.width < 768 ? 35 : 85;
 
       for (let i = 0; i < count; i++) {
@@ -4732,7 +4558,6 @@
       animationFrameId = requestAnimationFrame(animateParticles);
     }
 
-    // Set mouse coordinates relative to hero section bounding box
     heroSection.addEventListener('mousemove', (e) => {
       const rect = heroSection.getBoundingClientRect();
       mouse.x = e.clientX - rect.left;
@@ -4744,11 +4569,13 @@
       mouse.y = null;
     });
 
+    /* FIX: e.touches[0].top does not exist on a Touch object — changed to .clientY.
+       This was silently producing NaN and breaking the touch-repulsion effect on mobile. */
     heroSection.addEventListener('touchmove', (e) => {
       if (e.touches.length > 0) {
         const rect = heroSection.getBoundingClientRect();
         mouse.x = e.touches[0].clientX - rect.left;
-        mouse.y = e.touches[0].top - rect.top;
+        mouse.y = e.touches[0].clientY - rect.top;
       }
     }, { passive: true });
 
@@ -4776,16 +4603,14 @@
       initIntersectionObserver();
       fetchGitHubStats();
       initMobileNav();
-      handleNavbarScroll(); // Run once initially to check scroll position
+      handleNavbarScroll();
 
-      // Initialize Canvas Effect
       resizeCanvas();
       if (!prefersReducedMotion.matches) {
         animateParticles();
       }
     });
 
-    // Chart.js Radar Chart implementation for skills
     let skillsChartInstance = null;
 
     function renderSkillsChart() {
@@ -4798,8 +4623,10 @@
         skillsChartInstance.destroy();
       }
 
-      const ctx = document.getElementById('skillsRadarChart').getContext('2d');
-      skillsChartInstance = new Chart(ctx, {
+      const chartEl = document.getElementById('skillsRadarChart');
+      if (!chartEl) return; // FIX: guard in case chart canvas isn't present yet
+      const ctx2 = chartEl.getContext('2d');
+      skillsChartInstance = new Chart(ctx2, {
         type: 'radar',
         data: {
           labels: ['Cybersecurity', 'IT Support', 'Web Dev', 'Design & SEO', 'Teaching'],
@@ -4816,33 +4643,19 @@
           }]
         },
         options: {
-          plugins: {
-            legend: { display: false }
-          },
+          plugins: { legend: { display: false } },
           scales: {
             r: {
               angleLines: { color: gridCol },
               grid: { color: gridCol },
-              pointLabels: {
-                color: textCol,
-                font: {
-                  family: 'IBM Plex Mono',
-                  size: 10
-                }
-              },
-              ticks: {
-                display: false,
-                max: 100,
-                min: 0,
-                stepSize: 20
-              }
+              pointLabels: { color: textCol, font: { family: 'IBM Plex Mono', size: 10 } },
+              ticks: { display: false, max: 100, min: 0, stepSize: 20 }
             }
           }
         }
       });
     }
 
-    // Intersection Observer for scroll-reveal animations
     function initIntersectionObserver() {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
@@ -4850,27 +4663,25 @@
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
 
-            // Trigger Language Bar animations inside this reveal
             const langBars = entry.target.querySelectorAll('.lang-bar-fill');
             langBars.forEach(bar => {
               const prog = bar.getAttribute('data-progress');
               bar.style.width = prog;
             });
 
-            // Trigger Learning Progress Bar animations inside this reveal
+            /* FIX: was reading 'data-width' (an attribute that doesn't exist anywhere
+               in the markup) so learning-progress bars never filled. Now reads the
+               correct 'data-progress' attribute, matching the language bars above. */
             const progressBars = entry.target.querySelectorAll('.learning-progress-fill');
             progressBars.forEach(bar => {
-              const prog = bar.getAttribute('data-width');
+              const prog = bar.getAttribute('data-progress');
               if (prog) bar.style.width = prog;
             });
           }
         });
-      }, {
-        threshold: 0.15
-      });
+      }, { threshold: 0.15 });
       reveals.forEach(rev => observer.observe(rev));
 
-      // Separate observer for achievement counters
       const counterEls = document.querySelectorAll('.counter-value');
       if (counterEls.length > 0) {
         const counterObserver = new IntersectionObserver((entries) => {
@@ -4885,7 +4696,6 @@
       }
     }
 
-    // Achievement counter count-up animation
     function animateCounter(el) {
       const target = parseFloat(el.getAttribute('data-target'));
       const decimals = parseInt(el.getAttribute('data-decimals') || '0');
@@ -4895,7 +4705,6 @@
       function step(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        // Ease-out curve
         const eased = 1 - Math.pow(1 - progress, 3);
         const current = eased * target;
         el.textContent = decimals > 0 ? current.toFixed(decimals) : Math.floor(current);
@@ -4909,7 +4718,6 @@
       requestAnimationFrame(step);
     }
 
-    // Dynamic GitHub Repositories Fetcher
     async function fetchGitHubStats() {
       const container = document.getElementById('gh-repos-container');
       if (!container) return;
@@ -4919,7 +4727,6 @@
         if (!response.ok) throw new Error('API limit reached');
         const data = await response.json();
 
-        // Filter out fork repositories and keep top repositories
         const repos = data.filter(r => !r.fork).slice(0, 2);
         if (repos.length > 0) {
           container.innerHTML = '';
@@ -4928,26 +4735,47 @@
             card.className = 'about-card';
             card.style.padding = '1.2rem';
 
-            card.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-        <a href="${repo.html_url}" target="_blank" class="about-card-title" style="color:var(--a1); font-size:1.05rem; text-decoration:none; display:flex; align-items:center; gap:0.4rem;">
-            ${repo.name} <i data-lucide="external-link" style="width:12px; height:12px;"></i>
-        </a>
-        ${repo.language ? `<span class="project-tag" style="background:rgba(0,212,255,0.08); color:var(--a1); border-color:var(--border)">${repo.language}</span>` : ''}
-    </div>
-    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;">${repo.description || 'No description provided.'}</p>
-    <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); display:flex; gap:1rem;">
-        <span>⭐ ${repo.stargazers_count} stars</span>
-        <span>🍴 ${repo.forks_count} forks</span>
-    </div>
-    `;
+            const title = document.createElement('div');
+            title.style.cssText = 'display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;';
+
+            const link = document.createElement('a');
+            link.href = repo.html_url;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer'; // FIX: added rel=noopener for target=_blank links opened via JS
+            link.className = 'about-card-title';
+            link.style.cssText = 'color:var(--a1); font-size:1.05rem; text-decoration:none; display:flex; align-items:center; gap:0.4rem;';
+            link.textContent = repo.name + ' ';
+            const icon = document.createElement('i');
+            icon.setAttribute('data-lucide', 'external-link');
+            icon.style.cssText = 'width:12px; height:12px;';
+            link.appendChild(icon);
+            title.appendChild(link);
+
+            if (repo.language) {
+              const tag = document.createElement('span');
+              tag.className = 'project-tag';
+              tag.style.cssText = 'background:rgba(0,212,255,0.08); color:var(--a1); border-color:var(--border)';
+              tag.textContent = repo.language;
+              title.appendChild(tag);
+            }
+
+            const desc = document.createElement('p');
+            desc.style.cssText = 'font-size:0.85rem; color:var(--muted); margin-bottom:0.8rem;';
+            desc.textContent = repo.description || 'No description provided.'; // FIX: textContent instead of innerHTML template — avoids XSS from repo descriptions
+
+            const stats = document.createElement('div');
+            stats.style.cssText = 'font-family:var(--font-mono); font-size:0.75rem; color:var(--muted); display:flex; gap:1rem;';
+            stats.innerHTML = `<span>⭐ ${repo.stargazers_count} stars</span><span>🍴 ${repo.forks_count} forks</span>`;
+
+            card.appendChild(title);
+            card.appendChild(desc);
+            card.appendChild(stats);
             container.appendChild(card);
           });
           lucide.createIcons();
         }
       } catch (err) {
         console.warn('GitHub stats fetch failed. Removing hardcoded metrics to avoid misleading statistics.', err);
-        // Remove hardcoded star/fork rows in static content
         const cards = container.querySelectorAll('.about-card');
         cards.forEach(card => {
           const statsRow = card.querySelector('div[style*="font-family:var(--font-mono)"]');
@@ -4956,7 +4784,6 @@
       }
     }
 
-    // Mobile Navigation Drawer Toggle Handler
     function initMobileNav() {
       const menuToggleBtn = document.getElementById('menu-toggle-btn');
       const navLinks = document.querySelector('nav .nav-links');
@@ -4974,7 +4801,6 @@
           } else {
             menuToggleBtn.innerHTML = `<i data-lucide="menu"></i>`;
             navEl.classList.remove('menu-open');
-            // If window scroll position is at the top, revert transparent nav bar
             if (window.scrollY <= 50) {
               navEl.classList.remove('scrolled');
             }
@@ -4982,7 +4808,6 @@
           lucide.createIcons();
         });
 
-        // Close menu when clicking link
         navLinks.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             navLinks.classList.remove('active');
@@ -4996,7 +4821,6 @@
           });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
           if (!navLinks.contains(e.target) && !menuToggleBtn.contains(e.target)) {
             navLinks.classList.remove('active');
@@ -5012,15 +4836,23 @@
       }
     }
 
-    // Lightbox triggers for Certificates & Projects details
     const modal = document.getElementById('lightboxModal');
     const mTitle = document.getElementById('lightboxTitle');
     const mContent = document.getElementById('lightboxContent');
 
     function openCertLightbox(name, imgPath) {
       mTitle.textContent = `Certificate Preview // ${name}`;
-      mContent.innerHTML = `<img src="${imgPath}" alt="${name} image" onerror="this.src='https://placehold.co/800x600/0c1220/00d4ff?text=${encodeURIComponent(name)}'">`;
+      mContent.innerHTML = ''; // FIX: clear via DOM, then build the image with safe attributes
+      const img = document.createElement('img');
+      img.src = imgPath;
+      img.alt = `${name} image`;
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = `https://placehold.co/800x600/0c1220/00d4ff?text=${encodeURIComponent(name)}`;
+      };
+      mContent.appendChild(img);
       modal.classList.add('active');
+      document.addEventListener('keydown', escCloseLightbox);
     }
 
     function openProjectLightbox(name, detailsText) {
@@ -5036,9 +4868,14 @@
         </div>
         `;
       modal.classList.add('active');
+      document.addEventListener('keydown', escCloseLightbox);
     }
 
-    // Close modal when user clicks outside the modal box container
+    /* FIX: added — Escape key now closes the lightbox (accessibility improvement) */
+    function escCloseLightbox(e) {
+      if (e.key === 'Escape') closeLightbox();
+    }
+
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeLightbox();
@@ -5048,31 +4885,53 @@
     function closeLightbox() {
       modal.classList.remove('active');
       mContent.innerHTML = '';
+      document.removeEventListener('keydown', escCloseLightbox);
     }
 
-    // Contact Form submission handler with EmailJS integration
     const contactLog = document.getElementById('contact-log');
+    const contactSubmitBtn = document.getElementById('contact-submit-btn');
+
     function handleContactSubmit(e) {
       e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
+
+      const nameEl = document.getElementById('name');
+      const emailEl = document.getElementById('email');
+      const messageEl = document.getElementById('message');
+
+      /* FIX: added real client-side validation (form previously had `required` attributes
+         but no explicit check/feedback before attempting to send). */
+      if (!nameEl.value.trim() || !emailEl.value.trim() || !messageEl.value.trim()) {
+        const pErr = document.createElement('p');
+        pErr.innerHTML = `<span style="color:#ff5f56">[VALIDATION]</span> Please fill in all fields before submitting.`;
+        contactLog.appendChild(pErr);
+        contactLog.scrollTop = contactLog.scrollHeight;
+        return;
+      }
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(emailEl.value.trim())) {
+        const pErr = document.createElement('p');
+        pErr.innerHTML = `<span style="color:#ff5f56">[VALIDATION]</span> Please enter a valid email address.`;
+        contactLog.appendChild(pErr);
+        contactLog.scrollTop = contactLog.scrollHeight;
+        return;
+      }
+
+      const name = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const message = messageEl.value.trim();
+
+      contactSubmitBtn.disabled = true; // FIX: prevent duplicate submissions while sending
 
       const p1 = document.createElement('p');
       p1.innerHTML = `<span style="color:var(--a1)">[SENDING]</span> payload via EmailJS...`;
       contactLog.appendChild(p1);
       contactLog.scrollTop = contactLog.scrollHeight;
 
-      // Check if credentials are still placeholder values
       const isPlaceholder = emailjs._customKey === "YOUR_PUBLIC_KEY" || !emailjs._customKey;
 
-      const serviceID = 'default_service'; // Default service
-      const templateID = 'template_id';     // Replace with user template ID
-      const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message
-      };
+      const serviceID = 'default_service';
+      const templateID = 'template_id';
+      const templateParams = { from_name: name, from_email: email, message: message };
 
       emailjs.send(serviceID, templateID, templateParams)
         .then(() => {
@@ -5092,19 +4951,19 @@
           }
           contactLog.appendChild(p2);
           contactLog.scrollTop = contactLog.scrollHeight;
+        })
+        .finally(() => {
+          contactSubmitBtn.disabled = false; // FIX: always re-enable the button
         });
     }
 
-    // SIGNATURE TERMINAL CONSOLE EMULATOR LOGIC
     const terminalInput = document.getElementById('terminal-input');
     const terminalBody = document.getElementById('terminal-body');
     const promptLine = document.getElementById('prompt-line');
 
-    // Command history
     let commandHistory = [];
     let historyIndex = -1;
 
-    // Available commands mapping
     const commands = {
       help: `Available commands:
   whoami         Display current user identity & status
@@ -5114,7 +4973,7 @@
   skills         Technical capabilities matrix
   projects       Active projects & code repositories
   certifications Verified Cisco & TCM certifications
-  badges         List all 12 Cisco Networking Academy badges
+  badges         List Cisco Networking Academy badges
   languages      Spoken language proficiency
   social         Social & professional profile links
   resume         Resume download info
@@ -5138,7 +4997,7 @@
   and frontend development.`,
 
       education: `Academic Record:
-  [2020–2024] BS Information Technology
+  [2021–2025] BS Information Technology
               GC University Faisalabad
               CGPA: 3.5/4.0 — First Division
 
@@ -5147,80 +5006,54 @@
   Software Engineering, Operating Systems, Data Structures`,
 
       experience: `Work History:
-  [2023–2024] Computer Lab Administrator & IT Trainer
-              Sir Syed Scholars Inn (Girls Campus) — Pakistan
-              > Managed 30+ workstations, delivered CompTIA A+ training
+  [2026–Present] CS & ICT Instructor — Matric & Intermediate
+                 Officer's Science Academy — Pakistan
 
-  [2022–2023] Computer Lab Technician
+  [2025–Present] IT Instructor
+                 Sir Syed Scholars Inn — Pakistan
+
+  [2022–2023] Computer Lab Administrator
               MIEHS — Pakistan
-              > Hardware maintenance, OS support, user training
 
-  [2023–Present] Freelance IT & Content Creator
-                 VMSOIT — Remote, Pakistan
-                 > Cybersecurity content, SEO writing, portfolio builds`,
+  [2024–Present] IT Trainer, SEO & Designer
+                 VMSOIT — Remote, Pakistan`,
 
       skills: `Skills Matrix:
   [Cybersecurity]  Network Security, Ethical Hacking, Linux CLI,
-                   Cisco Packet Tracer, OSINT, Vulnerability Assessment
+                   Cisco Packet Tracer, Vulnerability Assessment
   [IT Support]     Hardware Diagnostics, OS Admin, Help Desk,
                    Lab Administration, Remote Support
   [Development]    HTML5, CSS3, JavaScript, React, Electron,
-                   PHP, MySQL, WordPress, Python (basics)
+                   PHP, MySQL, WordPress, Python
   [Design & SEO]   Canva, SEO Strategy, Content Writing, Social Media`,
 
       projects: `Active Projects:
-  1. JSON-to-Carousel Generator
-     Pure JS/CSS slide layout compiler for Instagram carousels
-
-  2. Advanced Habit Tracker
-     Electron + React desktop app with IndexedDB persistent storage
-
-  3. Academic LMS
-     Full-stack PHP application — GCUF graduation thesis project
-
-  4. Interactive Portfolio
-     Single-file HTML portfolio with terminal emulator & radar chart`,
+  1. VaultKeeper — Encrypted CLI password manager
+  2. ScopeSentry — WiFi defensive monitoring toolkit
+  3. NetSniff — Educational network packet sniffer
+  4. Credit Card Fraud Detection — ML pipeline
+  5. JSON-to-Carousel Generator
+  6. Advanced Habit Tracker (Electron + React)
+  7. PHP-Based Academic LMS`,
 
       certifications: `Verified Certifications:
 
-  Cisco Networking Academy (12 Credly Badges):
-  > Junior Cybersecurity Analyst: Intro to Cybersecurity, Security & Connectivity
-  > Networking & IT Essentials: Networking Basics, Hardware Basics,
-    OS Basics, IT Customer Support Basics
-  > Programming & Web: Python Essentials 1, HTML Essentials, CSS Essentials
-  > IT Support Path: Hardware & Upgrade Support, OS Support,
-    IT Support Specialist Career Path
+  Cisco Networking Academy — multiple path groups including
+  Junior Cybersecurity Analyst, Ethical Hacker, Cybersecurity
+  Defense Analyst, Networking, IT Essentials, Programming & Web
+  Foundations, and IT Support Specialist Career Path.
 
-  TCM Security (5 Course Completions):
+  TCM Security (6 Course Completions):
   > Practical Help Desk (PHD)
   > Practical Security Fundamentals
   > Linux 100 Fundamentals
   > Programming 100 Fundamentals
-  > AI 100 Fundamentals`,
+  > AI 100 Fundamentals
+  > Soft Skills For Working Environment`,
 
-      badges: `Cisco Networking Academy Badges (12 Total):
-
-  [Junior Cybersecurity Analyst]
-    • Introduction to Cybersecurity
-    • Security & Connectivity Support
-
-  [Networking Basics & IT Essentials]
-    • Networking Basics
-    • Computer Hardware Basics
-    • Operating System Basics
-    • IT Customer Support Basics
-
-  [Programming & Web Foundations]
-    • Python Essentials 1
-    • HTML Essentials
-    • CSS Essentials
-
-  [IT Support Specialist Career Path]
-    • Hardware & Upgrade Support
-    • Operating Systems Support
-    • IT Support Specialist Career Path (Completion Badge)
-
-  All badges verifiable via Credly — see Credentials section.`,
+      badges: `See the Credentials section for the full, current list of
+  Cisco Networking Academy badges grouped by career path —
+  new badges are added there as they're earned.`,
 
       languages: `Language Proficiency:
   Urdu    ████████████ Native      (100%)
@@ -5277,31 +5110,44 @@
           historyIndex = commandHistory.length;
         }
 
-        // Create prompt clone to persist output line
         const historyLine = document.createElement('div');
         historyLine.className = 'sig-terminal-prompt-line';
-        historyLine.innerHTML = `
-        <span class="terminal-host">guest@ali-ameer-sec</span>
-        <span class="terminal-colon">:</span>
-        <span class="terminal-path">~</span>
-        <span class="terminal-colon">$</span>
-        <span style="color:var(--text); font-family:var(--font-mono); font-size:0.85rem; margin-left:0.5rem;">${rawInput}</span>
-        `;
+
+        /* FIX: build the echoed command with DOM/textContent instead of interpolating
+           raw user input into innerHTML — avoids HTML/script injection via the terminal. */
+        const hostSpan = document.createElement('span');
+        hostSpan.className = 'terminal-host';
+        hostSpan.textContent = 'guest@ali-ameer-sec';
+        const colon1 = document.createElement('span');
+        colon1.className = 'terminal-colon';
+        colon1.textContent = ':';
+        const pathSpan = document.createElement('span');
+        pathSpan.className = 'terminal-path';
+        pathSpan.textContent = '~';
+        const colon2 = document.createElement('span');
+        colon2.className = 'terminal-colon';
+        colon2.textContent = '$';
+        const inputEcho = document.createElement('span');
+        inputEcho.style.cssText = 'color:var(--text); font-family:var(--font-mono); font-size:0.85rem; margin-left:0.5rem;';
+        inputEcho.textContent = rawInput;
+
+        historyLine.appendChild(hostSpan);
+        historyLine.appendChild(colon1);
+        historyLine.appendChild(pathSpan);
+        historyLine.appendChild(colon2);
+        historyLine.appendChild(inputEcho);
 
         terminalBody.insertBefore(historyLine, promptLine);
 
-        // Process response output
         const responseBlock = document.createElement('div');
         responseBlock.className = 'terminal-response-block';
 
         if (cmd === 'clear') {
-          // Delete all preceding response blocks & history logs
           const blocks = terminalBody.querySelectorAll('.terminal-response-block, .sig-terminal-prompt-line');
           blocks.forEach(b => {
             if (b.id !== 'prompt-line') b.remove();
           });
         } else if (cmd.startsWith('echo ')) {
-          // echo command — print back everything after 'echo '
           responseBlock.className = 'terminal-response-block success';
           responseBlock.textContent = rawInput.slice(5);
           terminalBody.insertBefore(responseBlock, promptLine);
@@ -5310,7 +5156,7 @@
           responseBlock.textContent = typeof resp === 'function' ? resp() : resp;
           terminalBody.insertBefore(responseBlock, promptLine);
         } else if (cmd === '') {
-          // Empty input, do nothing
+          // no-op
         } else {
           responseBlock.className = 'terminal-response-block error';
           responseBlock.textContent = `Error: command not found: "${rawInput}". Type "help" to view options.`;
@@ -5321,7 +5167,6 @@
         terminalBody.scrollTop = terminalBody.scrollHeight;
       }
 
-      // Command history index traversal (Up/Down arrow keys)
       else if (e.key === 'ArrowUp') {
         e.preventDefault();
         if (historyIndex > 0) {
@@ -5339,7 +5184,6 @@
         }
       }
 
-      // Auto-suggest autocomplete mapping (Tab Key)
       else if (e.key === 'Tab') {
         e.preventDefault();
         const currentInput = terminalInput.value.trim().toLowerCase();
@@ -5351,11 +5195,9 @@
     }
 
     function executeTabCommand(cmdName) {
-      // Set value and trigger execution directly
       terminalInput.value = cmdName;
       handleTerminalKeydown({ key: 'Enter', preventDefault: () => { } });
 
-      // Switch active tab indicator CSS class
       const tabs = document.querySelectorAll('.sig-terminal-tab');
       tabs.forEach(t => {
         if (t.getAttribute('data-tab') === cmdName) t.classList.add('active');
@@ -5363,7 +5205,6 @@
       });
     }
 
-    // Initialize Lucide icons on render load
     lucide.createIcons();
   </script>
 </body>
