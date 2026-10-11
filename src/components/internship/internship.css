@@ -1,0 +1,4 @@
+/* Internship module: green accent borders on the tactical navy section
+   are defined in src/index.css (.sec-internship). Card-level tweaks: */
+#internships article { border-left-width: 4px; }
+#internships article:hover { border-left-color: var(--color-cyan); }

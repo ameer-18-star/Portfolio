@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Answer-engine / AI crawlers are welcome too. See /llms.txt for a
+# plain-text summary of this site written specifically for them.
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://ameer-18-star.github.io/portfolio/sitemap.xml

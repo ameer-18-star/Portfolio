@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens. `static` keeps every variable in the output so the
+   light theme can override them at runtime.
+------------------------------------------------------------------- */
+@theme static {
+  --breakpoint-xxs: 21.25rem;
+  --breakpoint-xs: 23.125rem;
+  --breakpoint-xxl: 82.5rem;
+
+  --color-obsidian: #05070d;
+  --color-panel: #0a0f1d;
+  --color-panel-2: #0d1424;
+  --color-cyan: #22d3ee;
+  --color-emerald: #10b981;
+  --color-indigo: #6366f1;
+  --color-crimson: #ef4444;
+  --color-ink: #e6edf5;
+  --color-muted: #7c8ba1;
+  --color-border: rgba(148, 178, 214, 0.14);
+
+  --font-display: "Sora", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  --on-accent: #05070d;
+  --grad-a: #22d3ee;
+  --grad-b: #10b981;
+  --grid-opacity: 0.1;
+  --sec-hero: #070a12;
+  --sec-skills: #0a0f1d;
+  --sec-tooling: #0a0f1d;
+  --sec-internship: #0b1021;
+  --sec-projects: #070b16;
+  --sec-credentials: #080d1a;
+  --sec-blog: #090e1c;
+  --sec-about: #080b15;
+  --sec-impact: #0a1020;
+  --sec-terminal: #04060c;
+  --sec-faq: #090c17;
+  --sec-testimonial: #080d1a;
+  --sec-contact: #0a0f1d;
+  color-scheme: dark;
+}
+
+/* Light theme: dark typography (#0f172a), card surface (#f8fafc),
+   neon accents preserved as #0284c7 / #059669 for fills and borders. */
+:root[data-theme="light"] {
+  --color-obsidian: #eaf0f7;
+  --color-panel: #f1f5f9;
+  --color-panel-2: #f8fafc;
+  --color-cyan: #0284c7;
+  --color-emerald: #059669;
+  --color-indigo: #4f46e5;
+  --color-crimson: #dc2626;
+  --color-ink: #0f172a;
+  --color-muted: #475569;
+  --color-border: rgba(15, 23, 42, 0.14);
+  --on-accent: #ffffff;
+  --grad-a: #0369a1;
+  --grad-b: #047857;
+  --grid-opacity: 0.16;
+  --sec-hero: #e6eef8;
+  --sec-skills: #e9eff8;
+  --sec-tooling: #e9eff8;
+  --sec-internship: #e8f3ef;
+  --sec-projects: #e7edf7;
+  --sec-credentials: #edf0f6;
+  --sec-blog: #e8edf8;
+  --sec-about: #eef2f8;
+  --sec-impact: #e9f0f8;
+  --sec-terminal: #dfe7f1;
+  --sec-faq: #edf1f7;
+  --sec-testimonial: #e8eef8;
+  --sec-contact: #e9eff8;
+  color-scheme: light;
+}
+
+/* AA-safe text colors for accent-colored copy on light surfaces */
+:root[data-theme="light"] .text-cyan,
+:root[data-theme="light"] .section-eyebrow,
+:root[data-theme="light"] .hover\:text-cyan:hover { color: #0369a1; }
+:root[data-theme="light"] .text-emerald { color: #047857; }
+:root[data-theme="light"] .text-red-400 { color: #b91c1c; }
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-cyan) var(--color-panel);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-obsidian);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-panel); }
+::-webkit-scrollbar-thumb { background: var(--color-cyan); border-radius: 3px; }
+
+.content { @apply max-xxl:w-full xxl:max-w-[1320px] xxl:mx-auto; }
+.center { @apply flex justify-center items-center; }
+.font-display { font-family: var(--font-display); }
+.font-mono { font-family: var(--font-mono); }
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  color: var(--color-cyan);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 3.2vw, 2.75rem);
+  color: var(--color-ink);
+}
+
+.glass-panel {
+  background: var(--color-panel-2);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+}
+
+/* Large modal variant (Modal size="xl"): full-res certificate/badge view */
+.modal-xl {
+  width: 92vw;
+  max-width: 1200px;
+  height: 88vh;
+  max-height: 900px;
+}
+
+/* ------------------------------------------------------------------
+   Utilities that must work with Tailwind variants (hover:, etc.)
+------------------------------------------------------------------- */
+@utility glow-cyan {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-cyan) 30%, transparent),
+    0 14px 40px -14px color-mix(in srgb, var(--color-cyan) 45%, transparent);
+}
+
+@utility hover-lift {
+  transition: all 0.3s ease;
+  &:hover { transform: translateY(-4px) scale(1.015); }
+}
+
+/* ------------------------------------------------------------------
+   Buttons, pills, links: elevation + neon border on hover
+------------------------------------------------------------------- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  color: var(--on-accent);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.08);
+  box-shadow: 0 12px 28px -8px color-mix(in srgb, var(--color-cyan) 55%, transparent);
+}
+
+.btn-outline-glow {
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.btn-outline-glow:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  box-shadow: 0 12px 28px -12px color-mix(in srgb, var(--color-cyan) 45%, transparent);
+}
+:root[data-theme="light"] .btn-outline-glow:hover { color: #0369a1; }
+
+.pill {
+  font-size: 0.85rem;
+  background: color-mix(in srgb, var(--color-cyan) 6%, transparent);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  border-radius: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  transition: all 0.3s ease;
+}
+.pill:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-cyan);
+  box-shadow: 0 8px 20px -10px color-mix(in srgb, var(--color-cyan) 55%, transparent);
+}
+
+.nav-link { transition: all 0.3s ease; display: inline-block; }
+.nav-link:hover { transform: translateY(-2px); }
+
+/* ------------------------------------------------------------------
+   Distinct section backgrounds + SVG grid overlays.
+   Each wrapper sets --sec-bg and --pattern; the pattern lives on a
+   ::before layer so its opacity can follow the theme.
+------------------------------------------------------------------- */
+.sec {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--sec-bg);
+}
+.sec::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--pattern);
+  opacity: var(--pattern-opacity, var(--grid-opacity));
+}
+
+/* Hero: obsidian void + animated canvas (canvas lives in Hero.jsx) */
+.sec-hero { --sec-bg: var(--sec-hero); --pattern: none; }
+
+/* Profession / Skills: midnight blue + fine dot matrix */
+.sec-skills {
+  --sec-bg: var(--sec-skills);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%230ea5e9'/%3E%3C/svg%3E");
+}
+
+/* Core Tooling: same fine dot-matrix treatment, its own background token */
+.sec-tooling {
+  --sec-bg: var(--sec-tooling);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%230ea5e9'/%3E%3C/svg%3E");
+}
+
+/* Internships: dark tactical navy + green accent borders */
+.sec-internship {
+  --sec-bg: var(--sec-internship);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M40 0H0V40' fill='none' stroke='%2310b981' stroke-width='1'/%3E%3C/svg%3E");
+  --pattern-opacity: 0.09;
+  border-top: 1px solid color-mix(in srgb, var(--color-emerald) 55%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-emerald) 55%, transparent);
+}
+
+/* Projects: cyber obsidian + isometric wireframe */
+.sec-projects {
+  --sec-bg: var(--sec-projects);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='60'%3E%3Cpath d='M0 15L26 0L52 15L26 30ZM0 45L26 30L52 45L26 60ZM0 15V45M26 30V60M52 15V45' fill='none' stroke='%230ea5e9' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+/* Credentials: deep charcoal + diagonal line texture */
+.sec-credentials {
+  --sec-bg: var(--sec-credentials);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath d='M-4 4L4 -4M0 18L18 0M14 22L22 14' fill='none' stroke='%230ea5e9' stroke-width='1'/%3E%3C/svg%3E");
+  --pattern-opacity: 0.09;
+}
+
+/* Blog: dark slate + glowing radial gradients */
+.sec-blog {
+  --sec-bg: var(--sec-blog);
+  --pattern:
+    radial-gradient(circle at 12% 18%, rgba(34, 211, 238, 0.45), transparent 38%),
+    radial-gradient(circle at 88% 72%, rgba(99, 102, 241, 0.45), transparent 42%),
+    radial-gradient(circle at 55% 105%, rgba(16, 185, 129, 0.35), transparent 40%);
+  --pattern-opacity: 0.35;
+}
+
+/* Remaining sections get their own shade + subtle texture too */
+.sec-about {
+  --sec-bg: var(--sec-about);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M48 0H0V48' fill='none' stroke='%230ea5e9' stroke-width='1'/%3E%3C/svg%3E");
+  --pattern-opacity: 0.06;
+}
+.sec-impact {
+  --sec-bg: var(--sec-impact);
+  --pattern: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.4), transparent 60%);
+  --pattern-opacity: 0.18;
+}
+.sec-terminal {
+  --sec-bg: var(--sec-terminal);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M0 7.5H8' fill='none' stroke='%2310b981' stroke-width='1'/%3E%3C/svg%3E");
+  --pattern-opacity: 0.07;
+}
+.sec-faq {
+  --sec-bg: var(--sec-faq);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M20 16V24M16 20H24' fill='none' stroke='%230ea5e9' stroke-width='1'/%3E%3C/svg%3E");
+  --pattern-opacity: 0.12;
+}
+.sec-testimonial {
+  --sec-bg: var(--sec-testimonial);
+  --pattern: radial-gradient(circle at 20% 100%, rgba(99, 102, 241, 0.45), transparent 50%);
+  --pattern-opacity: 0.25;
+}
+.sec-contact {
+  --sec-bg: var(--sec-contact);
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0V60M0 30H60' fill='none' stroke='%2310b981' stroke-width='1' stroke-dasharray='2 6'/%3E%3C/svg%3E");
+  --pattern-opacity: 0.12;
+}
+
+/* ------------------------------------------------------------------
+   Scroll-driven entrance: fade-in-up. Uses `backwards` fill so no
+   transform remains afterwards (a lingering transform would trap
+   position:fixed modals inside the section).
+------------------------------------------------------------------- */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal:not(.is-visible) { opacity: 0; }
+.reveal.is-visible { animation: fade-in-up 0.8s ease backwards; }
+
+/* ------------------------------------------------------------------
+   Custom cyber cursor (dot + ring). Only on fine pointers.
+------------------------------------------------------------------- */
+html.custom-cursor, html.custom-cursor * { cursor: none !important; }
+html.custom-cursor input, html.custom-cursor textarea { cursor: text !important; }
+
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 9999px;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--color-cyan);
+  box-shadow: 0 0 10px var(--color-cyan);
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1.5px solid color-mix(in srgb, var(--color-cyan) 70%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-cyan) 35%, transparent);
+  transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+.cursor-ring.is-hovering {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  background-color: color-mix(in srgb, var(--color-cyan) 12%, transparent);
+  border-color: var(--color-emerald);
+  box-shadow: 0 0 26px color-mix(in srgb, var(--color-emerald) 55%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal:not(.is-visible) { opacity: 1; }
+}

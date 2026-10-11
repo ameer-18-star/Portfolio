@@ -1,0 +1,34 @@
+.glass-panel:hover .project-img { transform: scale(1.06); }
+
+.status-chip {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.35rem;
+  color: #f8fafc;
+  backdrop-filter: blur(6px);
+  border: 1px solid transparent;
+}
+.status-dot { width: 6px; height: 6px; border-radius: 9999px; background: currentColor; animation: status-pulse 2s infinite; }
+.status-chip--live { background: rgba(4, 120, 87, 0.85); border-color: rgba(52, 211, 153, 0.6); }
+.status-chip--repo { background: rgba(3, 105, 161, 0.85); border-color: rgba(34, 211, 238, 0.6); }
+.status-chip--lab { background: rgba(79, 70, 229, 0.85); border-color: rgba(165, 180, 252, 0.6); }
+@keyframes status-pulse { 50% { opacity: 0.35; } }
+
+.arch-flow { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.arch-node {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.4rem;
+  border: 1px dashed color-mix(in srgb, var(--color-cyan) 60%, transparent);
+  background: color-mix(in srgb, var(--color-cyan) 8%, transparent);
+  color: var(--color-ink);
+}

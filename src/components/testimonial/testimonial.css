@@ -1,0 +1,64 @@
+.testimonial-swiper .swiper-pagination-bullet {
+  background-color: var(--color-border);
+  opacity: 1;
+}
+.testimonial-swiper .swiper-pagination-bullet-active {
+  background-color: var(--color-cyan);
+  width: 22px;
+  border-radius: 4px;
+}
+
+/* Equal-height cards across a 2-up slide row */
+.testimonial-swiper .swiper-slide { height: auto; display: flex; min-width: 0; }
+.testimonial-card { width: 100%; min-width: 0; }
+
+.testimonial-card:hover { transform: translateY(-6px) scale(1.01); }
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-card:hover { transform: none; }
+}
+
+.testimonial-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--on-accent);
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+}
+
+.testimonial-card--placeholder {
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--color-cyan) 45%, transparent);
+}
+.testimonial-card--placeholder .testimonial-avatar {
+  background: var(--color-panel);
+  color: var(--color-muted);
+  border: 1px dashed var(--color-border);
+}
+
+/* Navigation arrows: themed instead of Swiper's default white */
+.testimonial-swiper .swiper-button-next,
+.testimonial-swiper .swiper-button-prev {
+  width: 2.25rem;
+  height: 2.25rem;
+  background: var(--color-panel-2);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  color: var(--color-cyan);
+  transition: all 0.3s ease;
+}
+.testimonial-swiper .swiper-button-next:hover,
+.testimonial-swiper .swiper-button-prev:hover {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--color-cyan) 40%, transparent);
+}
+.testimonial-swiper .swiper-button-next::after,
+.testimonial-swiper .swiper-button-prev::after {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
