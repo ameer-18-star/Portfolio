@@ -62,9 +62,15 @@ const Footer = () => {
           <SocialMedia />
         </div>
       </div>
-      <div className="content px-4 pb-8 flex flex-col sm:flex-row justify-between gap-3 font-mono text-[11px] text-muted border-t border-border pt-5">
+      <div className="content px-4 pb-8 flex flex-col sm:flex-row justify-between items-center gap-3 font-mono text-[11px] text-muted border-t border-border pt-5">
         <span>&copy; {year} Ali Ameer. All rights reserved.</span>
         <span>Securing infrastructure and training minds.</span>
+        <img
+          src="https://hits.sh/ameer-18-star.github.io/Portfolio.svg?style=flat-square&label=Visitors&color=22d3ee&labelColor=0a0f1d"
+          alt="Visitor count"
+          loading="lazy"
+          className="h-5"
+        />
       </div>
     </footer>
   );
