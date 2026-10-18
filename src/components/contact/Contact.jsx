@@ -7,19 +7,20 @@ import SocialMedia from "../common/socialMedia/SocialMedia";
 
 // Email card is hidden until a real address is set. LinkedIn handle is
 // unverified update href when the real profile URL is confirmed.
-const EMAIL = null; // set to "yourname@domain.com" when ready
+const EMAIL = "ali.ameer.it@proton.me";
 
 const methods = [
   { icon: faGithub, title: "GitHub", value: "ameer-18-star", href: "https://github.com/ameer-18-star" },
-  { icon: faLinkedin, title: "LinkedIn", value: "Profile link pending", href: null },
-  { icon: faDownload, title: "Resume", value: "Download PDF", href: "Ali_Ameer_Resume.pdf" },
+  { icon: faLinkedin, title: "LinkedIn", value: "ali-ameer-811786302", href: "https://www.linkedin.com/in/ali-ameer-811786302/" },
+  { icon: faDownload, title: "Instructor Resume", value: "Download PDF", href: "/Ali_Ameer_Instructor_Resume.pdf" },
+  { icon: faDownload, title: "Pentester Resume", value: "Download PDF", href: "/Ali_Ameer_Pentester_Resume.pdf" },
   ...(EMAIL ? [{ icon: faEnvelopeOpenText, title: "Email", value: EMAIL, href: `mailto:${EMAIL}` }] : []),
 ];
 
 // Set this to your real Google Form URL (Google Forms -> Send -> link icon)
 // before deploying. Left null, the button below renders disabled instead of
 // linking nowhere.
-const GOOGLE_FORM_URL = null;
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdQ_KUnOTv_jg0Dws_8sYMEHL2ghPDxy6A4L9PckkltCtla7g/viewform";
 
 const Contact = () => {
   return (

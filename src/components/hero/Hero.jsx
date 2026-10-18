@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShieldHalved, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faShieldHalved, faUserShield, faChalkboardUser } from "@fortawesome/free-solid-svg-icons";
 import avatar from "../../assets/avatar.png";
 import "./hero.css";
 
@@ -202,23 +202,19 @@ const Hero = () => {
             <Link to="contact" smooth duration={700} className="btn-primary px-6 py-3 rounded-md font-mono text-sm cursor-pointer flex items-center gap-2">
               <FontAwesomeIcon icon={faShieldHalved} /> Email me
             </Link>
-            <a href="Ali_Ameer_Resume.pdf" download className="btn-outline-glow px-6 py-3 rounded-md font-mono text-sm flex items-center gap-2">
-              <FontAwesomeIcon icon={faDownload} /> Download CV
-            </a>
           </div>
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3">
-            <span className="font-mono text-xs text-muted">Focused pages:</span>
+          <div className="flex flex-wrap items-center gap-3 mt-5">
             <RouterLink
               to="/pentester"
-              className="font-mono text-xs text-cyan hover:underline"
+              className="btn-outline-glow px-5 py-2.5 rounded-md font-mono text-sm flex items-center gap-2"
             >
-              Security & pentesting →
+              <FontAwesomeIcon icon={faUserShield} /> Explore my pentesting work
             </RouterLink>
             <RouterLink
               to="/instructor"
-              className="font-mono text-xs text-cyan hover:underline"
+              className="btn-outline-glow px-5 py-2.5 rounded-md font-mono text-sm flex items-center gap-2"
             >
-              Teaching & instruction →
+              <FontAwesomeIcon icon={faChalkboardUser} /> See my teaching impact
             </RouterLink>
           </div>
         </div>

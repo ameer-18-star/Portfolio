@@ -1,5 +1,7 @@
 import { Link as ScrollLink } from "react-scroll";
 import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import SocialMedia from "../socialMedia/SocialMedia";
 
 const links = [
@@ -56,15 +58,34 @@ const Footer = () => {
           </li>
         </ul>
         <div className="flex items-center gap-4">
-          <a href="Ali_Ameer_Resume.pdf" download className="font-mono text-xs text-muted hover:text-cyan transition-colors">
-            &#8595; Resume
-          </a>
           <SocialMedia />
         </div>
       </div>
-      <div className="content px-4 pb-8 flex flex-col sm:flex-row justify-between gap-3 font-mono text-[11px] text-muted border-t border-border pt-5">
+      <div className="content px-4 pb-6 flex flex-wrap justify-center gap-3 border-t border-border pt-6">
+        <a
+          href="/Ali_Ameer_Instructor_Resume.pdf"
+          download
+          className="btn-outline-glow px-4 py-2 rounded-md font-mono text-xs flex items-center gap-2"
+        >
+          <FontAwesomeIcon icon={faDownload} /> Instructor Resume
+        </a>
+        <a
+          href="/Ali_Ameer_Pentester_Resume.pdf"
+          download
+          className="btn-outline-glow px-4 py-2 rounded-md font-mono text-xs flex items-center gap-2"
+        >
+          <FontAwesomeIcon icon={faDownload} /> Pentester Resume
+        </a>
+      </div>
+      <div className="content px-4 pb-8 flex flex-col sm:flex-row justify-between items-center gap-3 font-mono text-[11px] text-muted border-t border-border pt-5">
         <span>&copy; {year} Ali Ameer. All rights reserved.</span>
         <span>Securing infrastructure and training minds.</span>
+        <img
+          src="https://hits.sh/ameer-18-star.github.io/Portfolio.svg?style=flat-square&label=Visitors&color=22d3ee&labelColor=0a0f1d"
+          alt="Visitor count"
+          loading="lazy"
+          className="h-5"
+        />
       </div>
     </footer>
   );

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faArrowRight,
+  faDownload,
   faChalkboardTeacher,
   faShieldHalved,
   faCircleCheck,
@@ -23,6 +24,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import Reveal from "../components/common/reveal/Reveal";
+import Modal from "../components/common/modal/Modal";
 import BlogCard from "../components/blog/BlogCard";
 import BlogModal from "../components/blog/BlogModal";
 import "../components/blog/blog.css";
@@ -114,8 +116,10 @@ const awards = [
     title: "Best Teacher Award",
     org: "Officer's Science Academy",
     year: "2026",
+    details:
+      "Awarded for outstanding classroom delivery and measurable student outcomes across CS, ICT and IT support coursework at Officer's Science Academy.",
   },
-  // Add more awards here as they come in — same shape, new image import above.
+  // Add more awards here as they come in — same shape (include a `details` string), new image import above.
 ];
 
 const VMSOIT_URL  = "https://vmsoit.blogspot.com";
@@ -141,6 +145,7 @@ const StatCard = ({ value, label, sub }) => (
 
 const InstructorPage = () => {
   const [activePost, setActivePost] = useState(null);
+  const [selectedAward, setSelectedAward] = useState(null);
   const awardsScrollRef = useRef(null);
 
   const scrollAwards = (dir) => {
@@ -148,6 +153,7 @@ const InstructorPage = () => {
     if (!el) return;
     el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
   };
+
 
   useEffect(() => {
     document.title = "IT & CS Instructor | Ali Ameer";
@@ -207,6 +213,13 @@ const InstructorPage = () => {
             >
               View security work →
             </Link>
+            <a
+              href="/Ali_Ameer_Instructor_Resume.pdf"
+              download
+              className="btn-outline-glow px-6 py-3 rounded-md font-mono text-sm inline-flex items-center gap-2"
+            >
+              <FontAwesomeIcon icon={faDownload} /> Download Resume
+            </a>
           </div>
         </section>
       </div>
@@ -468,7 +481,17 @@ const InstructorPage = () => {
               {awards.map((a) => (
                 <div
                   key={a.id}
-                  className="glass-panel overflow-hidden hover:glow-cyan transition-all duration-300 shrink-0 snap-center w-[280px] sm:w-[320px]"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setSelectedAward(a)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedAward(a);
+                    }
+                  }}
+                  className="glass-panel overflow-hidden hover:glow-cyan transition-all duration-300 shrink-0 snap-center w-[280px] sm:w-[320px] cursor-pointer text-left"
+                  aria-label={`View details for ${a.title}`}
                 >
                   <div className="aspect-[4/3] bg-panel overflow-hidden">
                     <img
@@ -511,6 +534,48 @@ const InstructorPage = () => {
               </div>
             )}
           </div>
+
+          <Modal
+            open={!!selectedAward}
+            onClose={() => setSelectedAward(null)}
+            title={selectedAward?.title}
+            subtitle={selectedAward ? `${selectedAward.org} · ${selectedAward.year}` : undefined}
+            size="xl"
+            labelledBy="award-title"
+          >
+            {selectedAward && (
+              <div className="grid lg:grid-cols-[1.3fr_1fr] gap-8 items-start">
+                <div className="rounded-lg border border-border bg-obsidian center overflow-hidden h-72 sm:h-96 lg:h-[60vh]">
+                  <img
+                    src={selectedAward.image}
+                    alt={`${selectedAward.title} — ${selectedAward.org}, ${selectedAward.year}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+
+                <div>
+                  <div className="w-9 h-9 center rounded-md bg-cyan/10 text-cyan mb-4">
+                    <FontAwesomeIcon icon={faTrophy} />
+                  </div>
+
+                  <dl className="grid grid-cols-2 gap-4 font-mono text-xs border-t border-border pt-4">
+                    <div>
+                      <dt className="text-muted uppercase">Issuer</dt>
+                      <dd className="text-ink mt-1">{selectedAward.org}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-muted uppercase">Year</dt>
+                      <dd className="text-ink mt-1">{selectedAward.year}</dd>
+                    </div>
+                  </dl>
+
+                  {selectedAward.details && (
+                    <p className="text-muted text-sm leading-relaxed mt-5">{selectedAward.details}</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </Modal>
         </section>
       </Reveal>
 

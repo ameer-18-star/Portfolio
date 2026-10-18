@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import ThemeToggle from "../theme/ThemeToggle";
 
 const navItems = [
@@ -151,14 +151,6 @@ const NavBar = () => {
             
             <ThemeToggle />
             
-            <a
-              href="/Ali_Ameer_Resume.pdf"
-              download
-              className="hidden md:flex items-center gap-2 btn-outline-glow px-4 py-2 rounded-md font-mono text-sm shrink-0"
-            >
-              <FontAwesomeIcon icon={faDownload} /> Resume
-            </a>
-            
             {isHome ? (
               <ScrollLink to="contact" smooth duration={700} className="hidden sm:block btn-primary px-5 py-2 rounded-md font-mono text-sm cursor-pointer shrink-0">
                 Hire Me
@@ -208,11 +200,6 @@ const NavBar = () => {
               >
                 Pentester page →
               </Link>
-            </li>
-            <li className="border-t border-border mt-1 pt-1">
-              <a href="/Ali_Ameer_Resume.pdf" download className="block py-3 text-muted hover:text-cyan">
-                Download Resume
-              </a>
             </li>
           </ul>
         )}
