@@ -61,22 +61,6 @@ const Footer = () => {
           <SocialMedia />
         </div>
       </div>
-      <div className="content px-4 pb-6 flex flex-wrap justify-center gap-3 border-t border-border pt-6">
-        <a
-          href="/Ali_Ameer_Instructor_Resume.pdf"
-          download
-          className="btn-outline-glow px-4 py-2 rounded-md font-mono text-xs flex items-center gap-2"
-        >
-          <FontAwesomeIcon icon={faDownload} /> Instructor Resume
-        </a>
-        <a
-          href="/Ali_Ameer_Pentester_Resume.pdf"
-          download
-          className="btn-outline-glow px-4 py-2 rounded-md font-mono text-xs flex items-center gap-2"
-        >
-          <FontAwesomeIcon icon={faDownload} /> Pentester Resume
-        </a>
-      </div>
       <div className="content px-4 pb-8 flex flex-col sm:flex-row justify-between items-center gap-3 font-mono text-[11px] text-muted border-t border-border pt-5">
         <span>&copy; {year} Ali Ameer. All rights reserved.</span>
         <span>Securing infrastructure and training minds.</span>
